@@ -1,61 +1,71 @@
-Class 01 Agenda
+# Class 01 Agenda
 
-Personal introductions
+## Personal introductions
 
-Class introductions?  Probably not... takes too long.
+## Class introductions?  Probably not... takes too long.
 
-Curriculum Overview
+## Curriculum Overview
 
-    Py100
+Py100 -- The core of the language.  We will be focusing on Python 3.
 
-    Py200
+Py200 -- Internet programming with Python.  Sockets, web frameworks.
 
-    Py300    
+Py300 -- Systems Programming with Python.  Python's eco system.
 
-Expectations
+## Expectations
 
-	Py100 -- Lightning Talk
+Py100 -- Lightning Talk
 
-		Lightning talk early volunteers?
+Lightning talk early volunteers?
 
-	Py200 -- Depends on instructor
-	Py300 -- Project
+Py200 -- Depends on instructor
 
-Dev environment
+Py300 -- Project
 
-    UWPCE Vagrant
-    https://github.com/rriehle/uwpce-vagrant    
-    https://youtu.be/QEufOvEyGmk
+## Dev environment
 
-    The goal:
+UWPCE Vagrant
 
-    $ mkvirtualenv <whatever>
+https://github.com/rriehle/uwpce-vagrant    
 
-Editors and IDEs
+https://youtu.be/QEufOvEyGmk
 
-    vi
-    emacs
-    sublime
-    atom
-    pycharm -- .edu!
+The goal:
 
-Git
+```bash
+$ mkvirtualenv <whatever>
+```
 
-	What is git for?
-	Demo w Gregor
-    Forking workflow
-    What is your github/bitbucket handle?
+but we'll get to that next week.
 
-    Does anyone want or need anonymity?  We can and will make arrangements.
+## Editors and IDEs
 
-Communications channels
+You need a text editor which is not the same thing as a text processor.  Use whaterver makes you happiest.  Potential options:
 
-	Slack
+*  vi
+*  emacs
+*  sublime
+*  atom
+*  pycharm -- .edu!
+*  notepad++
 
-	Questions -- send it to the group.
+## Git
 
-Overview of resources
+What is git for?
+Demo w Gregor
+Forking workflow
+What is your github/bitbucket handle?
 
-    canvas
-    github
-    stackoverflow
+Does anyone want or need anonymity?  We can and will make arrangements.
+
+## Communications channels
+
+Slack
+
+Questions -- send it to the group.
+
+## Overview of resources
+
+*  canvas
+*  github
+*  stackoverflow
