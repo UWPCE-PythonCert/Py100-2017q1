@@ -52,8 +52,11 @@ You need a text editor which is not the same thing as a text processor.  Use wha
 ## Git
 
 What is git for?
+
 Demo w Gregor
+
 Forking workflow
+
 What is your github/bitbucket handle?
 
 Does anyone want or need anonymity?  We can and will make arrangements.
