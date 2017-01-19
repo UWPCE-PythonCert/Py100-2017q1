@@ -13,10 +13,6 @@ Notes in Slack on how to set up the commandline environment.
 
 Randomize class names for lightning talks
 
-##  Lightning talk
-
-Brandon Marlow
-
 ##  Clone the class repo
 
 Goal: Everyone has a personal clone in their github account and on their Vagrant.
