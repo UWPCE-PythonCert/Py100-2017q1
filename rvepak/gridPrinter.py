@@ -1,25 +1,32 @@
 import sys
+import argparse
 
-rowsColumns = sys.argv[1]
-verticals = sys.argv[2]
+parser = argparse.ArgumentParser(
+    description='This is a script to generate gridPrinter')
+parser.add_argument('-r', help='rowsColumns', required=True)
+parser.add_argument('-v', help='verticals', required=True)
+args = parser.parse_args()
+
+rowsColumns = args.r
+verticals = args.v
 
 
-def print_grid2(r, c):
+def print_grid2(r, v):
     '''
   this method takes arguments as r -- number of rows and
-  c-- number of columns.
+  v-- number of columns.
   '''
 
     r = round(float(r))
-    c = round(float(c))
-    print('Creating grids for {} and {}'.format(r, c))
-    horizontalLine = '+' + '-' * (c)
-    verticalLine = '|' + ' ' * (c)
+    v = round(float(v))
+    print('Creating grids for {} and {}'.format(r, v))
+    horizontalLine = '+' + '-' * (v)
+    verticalLine = '|' + ' ' * (v)
 
     rowCounter = 0
     while rowCounter < r:
         print(horizontalLine * r + '+')
-        for i in range(0, c):
+        for i in range(0, v):
             print(verticalLine * (r + 1))
         rowCounter += 1
     print(horizontalLine * r + '+')
