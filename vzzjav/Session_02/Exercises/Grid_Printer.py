@@ -4,7 +4,6 @@
 # Description: http://uwpce-pythoncert.github.io/IntroPython2016a/exercises/grid_printer.html
 
 def main():
-    character = ["+", " ", "-"]
     line = ""
     for i in range(11):
         for j in range(21):
