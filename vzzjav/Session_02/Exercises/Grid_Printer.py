@@ -8,8 +8,8 @@ def main():
     line = ""
     for i in range(11):
         for j in range(21):
-            if i == 0 or i == 5 or i == 10:
-                if j == 0 or j == 10 or j == 20:
+            if i % 5 == 0:
+                if j % 10 == 0:
                     if j == 20:
                         line +="+\n"
                     else:
@@ -19,7 +19,7 @@ def main():
                 else:
                     line +=" "
             else:
-                if j == 0 or j == 10 or j == 20:
+                if j % 10 == 0:
                     if j == 20:
                         line +="|\n"
                     else:
