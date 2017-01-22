@@ -33,6 +33,5 @@ def main():
     n = input("Size of grid: ")
     print_grid(int(n))
 
-
 if __name__ == '__main__':
     main()
