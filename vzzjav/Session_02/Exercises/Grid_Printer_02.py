@@ -4,12 +4,13 @@
 # Description: http://uwpce-pythoncert.github.io/IntroPython2016a/exercises/grid_printer.html
 
 def print_grid(n):
+    n += 1
     line = ""
-    for i in range(11):
-        for j in range(21):
-            if i % 5 == 0:
-                if j % 10 == 0:
-                    if j == 20:
+    for i in range(n+1):
+        for j in range(n*2+1):
+            if i % n == 0:
+                if j % n == 0:
+                    if j == n*2:
                         line +="+\n"
                     else:
                         line += "+"
@@ -30,7 +31,7 @@ def print_grid(n):
 
 def main():
     n = input("Size of grid: ")
-    print_grid(n)
+    print_grid(int(n))
 
 
 if __name__ == '__main__':
