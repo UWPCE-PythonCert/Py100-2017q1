@@ -8,19 +8,19 @@ def print_grid(n):
     line = ""
     for i in range(n+1):
         for j in range(n*2+1):
-            if i % n == 0:
+            if i % n == 0 or i % (n/2) == 0:
                 if j % n == 0:
                     if j == n*2:
                         line +="+\n"
                     else:
                         line += "+"
-                elif j % 2 == 0 and (j != 10 or j != 20):
+                elif j % 2 == 0 and (j != n or j != n*2):
                     line +="-"
                 else:
                     line +=" "
             else:
-                if j % 10 == 0:
-                    if j == 20:
+                if j % (n) == 0:
+                    if j == n*2:
                         line +="|\n"
                     else:
                         line += "|"
