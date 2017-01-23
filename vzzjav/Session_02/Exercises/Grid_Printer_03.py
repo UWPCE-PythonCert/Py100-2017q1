@@ -3,11 +3,10 @@
 # Jan 21, 2017
 # Description: http://uwpce-pythoncert.github.io/IntroPython2016a/exercises/grid_printer.html
 
-def print_grid(n):
-    n += 1
+def print_grid(n, m):
     line = ""
-    for i in range(n+1):
-        for j in range(n*2+1):
+    for i in range(n*m+n+1):
+        for j in range((n*m+n)*2+1):
             if i % n == 0 or i % (n/2) == 0:
                 if j % n == 0:
                     if j == n*2:
