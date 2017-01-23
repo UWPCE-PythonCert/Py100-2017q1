@@ -7,9 +7,9 @@ def print_grid(n, m):
     line = ""
     for i in range(n*m+n+1):
         for j in range((n*m+n)*2+1):
-            if i % n == 0 or i % (n/2) == 0:
-                if j % n == 0:
-                    if j == n*2:
+            if i % (m+1) == 0:
+                if j % ((m+1)*2) == 0:
+                    if j == (n*m+n)*2:
                         line +="+\n"
                     else:
                         line += "+"
@@ -18,8 +18,8 @@ def print_grid(n, m):
                 else:
                     line +=" "
             else:
-                if j % (n) == 0:
-                    if j == n*2:
+                if j % ((m+1)*2) == 0:
+                    if j == (n*m+n)*2:
                         line +="|\n"
                     else:
                         line += "|"
@@ -29,8 +29,9 @@ def print_grid(n, m):
     print(line)
 
 def main():
-    n = input("Size of grid: ")
-    print_grid(int(n))
+    n = input("Columns: ")
+    m = input("Rows: ")
+    print_grid(int(n), int(m))
 
 if __name__ == '__main__':
     main()
