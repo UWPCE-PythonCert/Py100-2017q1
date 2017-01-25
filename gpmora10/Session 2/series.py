@@ -31,7 +31,7 @@ def sum_series(n,first=0, second=1):
     for i in range (n-2):
         sequence.append(first+second)
         first, second = second, first+second
-    print(sequence)
+    '''print(sequence)'''
     print(sequence[n-1])
 
 def fibonacci(n):
