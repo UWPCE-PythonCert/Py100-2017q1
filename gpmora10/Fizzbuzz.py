@@ -1,6 +1,6 @@
 def fizzbuzz(size = 100, fizz = 3, buzz = 5):
     results = []
-    for i in range(1,size):
+    for i in range(1,size+1):
         value = ""
         if i%fizz == 0:
             value += "Fizz"
