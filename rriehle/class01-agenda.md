@@ -72,3 +72,10 @@ Questions -- send it to the group.
 *  canvas
 *  github
 *  stackoverflow
+
+## Homework
+
+Get your dev environment up and running!
+
+http://uwpce-pythoncert.github.io/IntroToPython/session01.html#id2
+
