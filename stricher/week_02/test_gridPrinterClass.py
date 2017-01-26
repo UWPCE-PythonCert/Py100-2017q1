@@ -132,6 +132,8 @@ class TestGridPrinter(TestCase):
                       "Unexpected error: {}".format(value[0],
                                                     value[1],
                                                     sys.exc_info()[0]))
+                file.close()
+                logFile.close()
                 raise
 
             finally:
