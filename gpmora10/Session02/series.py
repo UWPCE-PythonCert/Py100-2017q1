@@ -7,8 +7,8 @@
         return fibonacci(n-1)+fibonacci(n-2)
 
 fibonacci(10)'''
-
-'''def lucas(n):
+'''
+def lucas(n):
     if n == 1:
         return 2
     elif n == 2:
