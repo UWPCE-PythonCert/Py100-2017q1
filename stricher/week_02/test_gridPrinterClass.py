@@ -134,7 +134,7 @@ class TestGridPrinter(TestCase):
                                                     sys.exc_info()[0]))
                 raise
 
-            else:
+            finally:
                 file.close()
                 logFile.close()
 
