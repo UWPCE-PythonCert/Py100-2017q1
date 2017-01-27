@@ -34,18 +34,20 @@ class GridPrinter:
                 ostream.write('\n')
             self.__print_row('+', '-', ostream)
 
-    def recurs(self, ostream: io.IOBase, index = 0):
-        if index == self._size + 2: return
-        isBorder = index % \
-                   (int(self.grid.get_cellSize(self._size,
-                                               self._numRowsCols)) + 1)\
-                   == 0
-        sep = '+' if isBorder else '|'
-        fill = '-' if isBorder else ' '
+    def recurs(self, ostream: io.IOBase):
+        def inner_recurs(ostream, index):
+            if index == self._size + 2: return
+            isBorder = index % \
+                       (int(self.grid.get_cellSize(self._size,
+                                                   self._numRowsCols)) + 1)\
+                       == 0
+            sep = '+' if isBorder else '|'
+            fill = '-' if isBorder else ' '
 
-        self.__print_row(sep, fill, ostream)
-        ostream.write("" if index == (self._size + 1) else "\n")
-        self.recurs(ostream, index + 1)
+            self.__print_row(sep, fill, ostream)
+            ostream.write("" if index == (self._size + 1) else "\n")
+            inner_recurs(ostream, index + 1)
+        inner_recurs(ostream = ostream, index = 0)
 
     # Grid Printer Exercise - Parts 1/2/3
     import sys
@@ -66,7 +68,7 @@ class GridPrinter:
                 break
 
             if size is None:
-                size = Grid().compute_heightWidth(numRowsCols, cellSize)
+                size = Grid.compute_heightWidth(numRowsCols, cellSize)
                 break
             break
 
