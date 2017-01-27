@@ -116,8 +116,36 @@ class RunAllTests:
         print("Success !")
 
     @staticmethod
+    def launch_tests_print_grid():
+
+        print("Testing print_grid() ... " + 2 * "\t", end="")
+
+        from test_grid_printer import TestGrid_printer
+
+        tester = TestGrid_printer()
+
+        tester.test_print_grid()
+
+        print("Success !")
+
+    @staticmethod
+    def launch_tests_print_grid2():
+
+        print("Testing print_grid2() ... " + 2 * "\t", end="")
+
+        from test_grid_printer import TestGrid_printer
+
+        tester = TestGrid_printer()
+
+        tester.test_print_grid2()
+
+        print("Success !")
+
+    @staticmethod
     def launchAll():
+
         print("\nLaunching the tests ...\n")
+
         RunAllTests.launch_tests_fizzBuzz()
         RunAllTests.launch_tests_Fibonacci()
         RunAllTests.launch_tests_Lucas()
@@ -125,5 +153,7 @@ class RunAllTests:
         RunAllTests.launch_tests_GridValueError()
         RunAllTests.launch_tests_Grid()
         RunAllTests.launch_tests_GridPrinter()
+        RunAllTests.launch_tests_print_grid()
+        RunAllTests.launch_tests_print_grid2()
 
         print("\nAll tests pass !")
