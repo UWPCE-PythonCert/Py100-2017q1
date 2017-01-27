@@ -31,9 +31,7 @@ Mind map on the board
 *  Object Oriented (vs...)
 *  Interpreted (vs compiled)
 *  Type system, Duck typing
-
 *  What is it good for?
-
 *  What is it bad for?
 
 Basic Syntax and language features
