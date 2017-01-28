@@ -61,22 +61,19 @@ def sendThankYou():
         print('List of donors is {}'.format(getDonors()))
         sendThankYou()
     else:
-        if response not in getDonors():
-            print('Adding {} to donors List as the name is not available'.
-                  format(response))
-            enterDonotAmount(response)
-            print('Available Donors are {}'.format(getDonors()))
-            inputPrompts()
-        else:
-            enterDonotAmount(response)
-            inputPrompts()
+        enterDonorAmount(response)
+        print('Available Donors are {}'.format(getDonors()))
+        inputPrompts()
 
 
-def enterDonotAmount(response):
+def enterDonorAmount(response):
     '''
     this method appens amounts to the donors DS
     '''
     amount = input('Enter donation amount: ')
+    if response not in getDonors():
+        print('Adding {} to donors List as the name is not available'.format(
+            response))
     try:
         amount = float(amount)
     except ValueError:
