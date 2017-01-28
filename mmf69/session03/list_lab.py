@@ -15,3 +15,6 @@ fruit = ['Apples', 'Pears', 'Oranges', 'Peaches']
 print (fruit, "\n")
 
 
+#Ask user to add a new fruit to list
+fruit.append(input("Pleaae add a fruit to the list:\n"))
+print (fruit, "\n")
