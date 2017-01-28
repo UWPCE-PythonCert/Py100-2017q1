@@ -12,9 +12,17 @@ Display all the fruits that begin with “P”, using a for loop.
 
 #Create list of fruit
 fruit = ['Apples', 'Pears', 'Oranges', 'Peaches']
-print (fruit, "\n")
+print(fruit, "\n")
 
 
-#Ask user to add a new fruit to list
+#Ask the user for another fruit and add it to the end of the list.
 fruit.append(input("Pleaae add a fruit to the list:\n"))
-print (fruit, "\n")
+print(fruit, "\n")
+
+#Ask the user for a number and display the number back to the user and the fruit corresponding to that number (on a 1-is-first basis).
+while True:
+    try:
+        number = int(input("Pick a number:\n"))
+        print("The number {} corresponds to {} in the list.\n".format(number,fruit[number - 1]))
+    except IndexError:
+        print("That number is not in the list")
