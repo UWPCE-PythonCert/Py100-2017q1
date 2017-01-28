@@ -6,6 +6,7 @@
 import string, math
 
 def exchangeFL(sequence):
+    '''Return a sequence with the first and last items exchanged.'''
     if isinstance(sequence, str):
         return sequence[-1] + sequence[1:len(sequence)-1] + sequence[0]
 
@@ -36,6 +37,7 @@ def thirds(sequence):
 
 
 def main():
+    print(exchangeFL.__doc__)
     print(exchangeFL(string.ascii_lowercase))
     print(removedItem(string.ascii_lowercase))
     print(remover4fl_n(string.ascii_lowercase, 10))
