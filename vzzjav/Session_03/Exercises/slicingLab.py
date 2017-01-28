@@ -11,11 +11,13 @@ def exchangeFL(sequence):
         return sequence[-1] + sequence[1:len(sequence)-1] + sequence[0]
 
 def removedItem(sequence):
+    '''Return a sequence with every other item removed'''
     if isinstance(sequence, str):
         return sequence[0:len(sequence):2]
 
 
-def remover4fl_n(sequence, n):
+def remover4fl(sequence):
+    '''Return a sequence with the first and last 4 items removed, and every other item in between'''
     if isinstance(sequence, str):
         return sequence[4:-4:1]
 
@@ -38,11 +40,13 @@ def thirds(sequence):
 
 def main():
     print(exchangeFL.__doc__)
-    print(exchangeFL(string.ascii_lowercase))
-    print(removedItem(string.ascii_lowercase))
-    print(remover4fl_n(string.ascii_lowercase, 10))
-    print(reverse(string.ascii_lowercase))
-    print(thirds(string.ascii_lowercase))
+    print(exchangeFL(string.ascii_lowercase),"\n")
+    print(removedItem.__doc__)
+    print(removedItem(string.ascii_lowercase),"\n")
+    print(remover4fl.__doc__)
+    print(remover4fl(string.ascii_lowercase),"\n")
+    print(reverse(string.ascii_lowercase),"\n")
+    print(thirds(string.ascii_lowercase),"\n")
 
 if __name__ == '__main__':
     main()
