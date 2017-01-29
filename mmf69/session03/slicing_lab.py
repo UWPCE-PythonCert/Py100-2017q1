@@ -9,16 +9,16 @@ return a sequence with the middle third, then last third, then the first third i
 
 s =  "What is that dog's name?"
 print(s)
-print(len(s))
+print(len(s), "\n")
 
 #return a sequence with the first and last items exchanged.
-print(s[23] + s[1:22]  + s[0])
+print(s[23] + s[1:22]  + s[0], "\n")
 
 #return a sequence with every other item removed
-print(s[::2])
+print(s[::2], "\n")
 
 #return a sequence reversed (just with slicing)return a sequence reversed (just with slicing)
-print(str(s[::-1]))
+print(str(s[::-1]), "\n")
 
 #return a sequence with the middle third, then last third, then the first third in the new order
 
