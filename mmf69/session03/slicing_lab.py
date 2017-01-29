@@ -23,4 +23,3 @@ print(str(s[::-1]), "\n")
 #return a sequence with the middle third, then last third, then the first third in the new order
 
 
-
