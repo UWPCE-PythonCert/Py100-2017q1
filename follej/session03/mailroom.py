@@ -60,15 +60,21 @@ def init_menu():
             pass
 
 
-def write_thank_you_email(param):
-    pass
+def write_thank_you_email(donor_index):
+    print("To {}:".format(donors[donor_index][0]))
+    print()
+    print("Thank you for you generous donation of $%.2f" % sum(donors[donor_index][1]))
 
 
-def send_a_thank_you():
+def get_donor_names_list():
     donor_names = []
     for i in range(len(donors)):
         donor_names.append(donors[i][0])
+    return donor_names
 
+
+def send_a_thank_you():
+    donor_names = get_donor_names_list()
     response = "list"
     while response != "":
         print("Hit 'Enter' at any prompt to return to main menu")
@@ -81,11 +87,14 @@ def send_a_thank_you():
             donor_index = donor_names.index(response)
             add_donation(donor_index)
             print_a_report([donor_index])
-            write_thank_you_email([donor_names.index(response)])
+            write_thank_you_email(donor_index)
         elif response != "":
             add_a_donor(response)
-            donor_index = donors.index(response)
+            donor_names = get_donor_names_list()
+            donor_index = donor_names.index(response)
             add_donation(donor_index)
+            print_a_report([donor_index])
+            write_thank_you_email(donor_index)
         else:
             pass
 
@@ -93,13 +102,14 @@ def send_a_thank_you():
 def add_donation(donor_index):
     response = input("Enter donation amount > ")
     if response == "": init_menu()
-    donors[donor_index][1].append(int(response))
+    donors[donor_index][1].append(float(response))
 
 
 def add_a_donor(new_donor):
-    donors.append([new_donor])
+    donors.append([new_donor, []])
 
 
 if __name__ == '__main__':
-    send_a_thank_you()
-    # init_menu()
+    # send_a_thank_you()
+    # write_thank_you_email(2)
+    init_menu()
