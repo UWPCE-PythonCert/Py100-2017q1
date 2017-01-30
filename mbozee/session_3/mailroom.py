@@ -1,12 +1,31 @@
 #!/usr/bin/env python3
 
 donors = {
-    'Donovan Leitch': [100, 20, 150],
-    'Stevie Nicks': [200, 80],
+    'Donovan Leitch': [100, 20, 1000],
+    'Stevie Nicks': [200, 500],
     'Ian Anderson': [190],
     'Mavis Staples': [170, 40, 130],
-    'Suzanne Vega': [160, 30]
+    'Suzanne Vega': [160, 300]
 }
+
+
+def menu():
+    """Give user choice of actions."""
+    for keys, values in donors.items():
+        print(keys, end=', ')
+    print(end='\n')
+    options = {1: 'Send a Thank You', 2: 'Create a Report', 3: 'quit'}
+    choice = input("Choose an option:\n" + str(options) + " > ")
+
+    while choice != '3' and choice != 'quit'.lower():
+
+        if choice == str(1):
+            thank_you()
+        elif choice == str(2):
+            create_report()
+        else:
+            menu()
+        break
 
 
 def thank_you():
@@ -49,21 +68,13 @@ def write_letter(full_name, new_donation):
 
 def create_report():
     """Generate a report of donors and donation amounts."""
-    pass
+    donors_sorted = sorted(donors.items(),
+                           key=lambda t: sum(t[1]), reverse=True)
+    for donor in donors_sorted:
+        print(donor[0], end='   ')
+        print('$  ' + str(sum(donor[1])), end='   ')
+        print("Donations: " + str(len(donor[1])))
+        print("Average donation: $" + str(round(float(sum(donor[1])/len(donor[1])), 2)))
 
-
-def menu():
-    """Give user choice of actions."""
-    options = {1: 'Send a Thank You', 2: 'Create a Report', 3: 'quit'}
-    choice = input("Choose an option:\n" + str(options) + " > ")
-
-    if choice == str(1):
-        thank_you()
-    elif choice == str(2):
-        print("Create a Report coming soon...")
-    elif choice == str(3):
-        pass
-    else:
-        menu()
 
 menu()
