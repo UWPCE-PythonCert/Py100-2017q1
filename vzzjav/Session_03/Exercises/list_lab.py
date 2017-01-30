@@ -5,15 +5,9 @@
 
 import os
 
-def createList():
-    '''Create a list'''
-    return ["Apples", "Pears", "Oranges", "Peaches"]
-
-
-
 def main():
     '''List's exercise'''
-    fruits = createList()
+    fruits = ["Apples", "Pears", "Oranges", "Peaches"]
     print(fruits)
     fruits.append(input("Add fruit: "))
     print(fruits)
@@ -23,6 +17,38 @@ def main():
     fruits.insert(0, input("Add fruit: "))
     print(fruits)
     [print(fruit) for fruit in fruits if "P" in fruit[0]]
+    print(fruits)
+    fruitsS1 = fruits[:]
+    del fruits[len(fruits)-1]
+    fruits *= 2
+    print(fruits)
+    fruitRemove = input("Remove fruit: ")
+    [fruits.remove(fruitRemove) for fruit in fruits if fruitRemove in fruits]
+    print(fruits)
+    fruits = fruitsS1[:]
+    print("Fruits serie 1: ", fruits)
+    i = 0
+    removeList = []
+    for fruit in fruits:
+        while True:
+            answer = input("Do you like " + fruit + "?")
+            if answer == "yes":
+                fruits[i] = fruit.lower()
+                print(fruits[i])
+                break
+            elif answer == "no":
+                removeList.append(fruit)
+                break
+            else:
+                print("Please just answer [yes] or [no].")
+                continue
+        i += 1
+    for fruit in removeList:
+        fruits.remove(fruit)
+    print(fruits)
+    fruits = fruitsS1[:]
+    print("Fruits serie 1: ", fruits)
+
 
 if __name__ == '__main__':
     print(os.path.basename(__file__))
