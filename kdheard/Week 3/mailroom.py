@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
+
+from statistics import mean
+
 db = {
-    'donor1': {'name': 'Zero Crash', 'donations': {13.37}},
+    'donor1': {'name': 'Ayn Rand', 'donations': {1000}},
     'donor2': {'name': 'William Gibson', 'donations': {1000, 5000, 500}},
     'donor3': {'name': 'Neal Stephenson', 'donations': {10, 100, 1000}},
     'donor4': {'name': 'George Orwell', 'donations': {19, 84}},
@@ -8,56 +11,68 @@ db = {
 }
 
 def return_prompt():
-    prompt = input("Press 1 to return to main menu. Press 2 to quit.")
-    if int(prompt) == 1:
+        prompt = input("\nPress enter to return to main menu.\n")
         main()
-    if int(prompt) == 2:
-        quit()
 
 
 def thank_you():
-    name = input("Type 'list' to see existing donors, or type the full name of a donor > ")
-    if name == 'list':
+
+    input_name = input("Type 'list' to see existing donors, or type the full name of a donor. Or, press ENTER to return to the main menu. > ")
+    str(input_name)
+    if input_name == "":
+        main()
+    elif input_name == 'list':
         for donors in db:
             print(db[str(donors)]['name'])
-    if name != 'list':
+        return_prompt()
+    elif input_name != 'list':
+        donation = input("How much has this donor contributed? > ")
         for donors in db:
+            str(donors)
+            while input_name == db[donors]['name']:
+                db[donors]['donations'].add(donation)
+                break
+            else:
+                db['new_donor'] = {}
+                db['new_donor']['name'] = input_name
+                db['new_donor']['donations'] = donation
+                print(db)
+                break
 
-    #todo search list for name (I'm guessing similar to listlab?)
-    #todo if name not in list, then add name and donation to list
-    donation = input("How much has this donor contributed? > ")
-    print("Generating e-mail...\n -------------------------")
-    print("Dear {}, \n\n Thank you for your generous donation of ${0:.2f}. With the help of contributions like yours, we can continue to"
-          "aid individuals who have mistakenly been added to NSA watchlists because of Autocorrect. The fact that such a phenomenon exists is a"
-          "ducking serial problematic and with your cornrowed generosity, we can pursuit our goalpost of helping these people."
-          "\n\n Yours truly: \n The Director"
-          "\n(Sent from Android Mobile)".format(name,donation))
+
+
+    print("\nGenerating e-mail...\n-------------------------")
+    print("Dear {}, \n\nThank you for your generous donation of ${}. With the help of contributions like yours, we can continue to"
+            " \naid individuals who have mistakenly been added to NSA watchlists because of Autocorrect."
+            "\n\nYours truly: \nThe Director".format(str(input_name),donation))
+
     return_prompt()
 
 def create_report():
-    print("Name            Total Donations             Number of Donations             Average Donation")
+    width = 20
+
+    print("Name                  Total Donations       Number of Donations    Average Donation")
     print("--------------------------------------------------------------------------------------------")
     for donors in db:
-        list_name = db[str(donors)]['name']
-       # total_donations = db[str(donors)][]
-        #todo sum all the entries in the dict together
-        number_of_donations = len(db[str(donors)]['donations'])
-        #average_donations = #todo find function that averages all ints in a dict
-        print("{}           {}            {}             {}".format(list_name,total_donations,number_of_donations,average_donations))
+        str(donors)
+        list_name = db[donors]['name']
+        total_donations = sum(db[donors]['donations'])
+        number_of_donations = len(db[donors]['donations'])
+        average_donations = mean(db[donors]['donations'])
+        print("{}| ${}| {}| ${:.2f}".format(list_name.ljust(width),str(total_donations).ljust(width),str(number_of_donations).ljust(width),average_donations))
     return_prompt()
 
-def quit():
-    print("\nThank you for using Mailroom. Exiting program.")
 
 def main():
         print("Welcome to Mailroom. \n\nYou have three options: \n(1.) Send a Thank You \n(2.) Create a Report \n(3.) Quit")
         response = input("\nWhat would you like to do? > ")
         if int(response) == 1:
             thank_you()
-        if int(response) == 2:
+        elif int(response) == 2:
             create_report()
-        if int(response) == 3:
-            quit()
+        elif int(response) == 3:
+            print("\nThank you for using Mailroom. Exiting program.")
+            pass
 
 
 
