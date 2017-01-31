@@ -56,11 +56,13 @@ def main():
 
     print("--SERIES 4-- \n")
     fruits2 = fruits[::]
-    [print(item) for item in fruits2]
+    print('Deleting last fruit in list, which is {}, now we have:'.format(fruits[-1]))
+    fruits.remove(fruits[-1])
+    print(fruits)
 
     for x in fruits2[::]:
         word = list(x)
-        print(word.reverse())
+        print(word[::-1])
 
 
 if __name__ == "__main__":
