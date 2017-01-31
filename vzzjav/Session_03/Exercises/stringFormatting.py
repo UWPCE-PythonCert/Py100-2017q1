@@ -5,14 +5,11 @@
 
 import os
 
-def formatingString(*args):
-    pass
-
-def main():
+def main(*args):
     '''String formatting'''
-    pass
+    print("file_00{0} :   {1:<3.2f}, {2:<.0e}".format(*args))
 
 if __name__ == '__main__':
     print(os.path.basename(__file__))
     print(main.__doc__)
-    main()
+    main(2, 123.4567, 10000)
