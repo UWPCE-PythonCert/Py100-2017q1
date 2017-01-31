@@ -2,6 +2,8 @@
 
 """Mailroom script to send thank you emails to donors"""
 
+from operator import itemgetter
+
 DONORS = {"Derp McDerpston": [250.00, 650.00], "Billy Bob": [0.02],
           "Cthulhu": [1000.00, 25000.0, 123456.0],
           "Kayaba Akihiko": [10000.00, 3853.00, 6147.00],
@@ -73,7 +75,7 @@ def send_thank_you():
     print("Dear {},\n".format(fullname))
     print()
     print("On behalf of our staff here at OMGBBQMMX, I want to thank you for "
-          "your generous gift of ${:.2f}!!!11oneone".format(donation))
+          "your generous gift of ${:.2f}!".format(donation))
     print()
     input("Press Enter key to continue")
 
@@ -85,7 +87,7 @@ def add_donor(fullname):
     Function to add a donor and donation amount to the dataset.
     Arguments:
     fullname -- Full donor name.
-    returns -- donation amount.
+    :return: donation amount
     """
 
     while True:
@@ -109,7 +111,33 @@ def add_donor(fullname):
 def generate_report():
     """
     Function to genereate a report sorted by donation amount.
+    :return: none
     """
+
+    # Total up donations for each donor, and add to a new dict.
+    total_donor_list = dict(zip(DONORS.keys(), [[sum(amount)] for amount in
+                                                DONORS.values()]))
+
+    for name in DONORS:
+        # Get number of donations and add it to the new dict.
+        num_of_donations = len(DONORS[name])
+        total_donor_list[name].append(num_of_donations)
+
+        # Calculate average donation, and add that too.
+        donation_average = total_donor_list[name][0] / num_of_donations
+        total_donor_list[name].append(donation_average)
+
+    print()
+    print("     NAME            TOTAL          NUMBER       AVERAGE ")
+    print("----------------------------------------------------------")
+
+    for name, value in sorted(total_donor_list.items(), key=itemgetter(1),
+                              reverse=True):
+        print("{:<20} ${:<15.2f} {:<8} ${:<0.2f}".format(name, value[0],
+                                                         value[1], value[2]))
+    print()
+    input("Press Enter to continue")
+    menu()
 
 
 def main():
@@ -120,6 +148,7 @@ def main():
 
     # Show menu.
     menu()
+
 
 if __name__ == '__main__':
     main()
