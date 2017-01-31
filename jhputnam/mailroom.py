@@ -13,6 +13,7 @@ DONORS = {"Derp McDerpston": [250.00, 650.00], "Billy Bob": [0.02],
 def menu():
     """
     Function to show the main menu.
+    :return: none
     """
 
     # Originally put the menu in main() but ran into a roadblock when
@@ -46,6 +47,7 @@ def send_thank_you():
     """
     Function to handle both adding new users and to initiate the sending
     of a thank you email to the donor.
+    :return: none
     """
 
     while True:
