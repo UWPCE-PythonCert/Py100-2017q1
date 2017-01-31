@@ -3,12 +3,14 @@
 from statistics import mean
 
 db = {
-    'donor1': {'name': 'Ayn Rand', 'donations': {1000}},
-    'donor2': {'name': 'William Gibson', 'donations': {1000, 5000, 500}},
-    'donor3': {'name': 'Neal Stephenson', 'donations': {10, 100, 1000}},
-    'donor4': {'name': 'George Orwell', 'donations': {19, 84}},
-    'donor5': {'name': 'Aldous Huxley', 'donations':{600}}
+    'donor1': {'name': 'Ayn Rand', 'donations': [1000]},
+    'donor2': {'name': 'William Gibson', 'donations': [1000, 5000, 500]},
+    'donor3': {'name': 'Neal Stephenson', 'donations': [10, 100, 1000]},
+    'donor4': {'name': 'George Orwell', 'donations': [19, 84]},
+    'donor5': {'name': 'Aldous Huxley', 'donations': [600]},
 }
+
+new_donor_number = 1
 
 def return_prompt():
         prompt = input("\nPress enter to return to main menu.\n")
@@ -22,44 +24,50 @@ def thank_you():
     if input_name == "":
         main()
     elif input_name == 'list':
-        for donors in db:
-            print(db[str(donors)]['name'])
+        for donor_number, donor in db.items():
+            print(donor['name'])
         return_prompt()
     elif input_name != 'list':
+
         donation = input("How much has this donor contributed? > ")
-        for donors in db:
-            str(donors)
-            while input_name == db[donors]['name']:
-                db[donors]['donations'].add(donation)
-                break
-            else:
-                db['new_donor'] = {}
-                db['new_donor']['name'] = input_name
-                db['new_donor']['donations'] = donation
-                print(db)
-                break
+        donation = int(donation)
+        for donor_number, donors in db.items():
+            if input_name == donors['name']:
+                donors['donations'].append(donation)
+                generate_email(donation, donors['name'])
+        else:
+            global new_donor_number
+            new_donor = 'new_donor{}'.format(new_donor_number)
+            db[new_donor] = {}
+            db[new_donor]['name'] = input_name
+            db[new_donor]['donations'] = []
+            db[new_donor]['donations'].append(donation)
+            new_donor_number = new_donor_number + 1
+            print(new_donor_number)
+            print(db)
+            generate_email(donation, input_name)
 
 
-
+def generate_email(donation, input_name):
     print("\nGenerating e-mail...\n-------------------------")
     print("Dear {}, \n\nThank you for your generous donation of ${}. With the help of contributions like yours, we can continue to"
             " \naid individuals who have mistakenly been added to NSA watchlists because of Autocorrect."
-            "\n\nYours truly: \nThe Director".format(str(input_name),donation))
+            "\n\nYours truly: \nThe Director".format(input_name,donation))
 
     return_prompt()
 
 def create_report():
-    width = 20
 
-    print("Name                  Total Donations       Number of Donations    Average Donation")
+    print("Name                 Total Donations   No. of Donations   Avg Donation")
     print("--------------------------------------------------------------------------------------------")
-    for donors in db:
-        str(donors)
-        list_name = db[donors]['name']
-        total_donations = sum(db[donors]['donations'])
-        number_of_donations = len(db[donors]['donations'])
-        average_donations = mean(db[donors]['donations'])
-        print("{}| ${}| {}| ${:.2f}".format(list_name.ljust(width),str(total_donations).ljust(width),str(number_of_donations).ljust(width),average_donations))
+    for donor_number, donors in db.items():
+        list_name = donors['name']
+        total_donations = 0
+        for donation in donors['donations']:
+            total_donations += donation
+        number_of_donations = len(donors['donations'])
+        average_donations = mean(donors['donations'])
+        print("{0:20}| ${1:15}| {2:15}| ${3:.2f}".format(list_name, total_donations, number_of_donations, average_donations))
     return_prompt()
 
 
@@ -74,10 +82,5 @@ def main():
             print("\nThank you for using Mailroom. Exiting program.")
             pass
 
-
-
-
-
 if __name__ == "__main__":
    main()
-
