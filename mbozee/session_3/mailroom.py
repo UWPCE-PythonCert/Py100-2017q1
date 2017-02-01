@@ -56,7 +56,7 @@ def thank_you():
                 new_donation = int(new_donation)
                 break
             except ValueError:
-                print("Error, expecting a number.")
+                print("Please enter a number.")
         donors[full_name].append(new_donation)
         print(donors)
         write_letter(full_name, new_donation)
@@ -68,7 +68,7 @@ def thank_you():
                 new_donation = int(new_donation)
                 break
             except ValueError:
-                print("Error, expecting a number.")
+                print("Please enter a number.")
         donors[full_name].append(new_donation)
         print(donors)
 
