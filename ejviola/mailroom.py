@@ -18,16 +18,16 @@ while True:
     choice = float(input("Choose one of the following (Enter 1, 2, or 3): \n 1) Send a Thank You \n 2) Create a Report \n 3) Quit\n"))
 
     # Create a list of unique donors
-    list = []
+    donorlist = []
     for i in donordata:
         # row = str(donordata[i]).split(",").strip("[").strip("]")
         row = i[0]
         # If that donor is already in the list, do nothing
-        if row in list:
+        if row in donorlist:
             counter = []
         # Otherwise, add that donor
         else:
-            list.append(row)
+            donorlist.append(row)
     if choice == 1:
         print("You chose: send a thank you\n")
         while True:
@@ -37,13 +37,13 @@ while True:
 
             # If the user asks for a list of donors, print the list
             if entername.lower() == "list":
-                print(list)
+                print(donorlist)
                 print("\n")
                 break
             elif entername.lower() == "back":
                 break
             else:
-                if entername in list:
+                if entername in donorlist:
                     print("You selected "+entername+"\n")
                     try:
                         amount = float(input("How much did "+entername+" donate?\n"))
@@ -53,7 +53,7 @@ while True:
 
                 else:
                     #add to list
-                    list += entername
+                    donorlist.append(entername)
                     print(entername+" was not in the existing data. "+entername+" has been added to the list of donors.\n")
                     try:
                         amount = float(input("How much did "+entername+" donate?\n"))
@@ -69,7 +69,7 @@ while True:
         # Count and sum donations
         donationsum = []
         donationcount = []
-        for i in list:
+        for i in donorlist:
             localsum = 0
             localcount = 0
             for row in donordata:
@@ -82,8 +82,8 @@ while True:
         # Combine list of names, donation sums, and donation counts
         counter = 0
         report = []
-        for i in list:
-            newrow = [donationsum[counter], list[counter],donationsum[counter], donationcount[counter], donationsum[counter] / donationcount[counter]]
+        for i in donorlist:
+            newrow = [donationsum[counter], donorlist[counter],donationsum[counter], donationcount[counter], donationsum[counter] / donationcount[counter]]
             report.append(newrow)
             counter += 1
 
