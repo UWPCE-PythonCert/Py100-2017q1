@@ -12,6 +12,8 @@ How is it going?
 
 Mailroom
 
+http://uwpce-pythoncert.github.io/IntroToPython/exercises/mailroom.html
+
 ##  Lightning talks
 
 https://uw2016pythoncourse.slack.com/files/rriehle/F3THGB4SY/schedule.txt
