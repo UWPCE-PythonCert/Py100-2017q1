@@ -1,5 +1,5 @@
 # Javier Vazquez
-# Grid Printer
+# String Formatting
 # Jan 30, 2017
 # Description: http://uwpce-pythoncert.github.io/IntroPython2016a/exercises/string_formatting.html
 
