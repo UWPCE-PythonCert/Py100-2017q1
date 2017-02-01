@@ -1,16 +1,20 @@
 # Class 04 Agenda
 
-##  Homework
+##  Survey
 
-Mailroom
+Thank you!
 
 ##  Git
 
 How is it going?
 
-##  Survey
+##  Homework
 
-Please do this during the break tonight.
+Mailroom
+
+##  Lightning talks
+
+https://uw2016pythoncourse.slack.com/files/rriehle/F3THGB4SY/schedule.txt
 
 ##  Python
 
