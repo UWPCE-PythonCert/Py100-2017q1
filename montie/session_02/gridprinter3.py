@@ -13,4 +13,4 @@ def print_grid(num,size):
 	for i in range(0,num):	
 		print('+'+'-'*size,end='')
 	print('+')
-print_grid(5,3)
+print_grid(4,9)
