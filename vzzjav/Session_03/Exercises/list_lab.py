@@ -41,7 +41,6 @@ def main():
                 break
             else:
                 print("Please just answer [yes] or [no].")
-                continue
         i += 1
     for fruit in removeList:
         fruits.remove(fruit)
