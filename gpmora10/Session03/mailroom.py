@@ -17,7 +17,11 @@ def showMenu():
 
 def sendThanks():
     thanksChoice = input("Enter a donor's name or enter \"list\" to see a list of donors: ")
-   #if thanksChoice in [name for donor in donors for name in donor]:
+    if thanksChoice.lower()=='list':
+        for donor in donors:
+            print(donor[0])
+        return
+   #if thanksChoice in [name for donor in donors for name in donor]:  This works on Stackoverflow but no idea how to use edit the donor list at that point.
     for donor in donors:
         if thanksChoice in donor:
             thanksDonation = int(input(("Enter " + thanksChoice + "'s donation amount: ")))
@@ -26,7 +30,6 @@ def sendThanks():
             print("The following was was emailed to " + thanksChoice + ":\n")
             print("Dear " + thanksChoice + ",\nThank you for your kind donation of " + str(thanksDonation) + " dollars.\n")
             break
-
     else:
         newDonor = [None, None, 0]
         print(thanksChoice + " was not found. Added " + thanksChoice + " to donors list")
@@ -36,6 +39,7 @@ def sendThanks():
             thanksDonation) + " dollars.\n")
         newDonor[0], newDonor[1], newDonor[2] = thanksChoice, thanksDonation, newDonor[2] + 1
         donors.append(newDonor)
+
 
 def createReport():
     widths = 20
