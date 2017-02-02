@@ -6,12 +6,17 @@
 import os
 
 def thanks(donors):
+    flag = 0
     print("Type [list] to display donors list.")
     print("Type a name to look in donors list or add a new one.")
     name = input("Input: ")
     if name == "list":
         for donor in donors:
             print(donor[0])
+    elif name not in [donor[0] for donor in donors if name in donor]:
+        print("new donor")
+    elif name in [donor[0] for donor in donors if name in donor]:
+        print(name)
 
 def report(donors):
     donors.sort(key = lambda x: x[1], reverse=True)
