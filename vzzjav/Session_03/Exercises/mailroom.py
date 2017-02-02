@@ -25,15 +25,16 @@ def thanks(donors):
         print(donors)
     elif name in [donor[0] for donor in donors if name in donor]:
         print("Donor: ", name)
-        [print(donor) for donor in donors if name in donor]
-        # while True:
-        #     try:
-        #         donation = int(input("Donation: "))
-        #         break
-        #     except ValueError:
-        #         print("Please provide a numeric value!")
+        [print(donor[0]) for donor in donors if name in donor]
+        while True:
+            try:
+                donation = int(input("Donation: "))
+                break
+            except ValueError:
+                print("Please provide a numeric value!")
+        index = [print(i) for i in range(len(donors)) if name in donors[i][0]]
         # donors.append([name, donation, 1, donation / 1])
-        # print(donors)
+        print(len(index))
 
 def report(donors):
     donors.sort(key = lambda x: x[1], reverse=True)
