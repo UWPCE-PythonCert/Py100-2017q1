@@ -5,8 +5,10 @@ def fibonacci(n):
         if i == 0:
             print(0)
         elif i == 1:
-            print(1)
-        elif i >= 2:
+            print(val1)
+        elif i== 2:
+            print(val2)
+        elif i >= 3:
             total = val1 + val2
             print(total)
             val1 = val2
