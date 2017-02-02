@@ -6,7 +6,7 @@
 import os
 
 def thanks(donors):
-    flag = 0
+    donation = 0
     print("Type [list] to display donors list.")
     print("Type a name to look in donors list or add a new one.")
     name = input("Input: ")
@@ -14,9 +14,26 @@ def thanks(donors):
         for donor in donors:
             print(donor[0])
     elif name not in [donor[0] for donor in donors if name in donor]:
-        print("new donor")
+        print("New donor: ", name)
+        while True:
+            try:
+                donation = int(input("Donation: "))
+                break
+            except ValueError:
+                print("Please provide a numeric value!")
+        donors.append([name, donation, 1, donation/1])
+        print(donors)
     elif name in [donor[0] for donor in donors if name in donor]:
-        print(name)
+        print("Donor: ", name)
+        [print(donor) for donor in donors if name in donor]
+        # while True:
+        #     try:
+        #         donation = int(input("Donation: "))
+        #         break
+        #     except ValueError:
+        #         print("Please provide a numeric value!")
+        # donors.append([name, donation, 1, donation / 1])
+        # print(donors)
 
 def report(donors):
     donors.sort(key = lambda x: x[1], reverse=True)
