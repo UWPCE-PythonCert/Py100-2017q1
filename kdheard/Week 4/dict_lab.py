@@ -30,6 +30,20 @@ def main():
 
     print("ALL THE T'S! {}".format(dict1))
 
+    s2 = set()
+    s3 = set()
+    s4 = set()
+    for n in range(0,21):
+        if n % 2 == 0:
+            s2.add(n)
+        if n % 3 == 0:
+            s3.add(n)
+        if n %4 == 0:
+            s4.add(n)
+    print("SETS: \n", s2, "\n", s3, "\n", s4)
+
+    print("Is the middle set a subset of the first set? {}".format(s3.issubset(s2)))
+    print("Is the last set a subset of the first set? {}".format(s4.issubset(s2)))
 
 if __name__ == "__main__":
 
