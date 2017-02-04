@@ -38,17 +38,6 @@ def thank_you():
             print(key, end=', ')
         print('\n')
         thank_you()
-    # elif full_name in donors:
-    #     new_donation = int(input("New donation amount > "))
-    #     donors[full_name].append(new_donation)
-    #     print(donors)
-    #     write_letter(full_name, new_donation)
-    # else:
-    #     donors[full_name] = []
-    #     new_donation = int(input("New donation amount > "))
-    #     donors[full_name].append(new_donation)
-    #     print(donors)
-    #     write_letter(full_name, new_donation)
     elif full_name in donors:
         while True:
             new_donation = input("New donation amount > ")
