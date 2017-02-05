@@ -2,18 +2,61 @@
 
 """Mailroom script to send thank you emails to donors"""
 
+import sys
 from operator import itemgetter
-
-DONORS = {"Derp McDerpston": [250.00, 650.00], "Billy Bob": [0.02],
-          "Cthulhu": [1000.00, 25000.0, 123456.0],
-          "Kayaba Akihiko": [10000.00, 3853.00, 6147.00],
-          "Doctor Evil": [1000000.00]}
+import pickle
 
 
-def menu():
+def initdb():
+    """
+    This function initializes the donor db using pickle.
+    returns donor dictionary.
+    """
+
+    try:
+        with open('donordb.dat', 'rb') as handle:
+            donors = pickle.load(handle)
+
+    except FileNotFoundError:
+        print("Database file 'donordb.dat' not found! "
+              "What would you like to do?\n")
+        print("1. Create new database.")
+        print("2. Abort.\n")
+        print()
+
+        while True:
+            try:
+                choice = int(input("Enter option 1 or 2: "))
+                if choice not in (1, 2):
+                    print("Not a valid option. Try again.")
+                    continue
+                break
+            except ValueError:
+                print("Not a valid option. Try again.")
+
+        if choice == 1:
+            donors = {}
+            updatedb(donors)
+
+        elif choice == 2:
+            print("Goodbye!")
+            sys.exit()
+
+    return donors
+
+
+def updatedb(donors):
+    """
+    Function to write the donor dictionary out to a pickle file.
+    """
+
+    with open('donordb.dat', 'wb') as handle:
+        pickle.dump(donors, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+
+def menu(donors):
     """
     Function to show the main menu.
-    :return: none
     """
 
     # Originally put the menu in main() but ran into a roadblock when
@@ -36,18 +79,17 @@ def menu():
             print("Not a valid option. Try again.")
 
     if choice == 1:
-        send_thank_you()
+        send_thank_you(donors)
     elif choice == 2:
-        generate_report()
+        generate_report(donors)
     else:
         print("Goodbye!")
 
 
-def send_thank_you():
+def send_thank_you(donors):
     """
     Function to handle both adding new users and to initiate the sending
     of a thank you email to the donor.
-    :return: none
     """
 
     while True:
@@ -57,21 +99,21 @@ def send_thank_you():
         # Listing is not currnetly pretty.
         # Might clean up the presentation if time allows.
         if fullname == "list":
-            for name in DONORS:
+            for name in donors:
                 print(name)
                 continue
         else:
             break
 
     # Don't like this much. Would be nice to make this better.
-    if fullname not in DONORS:
+    if fullname not in donors:
         print("The name \'{}\' is not in the donor list. Auto adding the "
               "name as a new donor.\n".format(fullname))
-        donation = add_donor(fullname)
+        donation = add_donor(donors, fullname)
     else:
         print("The name \'{}\' was found in the donor list. Adding new "
               "donation.\n".format(fullname))
-        donation = add_donor(fullname)
+        donation = add_donor(donors, fullname)
 
     print()
     print("Dear {},\n".format(fullname))
@@ -81,15 +123,15 @@ def send_thank_you():
     print()
     input("Press Enter key to continue")
 
-    menu()
+    menu(donors)
 
 
-def add_donor(fullname):
+def add_donor(donors, fullname):
     """
     Function to add a donor and donation amount to the dataset.
     Arguments:
     fullname -- Full donor name.
-    :return: donation amount
+    returns donation amount.
     """
 
     while True:
@@ -102,27 +144,28 @@ def add_donor(fullname):
                   "dollar sign.")
             continue
 
-    if fullname not in DONORS:
-        DONORS[fullname] = [donation]
+    if fullname not in donors:
+        donors[fullname] = [donation]
     else:
-        DONORS[fullname].append(donation)
+        donors[fullname].append(donation)
+
+    updatedb(donors)
 
     return donation
 
 
-def generate_report():
+def generate_report(donors):
     """
     Function to genereate a report sorted by donation amount.
-    :return: none
     """
 
     # Total up donations for each donor, and add to a new dict.
-    total_donor_list = dict(zip(DONORS.keys(), [[sum(amount)] for amount in
-                                                DONORS.values()]))
+    total_donor_list = dict(zip(donors.keys(), [[sum(amount)] for amount in
+                                                donors.values()]))
 
-    for name in DONORS:
+    for name in donors:
         # Get number of donations and add it to the new dict.
-        num_of_donations = len(DONORS[name])
+        num_of_donations = len(donors[name])
         total_donor_list[name].append(num_of_donations)
 
         # Calculate average donation, and add that too.
@@ -139,7 +182,7 @@ def generate_report():
                                                          value[1], value[2]))
     print()
     input("Press Enter to continue")
-    menu()
+    menu(donors)
 
 
 def main():
@@ -148,8 +191,10 @@ def main():
     Displays initial menu and calls various functions depending on user input.
     """
 
+    # Init the donor databse and get the donor dictionary.
+    donors = initdb()
     # Show menu.
-    menu()
+    menu(donors)
 
 
 if __name__ == '__main__':
