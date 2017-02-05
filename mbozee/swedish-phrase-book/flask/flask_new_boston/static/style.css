@@ -120,6 +120,19 @@ ul.row input {
     transition: background-color, color 0.3s ease-out;
 }
 
+ul.row ::-webkit-input-placeholder {
+    font-size: 0;
+}
+ul.row ::-moz-placeholder {
+    font-size: 0;
+}
+ul.row :-ms-input-placeholder {
+    font-size: 0;
+}
+ul.row :-moz-placeholder {
+    font-size: 0;
+}
+
 ul.row li:first-child,
 ul.row input {
     padding: 16px;
