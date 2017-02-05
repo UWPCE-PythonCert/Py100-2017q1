@@ -167,7 +167,7 @@ ul.row li:last-child::before {
 }
 
 ul.row li.correct:last-child::before {
-    border-left-color: limegreen;
+    border-left-color: #00d187;
 }
 
 ul.row input:focus {

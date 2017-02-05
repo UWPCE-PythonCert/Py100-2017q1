@@ -6,7 +6,7 @@
 var score = 0;
 $('.vocab-list input').keyup(function () {
     if($(this).val()==$(this).attr('placeholder')) {
-        $(this).css({'background-color': 'limegreen', 'color': '#fff'});
+        $(this).css({'background-color': '#00d187', 'color': '#fff'});
         $(this).parent('li').addClass('correct');
         score++;
         $('#score span').html(score);
