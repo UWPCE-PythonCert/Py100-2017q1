@@ -24,10 +24,10 @@
             <li><h2>Swedish</h2></li>
         </ul>
         <section class="vocab-list">
-            {% for word in eng_words %}
+            {% for key, value in phrase_book.items() %}
                 <ul class="row">
-                    <li>{{ word }}</li>
-                    <li><input type="text" /></li>
+                    <li>{{ key }}</li>
+                    <li><input type="text" value="" placeholder="{{ value }}" /></li>
                 </ul>
             {% endfor %}
         </section>
@@ -35,6 +35,9 @@
 
 </section>
 <!-- /SWEDISH PHRASE BOOK CONTENT -->
+
+<p style="font-size: 20px; color: black;">{{ phrase_book }}</p>
+
 
 </body>
 </html>

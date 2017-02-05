@@ -12,14 +12,13 @@ def index(user=None):
 
 @app.route("/swedish")
 def swedish():
-    # eng_words = ['fireman', 'to work', 'september', 'four', 'journalist']
-
 
     with open('static/eng_swd_vocab.csv', 'r') as csv_file:
         reader = csv.reader(csv_file)
         headers = next(reader)[0:]
         print(headers[0].upper() + " ~ " + headers[1].upper())
         print('-' * 20)
+        phrase_book = {}
         eng_words = []
         swd_words = []
         for row in reader:
@@ -27,9 +26,9 @@ def swedish():
             swd_word = row[1]
             eng_words.append(eng_word)
             swd_words.append(swd_word)
+            phrase_book[eng_word] = swd_word
 
-
-    return render_template("swedish.html", eng_words=eng_words)
+    return render_template("swedish.html", eng_words=eng_words, phrase_book=phrase_book)
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000, host='0.0.0.0')
