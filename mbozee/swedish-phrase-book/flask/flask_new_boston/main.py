@@ -21,14 +21,16 @@ def swedish():
         phrase_book = {}
         eng_words = []
         swd_words = []
+        total = 0
         for row in reader:
             eng_word = row[0]
             swd_word = row[1]
             eng_words.append(eng_word)
             swd_words.append(swd_word)
             phrase_book[eng_word] = swd_word
+            total += 1
 
-    return render_template("swedish.html", eng_words=eng_words, phrase_book=phrase_book)
+    return render_template("swedish.html", eng_words=eng_words, phrase_book=phrase_book, total=total)
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000, host='0.0.0.0')

@@ -64,6 +64,18 @@ section.vocab-wrapper {
 section.vocab-list {
     display: block;
     margin-top: 5px;
+    position: relative;
+}
+
+#score {
+    position: fixed;
+    top: 100px;
+    right: 50px;
+    padding: 20px;
+    background-color: dodgerblue;
+    color: #fff;
+    font-weight: 900;
+    font-size: 18px;
 }
 
 ul.header,
