@@ -150,24 +150,7 @@ ul.row input {
     padding: 16px;
 }
 
-
-ul.row li:first-child::after {
-    content: '';
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    right: 0;
-    -webkit-transform: translate(100%, -50%);
-    -moz-transform: translate(100%, -50%);
-    -ms-transform: translate(100%, -50%);
-    -o-transform: translate(100%, -50%);
-    transform: translate(100%, -50%);
-    border-width: 6px 0 6px 6px;
-    border-style: solid;
-    border-color: transparent transparent transparent dodgerblue;
-}
-
-ul.row li:last-child::after {
+ul.row li:last-child::before {
     content: '';
     position: absolute;
     z-index: 2;
@@ -180,11 +163,11 @@ ul.row li:last-child::after {
     transform: translate(0, -50%);
     border-width: 6px 0 6px 6px;
     border-style: solid;
-    border-color: transparent;
+    border-color: transparent transparent transparent dodgerblue;
 }
 
-ul.row li:last-child:focus::after {
-    border-left-color: #fff;
+ul.row li.correct:last-child::before {
+    border-left-color: limegreen;
 }
 
 ul.row input:focus {
