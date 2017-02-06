@@ -24,7 +24,9 @@ $('.vocab-list input').change(function () {
 // Countdown timer
 var time = 60;
 function timer() {
+    $('#timer-button').removeClass('action');
     $('#timer-button').prop('disabled', true);
+    $('#timer-button').html('<p id="timer"></p>');
     $('#timer').html(time);
     time--;
     if (time < 0) {

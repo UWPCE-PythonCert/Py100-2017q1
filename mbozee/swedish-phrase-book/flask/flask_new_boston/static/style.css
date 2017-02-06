@@ -24,6 +24,7 @@ em {
 }
 
 h1 {
+    width: 100%;
     display: block;
     font-size: 45px;
     color: #fff;
@@ -40,16 +41,19 @@ h2 {
     font-weight: 900;
     text-transform: uppercase;
     margin: 0;
+    width: 100%;
     display: block;
 }
 
 section#content {
     margin: 0 auto;
     background-color: #eee;
+    width: 100%;
     display: block;
 }
 
 section#masthead {
+    width: 100%;
     display: block;
     background-color: dodgerblue;
     text-align: center;
@@ -57,12 +61,14 @@ section#masthead {
 }
 
 section.vocab-wrapper {
+    width: 100%;
     display: block;
     max-width: 40%;
     margin: 50px auto 0 auto;
 }
 
 section.vocab-list {
+    width: 100%;
     display: block;
     margin-top: 5px;
     position: relative;
@@ -178,11 +184,7 @@ ul.row input:focus {
 
 section#stats-bar {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: block;
     background-color: #FFC60C;
     text-align: center;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16),
@@ -198,19 +200,30 @@ section#stats-bar {
                 0 3px 6px rgba(0,0,0,0.23);
 }
 
+#stats-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 40%;
+    margin: 0 auto;
+}
+
 
 
 /* SCORE
 ========================= */
 
 #score {
-    padding: 20px;
     color: #fff;
     font-weight: 900;
     font-size: 20px;
     display: inline-block;
     align-self: stretch;
     vertical-align: top;
+    cursor: default;
+    padding: 15px 16px;
 }
 
 
@@ -222,21 +235,25 @@ button#timer-button {
     background-color: transparent;
     border: none;
     color: #fff;
-    padding: 20px;
     font-size: 20px;
     font-weight: 900;
-    cursor: pointer;
     display: inline-block;
     text-transform: uppercase;
     align-self: stretch;
     vertical-align: top;
     line-height: 1;
     outline: none;
-    transition: background-color 0.3s ease-out,
-                color 0.3s ease-out;
+    cursor: default;
+    padding: 15px 16px;
 }
 
-button#timer-button:hover {
+button#timer-button.action {
+    transition: background-color 0.3s ease-out,
+                color 0.3s ease-out;
+    cursor: pointer;
+}
+
+button#timer-button.action:hover {
     background-color: #CB9C00;
     color: #eee;
 }
@@ -248,7 +265,6 @@ p#timer {
     margin: 0;
     align-self: stretch;
     vertical-align: top;
-    padding: 20px;
     line-height: 1;
     font-weight: 900;
     color: #fff;
