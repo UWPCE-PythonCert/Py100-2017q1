@@ -1,12 +1,10 @@
-from os import listdir
-from os import chdir
 
 def main(start_path, end_path = '/home/vagrant/Documents/Py100/Py100-2017q1/kdheard/Week 4/Test_folder'):
     files = listdir(start_path)
     for x in files:
         if x != "__init__.py":
             x = open(x,'rb')
-            with x as copy:
+            with open(x,'wb') as copy:
                 chdir(end_path)
                 copy.write(bytes(x, '_copy'))
                 chdir(start_path)
