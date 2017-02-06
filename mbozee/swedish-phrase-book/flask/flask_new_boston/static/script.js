@@ -22,17 +22,21 @@ $('.vocab-list input').change(function () {
 
 
 // Countdown timer
-var time = 60;
+var time = 10;
 function timer() {
     $('#timer-button').removeClass('action');
     $('#timer-button').prop('disabled', true);
     $('#timer-button').html('<p id="timer"></p>');
     $('#timer').html(time);
+    $('.vocab-list input').prop('disabled', false);
     time--;
     if (time < 0) {
         alert('You lose!');
+        $('.vocab-list input').prop('disabled', true);
         $('#timer-button').prop('disabled', false);
-        time = 60;
+        $('#timer-button').html('Play again?');
+        $('#timer-button').addClass('action');
+        time = 10;
     }
     else {
         setTimeout(timer, 1000);
