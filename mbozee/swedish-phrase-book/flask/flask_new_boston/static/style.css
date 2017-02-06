@@ -170,6 +170,10 @@ ul.row li.correct:last-child::before {
     border-left-color: #00d187;
 }
 
+ul.row li.incorrect:last-child::before {
+    border-left-color: #FF5300;
+}
+
 ul.row input:focus {
     background-color: dodgerblue;
     color: #fff;
