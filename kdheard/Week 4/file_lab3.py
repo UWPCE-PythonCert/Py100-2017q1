@@ -7,7 +7,7 @@ def main():
     known_languages = set()
 
     ''' The assignment says to generate a list of languages that have been used.
-    The existing students.txt file does not, so I made up languages for everyone.
+    However, the existing students.txt file does not include languages yet, so I made up languages for everyone.
     '''
     for line in students.readlines():
         line = line.strip('\n')

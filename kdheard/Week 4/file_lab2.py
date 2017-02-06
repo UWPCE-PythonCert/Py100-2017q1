@@ -1,3 +1,5 @@
+from os import listdir
+from os import chdir
 
 def main(start_path, end_path = '/home/vagrant/Documents/Py100/Py100-2017q1/kdheard/Week 4/Test_folder'):
     files = listdir(start_path)
