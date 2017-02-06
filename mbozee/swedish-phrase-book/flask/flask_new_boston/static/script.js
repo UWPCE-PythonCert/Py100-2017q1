@@ -22,7 +22,7 @@ $('.vocab-list input').change(function () {
 
 
 // Countdown timer
-var time = 10;
+var time = 60;
 function timer() {
     $('#timer-button').removeClass('action');
     $('#timer-button').prop('disabled', true);
@@ -36,7 +36,7 @@ function timer() {
         $('#timer-button').prop('disabled', false);
         $('#timer-button').html('Play again?');
         $('#timer-button').addClass('action');
-        time = 10;
+        time = 60;
     }
     else {
         setTimeout(timer, 1000);
