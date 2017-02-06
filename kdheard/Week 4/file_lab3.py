@@ -11,7 +11,7 @@ def main():
     '''
     for line in students.readlines():
         line = line.strip('\n')
-        new_line = line.split (' - ')[1]
+        new_line = line.split(' - ')[-1]
         known_languages.add(str(new_line))
     print(known_languages)
 
