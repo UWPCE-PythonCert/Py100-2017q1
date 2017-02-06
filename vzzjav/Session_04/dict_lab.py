@@ -16,6 +16,12 @@ def main():
     print(cakeDict.values())
     print("cake" in cakeDict.keys())
     print("Mango" in cakeDict.values())
+    cakeDict = {"name": "Chris", "city": "Seattle", "cake": "Chocolate"}
+    i = 0
+    for key in cakeDict.keys():
+        cakeDict[key] = i
+        i += 1
+    print(cakeDict)
 
 
 if __name__ == '__main__':
