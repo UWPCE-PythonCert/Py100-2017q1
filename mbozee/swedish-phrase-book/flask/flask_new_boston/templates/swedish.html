@@ -21,8 +21,20 @@
         <h1>Swedish Phrase Book</h1>
     </section><!-- /MASTHEAD -->
 
-    <button onclick="timer()">Clickme</button>
-    <p id="timer" style="font-size: 50px; color: black;"></p>
+    <!-- STATS BAR -->
+    <div id="fixed-anchor"></div>
+    <section id="stats-bar">
+
+        <!-- COUNTDOWN TIMER -->
+        <button id="timer-button" onclick="timer()">Start</button>
+        <p id="timer"></p>
+        <!-- /COUNTDOWN TIMER -->
+
+        <!-- SCORE -->
+        <div id="score"><span>0</span> / {{ total }}</div>
+        <!-- /SCORE -->
+
+    </section><!-- /STATS BAR -->
 
     <!-- VOCAB LIST -->
     <section class="vocab-wrapper">
@@ -31,7 +43,6 @@
             <li><h2>Swedish</h2></li>
         </ul>
         <section class="vocab-list">
-            <div id="score"><span>0</span> / {{ total }}</div>
             {% for key, value in phrase_book.items() %}
                 <ul class="row">
                     <li>{{ key }}</li>

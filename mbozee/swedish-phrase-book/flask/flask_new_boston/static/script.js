@@ -22,16 +22,56 @@ $('.vocab-list input').change(function () {
 
 
 // Countdown timer
+var time = 60;
 function timer() {
-    var time = 5;
+    $('#timer-button').prop('disabled', true);
     $('#timer').html(time);
     time--;
     if (time < 0) {
         alert('You lose!');
+        $('#timer-button').prop('disabled', false);
+        time = 60;
     }
     else {
         setTimeout(timer, 1000);
     }
+}
+
+
+
+// Top bar sticky
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var div_top = $('#fixed-anchor').offset().top;
+    if (window_top > div_top) {
+        $('#stats-bar').addClass('fixed');
+        $('#fixed-anchor').height($('#stats-bar').outerHeight());
+    } else {
+        $('#stats-bar').removeClass('fixed');
+        $('#fixed-anchor').height(0);
+    }
+}
+
+$(function() {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
+
+var dir = 1;
+var MIN_TOP = 200;
+var MAX_TOP = 350;
+
+function autoscroll() {
+    var window_top = $(window).scrollTop() + dir;
+    if (window_top >= MAX_TOP) {
+        window_top = MAX_TOP;
+        dir = -1;
+    } else if (window_top <= MIN_TOP) {
+        window_top = MIN_TOP;
+        dir = 1;
+    }
+    $(window).scrollTop(window_top);
+    window.setTimeout(autoscroll, 100);
 }
 
 
@@ -42,3 +82,5 @@ function timer() {
 //         event.preventDefault();
 //     }
 // });
+
+
