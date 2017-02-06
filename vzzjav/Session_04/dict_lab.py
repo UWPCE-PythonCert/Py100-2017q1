@@ -6,7 +6,7 @@
 import os
 
 def main():
-    pass
+    cakeDict = {"name": "Chris", "city": "Seattle", "cake": "Chocolate"}
 
 if __name__ == '__main__':
     print(os.path.basename(__file__))
