@@ -3,7 +3,7 @@
 # Jan 29, 2017
 # Description: http://uwpce-pythoncert.github.io/IntroPython2016a/exercises/dict_lab.html
 
-import os
+import os, string
 
 def main():
     cakeDict = {"name": "Chris", "city": "Seattle", "cake": "Chocolate"}
@@ -22,6 +22,26 @@ def main():
         cakeDict[key] = i
         i += 1
     print(cakeDict)
+
+    s2 = set(range(0,21,2))
+    s3 = set(range(0,21,3))
+    s4 = set(range(0,21,4))
+    print(s2)
+    print(s3)
+    print(s4)
+    print(s3.issubset(s2))
+    print(s4.issubset(s2))
+
+    s= set()
+    print(s)
+    for letter in string.ascii_lowercase:
+        s.update(letter)
+    print(s)
+
+    fs = frozenset("marathon")
+
+    print(fs.union(s))
+    print(fs.intersection(s))
 
 
 if __name__ == '__main__':
