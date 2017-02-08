@@ -1,15 +1,16 @@
+import random
+
 def main(sourcetext):
     words = []
-    s1 = []
-    s2 = []
-    acceptable_words = {}
-    acceptable_words['s1'] = []
-    acceptable_words['s2'] = []
-    for word in sourcetext:
+    document = open(sourcetext, 'r')
+    for word in document:
         words.append(word)
+    s1 = random.choice(words)
+    s2 = random.choice(words)
+    followup = {}
+    followup['s1'] = []
+    followup['s2'] = []
 
-    #TODO find out how to split out individual words from sourcetext
-    #TODO select random word from words
     #TODO get the words before and after s1 and s2, add to acceptable_words dict
 
 
