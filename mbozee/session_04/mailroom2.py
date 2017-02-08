@@ -14,41 +14,7 @@ donors = {
 }
 
 
-def thank_you():
-    """Write a thank you letter."""
-    full_name = input("(Donor full name) / (list) > ")
-
-    if full_name == 'list'.lower():
-        print("Donors:", end=' ')
-        for key, value in donors.items():
-            print(key, end=', ')
-        print('\n')
-        thank_you()
-    elif full_name in donors:
-        while True:
-            new_donation = input("New donation amount > ")
-            try:
-                new_donation = int(new_donation)
-                break
-            except ValueError:
-                print("Please enter a number.")
-        donors[full_name].append(new_donation)
-        print(donors)
-        write_letter(full_name, new_donation)
-    else:
-        donors[full_name] = []
-        while True:
-            new_donation = input("New donation amount > ")
-            try:
-                new_donation = int(new_donation)
-                break
-            except ValueError:
-                print("Please enter a number.")
-        donors[full_name].append(new_donation)
-        print(donors)
-
-
-def write_letter(full_name, new_donation):
+def thank_you(name, value):
     """Compose and print thank you letter."""
     letter = '''
     Dear {},
@@ -58,9 +24,8 @@ def write_letter(full_name, new_donation):
 
     Sincerely,
     Seattle Music Fund
-    '''.format(full_name, str(new_donation))
+    '''.format(name, value)
     print(letter)
-    menu()
 
 
 def create_report():
@@ -79,6 +44,18 @@ def create_report():
     menu()
 
 
+def list():
+    """Print a list of donor names."""
+    for donor in donors:
+        print(donor)
+
+
+def help():
+    """Print basic instructions."""
+    print("""Mailroom is a program for managing donation records and sending thank you letters to donors.
+          Use the menu to start a process.""")
+
+
 def add_donation(new_donor, new_amount):
     """Add donation entry into donors dictionary."""
     donors[new_donor] = [new_amount]
@@ -93,6 +70,7 @@ if __name__ == '__main__':
             break
 
         if user_input == 'l' or user_input == 'list donors':
+            list()
             continue
 
         if user_input == 'r' or user_input == 'create report':
@@ -100,10 +78,11 @@ if __name__ == '__main__':
             continue
 
         if user_input == 't' or user_input == 'thank donors':
-            thank_you()
+            entry = [thank_you(name, sum(value)) for name, value in donors.items()]
             continue
 
         if user_input == 'h' or user_input == 'help':
+            help()
             continue
 
         new_donor = user_input
