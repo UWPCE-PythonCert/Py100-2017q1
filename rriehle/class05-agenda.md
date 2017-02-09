@@ -30,7 +30,7 @@ Exceptions Lab
 
 http://uwpce-pythoncert.github.io/IntroToPython/exercises/exceptions_lab.html#exercise-exceptions-lab
 
-###  Comkprehensions
+###  Comprehensions
 
 http://uwpce-pythoncert.github.io/IntroToPython/session05.html#list-and-dict-comprehensions
 
