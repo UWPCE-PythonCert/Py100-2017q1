@@ -66,9 +66,7 @@ def add_donation(donors):
                          " to see a list of donors: ")
 
         if fullname == "list":
-            for name in donors:
-                print(name)
-                continue
+            {print(k) for k in donors}
         else:
             break
 
@@ -83,7 +81,6 @@ def add_donation(donors):
         except ValueError:
             print("Bad value! Please enter a dollar amount without the"
                   " dollar sign.")
-            continue
 
     if fullname not in donors:
         print("The name \'{}\' is not in the donor database. Adding name"

@@ -51,10 +51,8 @@ def new_with_tcount(dic):
     # Put the cake back in the dic.
     dic.update({"cake": "Chocolate"})
 
-    newdic = {}
-    for key, val in dic.items():
-        if "t" in val.lower():
-            newdic.update({key: val.lower().count("t")})
+    newdic = {k:v.lower().count("t") for k, v in dic.items()
+              if "t" in v.lower()}
 
     print(newdic)
 
