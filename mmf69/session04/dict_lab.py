@@ -19,7 +19,7 @@ display the union and intersection of the two sets.
 '''
 
 d = {"Name": "Chris", "City": "Seattle", "Cake": "Chocolate"}
-del d["Cake"]
+d["Fruit"] = "Mango"
 print(d)
 
 
