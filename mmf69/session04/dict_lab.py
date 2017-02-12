@@ -20,7 +20,5 @@ display the union and intersection of the two sets.
 
 d = {"Name": "Chris", "City": "Seattle", "Cake": "Chocolate"}
 d["Fruit"] = "Mango"
-print(d)
-
-
-
+for key in d.keys():
+    print(key)
