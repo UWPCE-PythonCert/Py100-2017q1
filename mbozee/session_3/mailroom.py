@@ -39,16 +39,27 @@ def thank_you():
         print('\n')
         thank_you()
     elif full_name in donors:
-        new_donation = int(input("New donation amount > "))
+        while True:
+            new_donation = input("New donation amount > ")
+            try:
+                new_donation = int(new_donation)
+                break
+            except ValueError:
+                print("Please enter a number.")
         donors[full_name].append(new_donation)
         print(donors)
         write_letter(full_name, new_donation)
     else:
         donors[full_name] = []
-        new_donation = int(input("New donation amount > "))
+        while True:
+            new_donation = input("New donation amount > ")
+            try:
+                new_donation = int(new_donation)
+                break
+            except ValueError:
+                print("Please enter a number.")
         donors[full_name].append(new_donation)
         print(donors)
-        write_letter(full_name, new_donation)
 
 
 def write_letter(full_name, new_donation):
