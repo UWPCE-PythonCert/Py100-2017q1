@@ -61,20 +61,37 @@ def thanks(index, donation, donors):
 
 def report(donors):
     donors.sort(key = lambda x: x[1], reverse=True)
-    print("{0:<20}{1:>13}{2:^20}{3:>25}".format("Name", "Total Donated", "No. of Donations", "Avg. of Donations"))
+    print("\n{0:<20}{1:>13}{2:^20}{3:>25}".format("Name", "Total Donated", "No. of Donations", "Avg. of Donations"))
     for donor in donors:
         print("{0:<20}{1:>13}{2:^20}{3:>25.2f}".format(donor[0], donor[1], donor[2], donor[3]))
 
 
 def main():
+    '''Creates a list of donors, sends thank you! e-mails and performs donations'''
     donors = [["Maximus Decimus", 1000, 1, 1000/1], ["William Wallace", 2000, 2, 2000/2],
               ["Joan of Arc", 3500, 3, 3500/3], ["Bruce Wayne", 1000000, 1, 1000000/1]]
-    report(donors)
-    while True:
-        donors = donation(donors)
-        if input("Type [quit] to quit.") == "quit":
-            break
-        report(donors)
+    try:
+        while True:
+            print("\nOperations")
+            print("1.- Create report")
+            print("2.- Make donation")
+            print(("\nType [quit] to quit."))
+            option = input("Operation: ")
+            if option == "1":
+                report(donors)
+            elif option == "2":
+                donors = donation(donors)
+            elif option == "quit":
+                break
+            else:
+                print("Incorrect input!")
+                print("Please choose operation [1], [2] or [quit].")
+
+    except KeyboardInterrupt:
+        print("Program finished by the user, Ctrl + C")
+
+
+
 
 
 if __name__ == '__main__':
