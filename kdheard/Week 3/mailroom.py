@@ -98,6 +98,7 @@ def main():
                 create_report()
             elif int(response) == 3:
                 print("\nThank you for using Mailroom. Exiting program.")
+                break
             else:
                 print("\nThat isn't a valid input. Try again.")
                 return_prompt()
