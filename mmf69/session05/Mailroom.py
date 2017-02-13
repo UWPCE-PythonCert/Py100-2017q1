@@ -15,8 +15,8 @@ Try to use a dict and the .format() method to do the letter as one big template 
 import pickle
 
 def ShowMenuOptions():
-    """Make a function for the code that allows the user to Add or Remove tasks from the list,
-    plus save the tasks in the List tasks-priorities using numbered choices."""
+    """Make a function for the code that allows the user to Add a Donor, View a Report, or Print Thank You letters.
+    Allow for saving back to the db."""
     print ("""
         WELCOME TO MAILROOM
         Please Select an option:
@@ -28,7 +28,24 @@ def ShowMenuOptions():
 print(ShowMenuOptions())
 
 def load_donordb():
-    try
+    try:
+        with open('mailroom.pickle', 'rb') as db_handle:
+            donor_db = pickle.load(db_handle)
+    except IOError:
+        donor_db = {
+            "Ruby": [50, 100],
+            "Khloe": [1000, 1500],
+            "Sara": [2000, 2500, 3000],
+            "Starla": [50]
+        }
+    return donor_db
+
+def save_donordb(db):
+    try:
+        with open('mailroom.pickle', 'wb') as db_handle:
+            pickle.dump(db, db_handle)
+    except IOError:
+        raise "Error: Unable to save donor database."
 
 def AddDonor(ToDoItems, NewTask, Priority): # Task 4
     """ Add a new task to the todo list """
