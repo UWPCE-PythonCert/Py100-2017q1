@@ -1,5 +1,5 @@
 '''
-Create a dictionary containing “name”, “city”, and “cake” for “Chris” from “Seattle” who likes “Chocolate”.
+Create a dictionary containing “name”, “city”, and “cake” for “Matt” from “Seattle” who likes “Chocolate”.
 Display the dictionary.
 Delete the entry for “cake”.
 Display the dictionary.
@@ -18,7 +18,30 @@ Create a frozenset with the letters in ‘marathon’
 display the union and intersection of the two sets.
 '''
 
-d = {"Name": "Chris", "City": "Seattle", "Cake": "Chocolate"}
-d["Fruit"] = "Mango"
-for values in d.values():
-    print(values)
+
+def main():
+    # Create a dictionary containing “name”, “city”, and “cake” for “Matt” from “Seattle” who likes “Chocolate”.
+    our_dict = {"Name": "Matt", "City": "Seattle", "Cake": "Chocolate"}
+    print("Dictionary Contents: {} ".format(our_dict))  # Display the dictionary.
+    #  Delete the entry for “cake”.
+    for key, item in our_dict.items():
+        if key == "Cake":
+            del our_dict["Cake"]
+            break
+    print("Deleting cake: {}".format(our_dict))  # Display the dictionary.
+    #  Add an entry for “fruit” with “Mango” and display the dictionary.
+    our_dict["Fruit"] = "Mango"
+    print("Adding fruit: {}".format(our_dict))
+
+    print("Keys: {}".format(our_dict.keys()))  # Display the dictionary keys.
+    print("Values: {}".format(our_dict.values()))  #Display the dictionary values.
+
+    if 'Cake' in our_dict:
+        print("\nHave some cake")  # Suckers we already know there is no cake
+    elif 'Mango' in our_dict:
+        print("\nSorry, we have no cake. Would you like some mango?")
+
+
+
+if __name__ == "__main__":
+    main()
