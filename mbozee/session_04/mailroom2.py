@@ -32,13 +32,16 @@ def create_report():
     """Generate a report of donors and donation amounts."""
     donors_sorted = sorted(donors.items(),
                            key=lambda t: sum(t[1]), reverse=True)
-    print("Donor Name          | Total Given | Num Gifts | Average Gift")
+
+    print("Donor Name                | Total Given | Num Gifts | Avg Gift")
 
     for donor in donors_sorted:
-        print(donor[0], end='   ')
-        print('$' + str(sum(donor[1])), end='   ')
-        print(len(donor[1]), end='   ')
-        print('$' + str(round(float(sum(donor[1])/len(donor[1])), 2)))
+        print("{} | {} | {} | {}".format(
+            donor[0].ljust(25),
+            str(sum(donor[1])).rjust(11),
+            str(len(donor[1])).rjust(9),
+            str(round(sum(donor[1])/len(donor[1]))).rjust(8)
+        ))
 
     print('\n', end='')
     menu()
