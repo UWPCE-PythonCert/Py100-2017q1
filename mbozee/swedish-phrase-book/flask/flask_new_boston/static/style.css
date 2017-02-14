@@ -46,6 +46,10 @@ h2 {
     text-shadow: 2px 2px #ddd;
 }
 
+h2.spanish {
+    color: #D32F2F;
+}
+
 section#content {
     margin: 0 auto;
     width: 100%;
@@ -59,6 +63,10 @@ section#masthead {
     background-color: dodgerblue;
     text-align: center;
     padding: 15px 20px;
+}
+
+section#masthead.spanish {
+    background-color: #D32F2F;
 }
 
 section.vocab-wrapper {
@@ -173,6 +181,10 @@ ul.row li:last-child::before {
     border-color: transparent transparent transparent dodgerblue;
 }
 
+ul.row.spanish li:last-child::before {
+    border-color: transparent transparent transparent #D32F2F;
+}
+
 ul.row li.correct:last-child::before {
     border-left-color: #00d187;
 }
@@ -184,6 +196,10 @@ ul.row li.incorrect:last-child::before {
 ul.row input:focus {
     background-color: dodgerblue;
     color: #fff;
+}
+
+ul.row.spanish input:focus {
+    background-color: #D32F2F;
 }
 
 
