@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Mike Bozee">
     <title>Mailroom</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/main.css">
@@ -94,7 +95,7 @@
     {% for donor in donors_sorted %}
         <li>
             Dear <span>{{ donor[0] }}</span>,
-            <br /><br />Thank you for your generous donation of <span>${{ total_given }}</span>
+            <br /><br />Thank you for your generous donation of <span>${{ donor[1][0] }}</span>
             .Your gift makes a major impact on aspiring musicians in the Seattle area.
             <br /><br />Sincerely,<br />Seattle Music Fund
         </li>
@@ -102,7 +103,9 @@
 </ul>
 <!-- /T: THANKS -->
 
-<div id="h-content" style="display: none;">Helper text...</div>
+<!-- H: HELP -->
+<p id="h-content">Use the keyboard-enabled menu above to use the mailroom.</p>
+<!-- /H: HELP -->
 
 <section id="q-content">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/voZIY75dsf0?rel=0" frameborder="0" allowfullscreen></iframe>
@@ -112,6 +115,8 @@
 
 </section>
 <!-- DISPLAYED CONTENT -->
+
+<p style="margin: 0; color: white; font-weight: 900; font-size: 14px; text-align: center; position: absolute; bottom: 10px; left: 0; width: 100%; display: block;">This app is for educational use only. Names are used as examples.</p>
 
 
 
