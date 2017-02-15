@@ -5,8 +5,9 @@
 
 import random, os
 
-def count_evens():
-    pass
+def count_evens(listNumbers):
+    '''Count how many even number are in a list of numbers'''
+    return len([number for number in listNumbers if number % 2 == 0])
 
 def main():
     '''Pass n random integer numbers to count_evens() function'''
@@ -18,9 +19,7 @@ def main():
         except ValueError:
             print("Incorrect input, please provide a positive integer number")
 
-    listNumbers = [random.randint(1,9) for i in range(n)]
-
-    print(listNumbers)
+    print(count_evens([random.randint(1,9) for i in range(n)]))
 
 if __name__ == '__main__':
     print(os.path.basename(__file__))
