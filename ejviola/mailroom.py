@@ -4,6 +4,7 @@
 # IMPORT DEPENDENT MODULES
 import pickle
 import sys
+
 # ______________________________________________________________________________________________________________________
 # DEFINE GLOBAL VARIABLES
 donor_data_file_name = '/home/vagrant/PycharmProjects/git/Py100-2017q1/ejviola/DonorData.pkl'
@@ -22,23 +23,31 @@ try:
         if row['Cause'] not in cause_list:
             cause_list.append(row['Cause'])
     report = []
-except:
-    print("File could not be opened, check: " + str(donor_data_file_name))
+
+except (EOFError, FileNotFoundError) as e:
+    with open(donor_data_file_name, 'wb') as donor_data_file:
+        pickle.dump([{'Name': "Bill Gates", 'Amount': 115000000, 'Date': "August 1, 1991",
+                                    'Cause': 'combat homelessness.'}, {'Name': "Bill Gates", 'Amount': 9176200, 'Date': "January 3, 1999",
+                                    'Cause': "support global literacy."}, {'Name': "Bill Gates", 'Amount': 115000000, 'Date': "September 1, 1999",
+                                    'Cause': "engage in local outreach efforts to raise awareness about homelessness."}, {'Name': "Paul Allen", 'Amount': 3150000, 'Date': "November 12, 2000",
+                                    'Cause': "support global literacy."}, {'Name': "Bill Gates", 'Amount': 115000000, 'Date': "August 17, 2001",
+                                    'Cause': "combat homelessness."}], donor_data_file)
+    print(e)
+    print("Wrote 5 starter records to " + donor_data_file_name + " and successfully exited.")
     sys.exit()
+
+
 
 # ______________________________________________________________________________________________________________________
 # PROCESSING
 # Define function to write donor data to the file
 def write_donor_data():
-    donor_data_file = open(donor_data_file_name, 'wb')
-    pickle.dump(donor_data, donor_data_file)
-    donor_data_file.close()
+    with open(donor_data_file_name, 'wb') as donor_data_file :
+        pickle.dump(donor_data, donor_data_file)
 
 # Define a function to send a thank you
-# (while loop...may run write donor data, may return donor list, may exit)
 def send_thank_you():
     user_thank_you_input = 0
-    #while str(user_thank_you_input) != 'back':
     user_thank_you_input = str(input("\nType a name to send a thank you,\nenter 'list' to see a list of unique donors,\nor enter 'back' to go back\n"))
     if user_thank_you_input.lower() == 'list':
         print(donor_list)
@@ -49,7 +58,15 @@ def send_thank_you():
             input("Are you thanking " + str(user_thank_you_input) + " for a new donation, or sending a followup thank-you for an old donation? Enter new or old:\n"))
         if thank_you_path == str("new"):
             # If it is a new donation, send a thank you based on the details of that donation
-            amount_donated = int(input("Please enter the amount " + user_thank_you_input + " donated (e.g. '10000'):\n"))
+            # While loop to make sure the amount donated is valid
+            while True:
+                try:
+                    amount_donated = input("Please enter the amount " + user_thank_you_input + " donated (e.g. '10000'):\n")
+                    amount_donated = float(amount_donated)
+                    break
+                except ValueError:
+                    print("You did not enter a valid amount.")
+                    pass
             donation_date = str(input("Please enter the date the donation was made (e.g. 'January 1, 2017': \n"))
             donation_cause = str(input(
                 "Please enter the cause that the donation will support (e.g. 'increase rural broadband access'\n"))
@@ -81,7 +98,7 @@ def send_thank_you():
             # The generic letter lists all the causes that have been funded so far (not ranked at all)
             for cause in cause_list:
                 counter +=1
-                print("\t\t"+str(counter)+") "+cause)
+                print("\t\t"+str(counter)+") "+cause.title())
             print("\n\nThank you again for supporting our efforts,")
             print("\t Eric Viola")
         # Throw an error if no valid input was given and return to main menu (progress is not saved)
