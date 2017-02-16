@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from statistics import mean
+import string
 
 db = {
     'donor1': {'name': 'Ayn Rand', 'donations': [1000]},
@@ -20,7 +21,6 @@ def return_prompt():
 def thank_you():
 
     input_name = input("Type 'list' to see existing donors, or type the full name of a donor. Or, press ENTER to return to the main menu. > ")
-    str(input_name)
     if input_name == "":
         main()
     elif input_name == 'list':
@@ -28,24 +28,40 @@ def thank_you():
             print(donor['name'])
         return_prompt()
     elif input_name != 'list':
-
         donation = input("How much has this donor contributed? > ")
+        #We will run a quick set of input validations on donor and donations
+        if input_name.isdigit():
+            print("You need to enter a name for your donor. You have entered a number.")
+            return_prompt()
+        else:
+            pass
+        # ^ Check if string was entered for donor name
+        try:
+            int(donation) % 1 == 0
+        except ValueError as error:
+            print("You need to enter a number. Error:{}".format(error))
+        # ^ Check of number was entered for donation
+            return_prompt()
+        if donation[0] is "-":
+            print("STOP EMBEZZLING, JANET, THE BOARD IS ON TO YOU!")
+            return_prompt()
+        # ^ Check for negative donations
+        #Input validation is done, now to adding the donor and donations to the database
+        input_name = str(input_name)
         donation = int(donation)
         for donor_number, donors in db.items():
-            if input_name == donors['name']:
+            if input_name.title() == donors['name']:
                 donors['donations'].append(donation)
                 generate_email(donation, donors['name'])
-        else:
-            global new_donor_number
-            new_donor = 'new_donor{}'.format(new_donor_number)
-            db[new_donor] = {}
-            db[new_donor]['name'] = input_name
-            db[new_donor]['donations'] = []
-            db[new_donor]['donations'].append(donation)
-            new_donor_number = new_donor_number + 1
-            print(new_donor_number)
-            print(db)
-            generate_email(donation, input_name)
+            elif input_name.title() != donors['name']:
+                global new_donor_number
+                new_donor = 'new_donor{}'.format(new_donor_number)
+                db[new_donor] = {}
+                db[new_donor]['name'] = input_name.title()
+                db[new_donor]['donations'] = []
+                db[new_donor]['donations'].append(donation)
+                new_donor_number = new_donor_number + 1
+                generate_email(donation, input_name)
 
 
 def generate_email(donation, input_name):
@@ -72,15 +88,24 @@ def create_report():
 
 
 def main():
+    while True:
         print("Welcome to Mailroom. \n\nYou have three options: \n(1.) Send a Thank You \n(2.) Create a Report \n(3.) Quit")
         response = input("\nWhat would you like to do? > ")
-        if int(response) == 1:
-            thank_you()
-        elif int(response) == 2:
-            create_report()
-        elif int(response) == 3:
-            print("\nThank you for using Mailroom. Exiting program.")
-            pass
+        try:
+            if int(response) == 1:
+                thank_you()
+            elif int(response) == 2:
+                create_report()
+            elif int(response) == 3:
+                print("\nThank you for using Mailroom. Exiting program.")
+                break
+            else:
+                print("\nThat isn't a valid input. Try again.")
+                return_prompt()
+        except ValueError as error:
+            print("\nThat isn't a valid input. Try again. \nError:{}".format(error))
+
+
 
 if __name__ == "__main__":
    main()
