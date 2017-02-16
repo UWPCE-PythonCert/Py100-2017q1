@@ -1,0 +1,7 @@
+1,Desk,100
+2,Printer,350
+3,Laptop,1500
+4,Server,12000
+5,Chair,150
+6,Table,250
+7,Coffee Pot,75
