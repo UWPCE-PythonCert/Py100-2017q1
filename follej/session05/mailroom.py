@@ -46,9 +46,10 @@ def print_a_report(donor_index):
 
 def sort_donors():
     # replace with some list and tuple comprehensions
-    amounts = [(sum(donors[i]['Donation_Amounts']), i) for i in range(len(donors))]
-    sort_amounts = sorted(amounts, reverse=True)
-    sort_indices = [value[1] for value in sort_amounts]
+    amounts = [(sum(donor['Donation_Amounts']), i) for i, donor in enumerate(donors)]
+    # amounts = [(sum(donors[i]['Donation_Amounts']), i) for i in range(len(donors))]
+    # sort_amounts = sorted(amounts, reverse=True)
+    sort_indices = [value[1] for value in sorted(amounts, reverse=True)]
     return sort_indices
 
 
