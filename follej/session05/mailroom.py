@@ -145,24 +145,15 @@ def send_a_thank_you():
 def add_donation(donor_index):
     while True:
         response = safe_input("Enter donation amount > ")
-        if response is None:
+        if response is None:  # escape code entered
             quit_app()
         elif response == "":
             init_menu()
-        elif not is_numeric(response):
+        elif not response.isnumeric():
             print("Invalid Input")
         else:
             donors[donor_index]['Donation_Amounts'].append(float(response))
             break
-
-
-def is_numeric(response):
-    try:
-        float(response)
-    except ValueError:
-        return False
-    else:
-        return True
 
 
 def add_a_donor(new_donor):
