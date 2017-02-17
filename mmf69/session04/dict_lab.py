@@ -34,12 +34,13 @@ def main():
     print("Adding fruit: {}".format(our_dict))
 
     print("Keys: {}".format(our_dict.keys()))  # Display the dictionary keys.
-    print("Values: {}".format(our_dict.values()))  #Display the dictionary values.
+    print("Values: {}".format(our_dict.values()))  # Display the dictionary values.
 
-    if 'Cake' in our_dict:
-        print("\nHave some cake")  # Suckers we already know there is no cake
-    elif 'Mango' in our_dict:
-        print("\nSorry, we have no cake. Would you like some mango?")
+    for key, item in our_dict.items():
+        if key == 'Cake':
+            print("\nHave some cake")  # Suckers we already know there is no cake
+        elif item == 'Mango':
+            print("\nSorry, we have no cake. Would you like some mango?")
 
 
 
