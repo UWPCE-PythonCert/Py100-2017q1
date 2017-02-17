@@ -1,11 +1,16 @@
 # Javier Vazquez
 # Grid Printer
-# Feb 15, 2017
+# Feb 17, 2017
 # Description: http://uwpce-pythoncert.github.io/IntroPython2016a/exercises/comprehensions_lab.html
 import os
 
 def main():
-    pass
+
+    food_prefs = {"name":"Chris", "city":"Seattle", "cake":"chocolate", "fruit":"mango",
+               "salad":"greek", "pasta":"lasagna"}
+
+    print("{0} is from {1}, and he likes{2}{3}"
+          .format(food_prefs["name"], food_prefs["city"], food_prefs["cake"], food_prefs["cake"].keys()))
 
 
 if __name__ == '__main__':
