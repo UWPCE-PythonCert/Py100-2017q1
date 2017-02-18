@@ -14,7 +14,12 @@ def main():
                   food_prefs["fruit"], "fruit", food_prefs["salad"], "salad", food_prefs["pasta"],
                   "pasta"))
 
-    dict_decHex = {}
+    list_dec = [i for i in range(16)]
+    dictList_decHex = {number: hex(number) for number in list_dec}
+    print(dictList_decHex)
+
+    dict_decHex = {i: hex(i) for i in range(16)}
+    print(dict_decHex)
 
 if __name__ == '__main__':
     print(os.path.basename(__file__))
