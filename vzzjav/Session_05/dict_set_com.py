@@ -14,6 +14,7 @@ def main():
                   food_prefs["fruit"], "fruit", food_prefs["salad"], "salad", food_prefs["pasta"],
                   "pasta"))
 
+    dict_decHex = {}
 
 if __name__ == '__main__':
     print(os.path.basename(__file__))
