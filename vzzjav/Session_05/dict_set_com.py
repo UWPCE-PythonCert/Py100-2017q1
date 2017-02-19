@@ -21,6 +21,9 @@ def main():
     dict_decHex = {i: hex(i) for i in range(16)}
     print(dict_decHex)
 
+    food_prefs_Copy = {k: v.count("a", 0, len(v)) for k, v in food_prefs.items()}
+    print(food_prefs_Copy)
+
 if __name__ == '__main__':
     print(os.path.basename(__file__))
     print(main.__doc__)
