@@ -34,21 +34,24 @@ def get_donors():
     '''
     donor_list = []
     donor_dict = {}
-    with open(donors_history_file, 'r') as rF:
-        next(rF)
-        for ln in rF:
-            ln = ln.strip('\n')
-            lst = ln.split('|')
-            donor_name = lst[0].strip(' ')
-            donation_amt = lst[1]
-            donation_date = lst[2]
-            donor_list.append(lst[0])
-            value = [donation_date, donation_amt]
-            if donor_name in donor_dict.keys():
-                donor_dict[donor_name].append(value)
-            else:
-                donor_dict[donor_name] = [value]
-    return donor_dict
+    try:
+        with open(donors_history_file, 'r') as rF:
+            next(rF)
+            for ln in rF:
+                ln = ln.strip('\n')
+                lst = ln.split('|')
+                donor_name = lst[0].strip(' ')
+                donation_amt = lst[1]
+                donation_date = lst[2]
+                donor_list.append(lst[0])
+                value = [donation_date, donation_amt]
+                if donor_name in donor_dict.keys():
+                    donor_dict[donor_name].append(value)
+                else:
+                    donor_dict[donor_name] = [value]
+        return donor_dict
+    except IOError as iE:
+        print(iE)
 
 
 def send_thank_you():
