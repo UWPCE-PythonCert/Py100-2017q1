@@ -14,6 +14,34 @@ def main():
                   food_prefs["fruit"], "fruit", food_prefs["salad"], "salad", food_prefs["pasta"],
                   "pasta"))
 
+    list_dec = [i for i in range(16)]
+    dictList_decHex = {number: hex(number) for number in list_dec}
+    print(dictList_decHex)
+
+    dict_decHex = {i: hex(i) for i in range(16)}
+    print(dict_decHex)
+
+    food_prefs_Copy = {k: v.count("a", 0, len(v)) for k, v in food_prefs.items()}
+    print(food_prefs_Copy)
+
+    s2 = {i for i in range(0,21,2)}
+    s3 = {i for i in range(0,21,3)}
+    s4 = {i for i in range(0,21,4)}
+
+    print(s2)
+    print(s3)
+    print(s4)
+
+
+    for i in range(3):
+        s = set()
+        for j in range(0, 21, i + 2):
+            s.add(j)
+        print(s)
+
+    s = [{j for j in range(0,21,i+2)} for i in range(3)]
+    print(s)
+
 
 if __name__ == '__main__':
     print(os.path.basename(__file__))
