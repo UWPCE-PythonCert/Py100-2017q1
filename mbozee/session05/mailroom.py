@@ -63,6 +63,15 @@ def add_donation(new_donor, new_amount):
     """Add donation entry into donors dictionary."""
     donors[new_donor] = [new_amount]
 
+    while True:
+        new_amount = int(input("mailroom >>   How much is {} donating? ".format(new_donor)))
+
+        if new_amount >= 0:
+            break
+        else:
+            print("Amount must not be negative!")
+            continue
+
 if __name__ == '__main__':
     menu()
 
@@ -90,6 +99,9 @@ if __name__ == '__main__':
 
         new_donor = user_input
 
-        new_amount = int(input("mailroom >>   How much is {} donating? ".format(new_donor)))
+        while True: # This prompts user for input twice... but validates against non-positive donations.
+            new_amount = int(input("mailroom >>   How much is {} donating? ".format(new_donor)))
+            if new_amount > 0:
+                break
 
         add_donation(new_donor, new_amount)
