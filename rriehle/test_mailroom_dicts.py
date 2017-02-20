@@ -4,7 +4,7 @@ import pytest
 from random import randint, SystemRandom
 from string import ascii_letters as letters
 
-from mailroom_09 import (
+from mailroom_dicts import (
     load_donordb,
     add_donation,
     tally_report,
