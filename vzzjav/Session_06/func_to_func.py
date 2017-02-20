@@ -5,8 +5,11 @@
 
 import os
 
-def hand_weapon():
-    pass
+def hand_weapon(weapon_size):
+    if weapon_size == "small":
+        return 1
+    elif weapon_size == "medium":
+        return 2
 
 def gun():
     pass
@@ -15,7 +18,8 @@ def flower_power():
     pass
 
 def score(weapon_type, weapon_size):
-    pass
+    if weapon_type == hand_weapon:
+        hand_weapon(weapon_size)
 
 def test_scoring():
     assert score(hand_weapon, 'small') == 1
