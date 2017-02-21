@@ -4,7 +4,7 @@
 #  Lists now.  Tuples next.  Dictionaries later.
 
 
-def initialize_donordb():
+def load_donordb():
     """
     Instructions:
     1. It should have a data structure that holds a list of your donors and a history of the amounts they have donated. This structure should be populated at first with at least five donors, with between 1 and 3 donations each
