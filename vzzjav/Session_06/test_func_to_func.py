@@ -12,7 +12,7 @@ def gun():
     return 0
 
 def flower_power():
-    pass
+    return 0
 
 def score(weapon_type, weapon_size):
     if weapon_type == hand_weapon and weapon_size == "small":
@@ -23,19 +23,31 @@ def score(weapon_type, weapon_size):
         return hand_weapon() + 3
     elif weapon_type == gun and weapon_size == "small":
         return gun() + 5
+    elif weapon_type == gun and weapon_size == "medium":
+        return gun() + 8
+    elif weapon_type == gun and weapon_size == "large":
+        return gun() + 13
+    elif weapon_type == flower_power and weapon_size == "small":
+        return flower_power() + 21
+    elif weapon_type == flower_power and weapon_size == "medium":
+        return flower_power() + 34
+    elif weapon_type == flower_power and weapon_size == "large":
+        return flower_power() + 55
 
 def test_scoring():
     assert score(hand_weapon, 'small') == 1
     assert score(hand_weapon, 'medium') == 2
     assert score(hand_weapon, 'large') == 3
     assert score(gun, 'small') == 5
-    # assert score(gun, 'medium') == 8
-    # assert score(gun, 'large') == 13
-    # assert score(flower_power, 'small') == 21
-    # assert score(flower_power, 'medium') == 34
-    # assert score(flower_power, 'large') == 55
+    assert score(gun, 'medium') == 8
+    assert score(gun, 'large') == 13
+    assert score(flower_power, 'small') == 21
+    assert score(flower_power, 'medium') == 34
+    assert score(flower_power, 'large') == 55
 
+def main():
+    test_scoring()
 
-# if __name__ == '__main__':
-#     print(os.path.basename(__file__))
-#     main()
+if __name__ == '__main__':
+    print(os.path.basename(__file__))
+    main()
