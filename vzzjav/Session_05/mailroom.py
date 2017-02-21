@@ -90,10 +90,6 @@ def main():
     except KeyboardInterrupt:
         print("Program finished by the user, Ctrl + C")
 
-
-
-
-
 if __name__ == '__main__':
     print(os.path.basename(__file__))
     print(main.__doc__)
