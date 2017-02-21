@@ -23,10 +23,18 @@ def trapz(fun, a, b):
     :param b: the end point for the integration
     :type b: a numeric value
     """
-
+    increase = (b-a)/100
+    print(increase)
+    print("hola")
+    increment = a
+    print(increment)
+    while increment < b:
+        increment += .1
+        print(increment)
+    return (b-a)*fun
 
 def main():
-    area = trapz(line, 0, 10)
+    area = trapz(line(0), 0, 10)
     print(area)
 
 if __name__ == '__main__':
