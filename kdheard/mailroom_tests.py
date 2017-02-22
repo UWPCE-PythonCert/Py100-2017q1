@@ -18,6 +18,7 @@ import mock
 mr = mailroom()
 
 def test_int_as_donor():
+    mr.main(response=1)
     assert mr.get_donor_name(input_name = "3", unit_test=True) is False
 
 def test_str_as_donor():

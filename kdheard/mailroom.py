@@ -19,15 +19,14 @@ class mailroom(object):
         def get_donor_name(self, input_name, unit_test = False):
             str(input_name)
             if input_name == "":
-                pass
+                return
                 #if unit_test == True:
                     #return True
                 #else:
-
             elif input_name == 'list':
                 for donor_number, donor in db.items():
                     print(donor['name'])
-                
+
                     #return True
                 return
             elif input_name != 'list':
@@ -105,7 +104,8 @@ class mailroom(object):
                 average_donations = mean(donors['donations'])
                 print("{0:20}| ${1:15}| {2:15}| ${3:.2f}".format(list_name, total_donations, number_of_donations, average_donations))
             return
-        def main(self, response=input("\nWelcome to Mailroom. \n\nYou have three options: \n(1.) Send a Thank You \n(2.) Create a Report \n(3.) Quit \n\nWhat would you like to do? > ")):
+        def main(self, response=None):
+            response = input("\nWelcome to Mailroom. \n\nYou have three options: \n(1.) Send a Thank You \n(2.) Create a Report \n(3.) Quit \n\nWhat would you like to do? > ")
             try:
                 if int(response) == 1:
                     input_name = input("Type 'list' to see existing donors, or type the full name of a donor. Or, press ENTER to return to the main menu. > ")
@@ -128,6 +128,4 @@ class mailroom(object):
 
 
 if __name__ == "__main__":
-    with mailroom() as mr:
-        while True:
-            mr.main()
+    mailroom()
