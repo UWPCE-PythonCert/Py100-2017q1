@@ -96,7 +96,7 @@ def test_thank_donor(tmpdir):
     """Test thank_donor function."""
 
     expected = ("Hello Test User! On behalf of our staff here at OMGBBQMMX,I"
-                " want to thank you for your generous giftof $22.00!")
+                " want to thank you for your generous gift of $22.00!")
 
     # Set temp file name.
     filepath = tmpdir.join('test-email.txt')

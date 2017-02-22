@@ -20,7 +20,15 @@ def print_help():
 def initdb(fname):
     """
     This function initializes the donor db using pickle.
-    returns donor dictionary.
+    
+    Args:
+        fname: A file name for the pickle file.
+
+    Returns:
+        A dictionary object containing donors.
+
+    Raises:
+        FileNotFoundError: Is raised if opening the pickle file fails.
     """
 
     try:
@@ -52,7 +60,14 @@ def initdb(fname):
 
 def updatedb(donors, fname):
     """
-    Function to write the donor dictionary out to a pickle file.
+    Function to write the current donor dictionary out to a pickle file.
+
+    Args:
+        donors: Donor dictionary containing list of donors and the amounts.
+        fname: File name for the pickle file.
+
+    Raises:
+        IOError: Raised when writing to the pickle file fails.
     """
 
     try:
@@ -64,9 +79,15 @@ def updatedb(donors, fname):
 
 def add_donation(donors, donorname, donation):
     """
-    Function to handle adding donations.
-    Arguments:
-    donors: donors dictionary object.
+    Function to handle adding donations to the donor dict.
+
+    Args:
+        donors: Donor dictionary containing list of donors and the amounts.
+        donorname: Full name of the donor.
+        donation: Donation amount.
+
+    Returns:
+        A dictionary object containing donors.
     """
 
     if donorname not in donors:
@@ -84,16 +105,21 @@ def add_donation(donors, donorname, donation):
 def thank_donor(filename, donorname, donation):
     """
     Function generates a thank you text file if desired by the user.
-    Arguments:
-    fullname: Full name of donor.
+
+    Args:
+    filename: Name of the thank you file to write.
+    donorname: Full name of donor.
     donation: The donation amount.
+
+    Raises:
+        IOError: Raised when unable to write the thank you file.
     """
 
     try:
         with open(filename, 'w') as fhandle:
             fhandle.write("Hello {}! On behalf of our staff here at OMGBBQMMX,"
                           "I want to thank you for your generous gift"
-                          "of ${:.2f}!".format(donorname, donation))
+                          " of ${:.2f}!".format(donorname, donation))
             print("Email file generated!")
 
     except IOError:
@@ -104,6 +130,9 @@ def thank_donor(filename, donorname, donation):
 def sum_report(values):
     """
     Function to tally donations for report generation.
+
+    Args:
+        values: List containing donation amounts for each donor.
     """
 
     donation_total = sum(values)
@@ -116,6 +145,9 @@ def sum_report(values):
 def generate_report(donors):
     """
     Function to genereate a report sorted by donation amount.
+
+    Args:
+        donors: A dict object containing the donors and the amounts donated.
     """
 
     print()
@@ -134,7 +166,11 @@ def generate_report(donors):
 def main():
     """
     Main entry point for the program.
-    Collects user input and calls functions with that input.
+    Collects user input and calls helper functions to process the data.
+
+    Raises:
+        ValueError: Raised when the user enters a dollar amount with other
+        special characters or letters.
     """
 
     # Init donor dict from pickle file.
