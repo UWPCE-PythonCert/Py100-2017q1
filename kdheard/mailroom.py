@@ -19,23 +19,26 @@ class mailroom(object):
         def get_donor_name(self, input_name, unit_test = False):
             str(input_name)
             if input_name == "":
-                if unit_test == True:
-                    return True
-                else:
-                    return
+                pass
+                #if unit_test == True:
+                    #return True
+                #else:
+
             elif input_name == 'list':
                 for donor_number, donor in db.items():
                     print(donor['name'])
-                    return True
+                
+                    #return True
+                return
             elif input_name != 'list':
                 # We will run a quick set of input validations on donor and donations
                 if input_name.isdigit():
                     print(Exception("You need to enter a name for your donor. You have entered a number."))
-                    return False
+                    #return False
                 else:
-                    if unit_test == True:
-                        return True
-                    else:
+                    #if unit_test == True:
+                    #    return True
+                    #else:
                         donation = input("How much has this donor contributed? > ")
                         self.get_donation(donation,input_name)
                 # ^ Check if string was entered for donor name
@@ -43,21 +46,21 @@ class mailroom(object):
         def get_donation(self,donation,input_name, unit_test = False):
             try:
                 int(donation) % 1 == 0
-                if unit_test == True:
-                    return True
+                #if unit_test == True:
+                #    return True
             except ValueError as error:
                 print("You need to enter a number. Error:{}".format(error))
-                if unit_test == True:
-                    return False
-                else:
-                    return
+                #if unit_test == True:
+                #    return False
+                #else:
+                return
                 # ^ Check of number was entered for donation
             if donation[0] is "-":
                 print(Exception("STOP EMBEZZLING, JANET, THE BOARD IS ON TO YOU!"))
-                if unit_test == True:
-                    return False
-                else:
-                    return
+                #if unit_test == True:
+                 #   return False
+                #else:
+                return
                 # ^ Check for negative donations
         # Input validation is done, now we will pass input_name and donation into thank_you to be added into the DB
             self.thank_you(input_name,donation)
@@ -101,7 +104,7 @@ class mailroom(object):
                 number_of_donations = len(donors['donations'])
                 average_donations = mean(donors['donations'])
                 print("{0:20}| ${1:15}| {2:15}| ${3:.2f}".format(list_name, total_donations, number_of_donations, average_donations))
-
+            return
         def main(self, response=input("\nWelcome to Mailroom. \n\nYou have three options: \n(1.) Send a Thank You \n(2.) Create a Report \n(3.) Quit \n\nWhat would you like to do? > ")):
             try:
                 if int(response) == 1:
@@ -113,8 +116,10 @@ class mailroom(object):
                     print("\nThank you for using Mailroom. Exiting program.")
                 else:
                     print(Exception("That isn't a valid input. Try again."))
+                    return
             except ValueError as error:
                 print("\nThat isn't a valid input. Try again. \nError:{}".format(error))
+                return
 
         def __init__(self):
             while True:
@@ -122,4 +127,7 @@ class mailroom(object):
 
 
 
-
+if __name__ == "__main__":
+    with mailroom() as mr:
+        while True:
+            mr.main()
