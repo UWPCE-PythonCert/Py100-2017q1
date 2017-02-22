@@ -9,7 +9,7 @@ def line(x):
     '''a very simple straight horizontal line at y = 5'''
     return 5
 
-def trapz(fun, a, b, n=100):
+def trapz(fun, a, b):
     """
     Compute the area under the curve defined by
     y = fun(x), for x between a and b
@@ -23,19 +23,15 @@ def trapz(fun, a, b, n=100):
     :param b: the end point for the integration
     :type b: a numeric value
     """
-    increase = (b-a)/n
-    print(increase)
-    print("hola")
-    increment = a
-    print(increment)
-    while increment < b:
-        increment += increase
-        print(increment)
-    return (b-a)*fun
+
+    return fun(0)
+    return (b-a)*fun(0)
 
 def main():
-    area = trapz(line(0), 0, 10)
+    area = trapz(line, 0, 10)
     print(area)
+
+
 
 if __name__ == '__main__':
     print(os.path.basename(__file__))
