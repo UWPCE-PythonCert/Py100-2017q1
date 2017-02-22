@@ -9,6 +9,20 @@ def line(x):
     '''a very simple straight horizontal line at y = 5'''
     return 5
 
+def area(x):
+    n = 100
+    interval = x/n
+    aux = []
+    for i in range(n):
+        if i == 0:
+            aux.append(interval)
+        elif i == 99:
+            aux.append(interval)
+        else:
+            aux.append(interval)
+    return sum(aux)
+
+
 def trapz(fun, a, b):
     """
     Compute the area under the curve defined by
@@ -24,12 +38,11 @@ def trapz(fun, a, b):
     :type b: a numeric value
     """
 
-    return fun(0)
-    return (b-a)*fun(0)
+    return fun(b-a)
 
 def main():
-    area = trapz(line, 0, 10)
-    print(area)
+    result = trapz(area, 0, 10)
+    print(result)
 
 
 
