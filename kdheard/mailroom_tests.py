@@ -18,11 +18,8 @@ import mock
 mr = mailroom()
 
 def test_int_as_donor():
-    mock.patch(mr.main, response=1)
-    try:
-        assert mr.get_donor_name(input_name = "3", unit_test=True) is False
-    except:
-        print("Test failed.")
+    assert mr.get_donor_name(input_name = "3", unit_test=True) is False
+
 def test_str_as_donor():
     assert mr.get_donor_name(input_name= "New Donor", unit_test=True) is True
 
