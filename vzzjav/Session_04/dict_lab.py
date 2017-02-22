@@ -46,5 +46,4 @@ def main():
 
 if __name__ == '__main__':
     print(os.path.basename(__file__))
-    print(main.__doc__)
     main()
