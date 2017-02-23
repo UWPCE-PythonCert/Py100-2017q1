@@ -13,7 +13,8 @@ Try to use a dict and the .format() method to do the letter as one big template 
 '''
 
 
-
+# I have reused a lot of code from a To Do list program I created in my Into to Python class.
+# This has presented some challenges when trying to refactor the code
 
 # -- Processing -- #
 def initialize_donordb():
@@ -24,8 +25,9 @@ def initialize_donordb():
     'Starla': [50],
     'Tim': [100]
     }
-    print("this is my donor list", donors)
+    #  print("this is my donor list", donors)
     return donors
+
 
 def menu_options(): # Task 3
     """Make a function for the code that allows the user to Add or Remove tasks from the list,
@@ -47,14 +49,14 @@ def add_donation(db, donor, contribution):
         db[donor] = [int(contribution)]
 
 
-def report_calcs(values):
+def report_calcs(values):  # totally stole this from Rick
     donation_total = sum(values)
     num_gifts = len(values)
     average_gift = donation_total / num_gifts
     return str(donation_total), str(num_gifts), average_gift
 
 
-def donor_report(db):
+def donor_report(db):  # totally stole this from Rick
     # Print a header
     print("Donor Name                | Total Given | Num Gifts | Average Gift")
     print('------------------------------------------------------------------')
@@ -69,27 +71,15 @@ def donor_report(db):
             average_gift,  # Handle formatting in the format string
         ))
 
-
-def RemoveTask(ToDoItems, Task): # Task 5
-    """ Remove a task from the todo list """
-    if(Task in ToDoItems):
-        del ToDoItems[Task]
-
-def SavetToFile(ToDoItems, FileName): # Task 6
-    """Saves data to a file"""
-    objFile = open(FileName, "w")
-    for strKey, strValue in ToDoItems.items():
-        objFile.write(strKey + "," + str(strValue) + "\n")
-    objFile.close()
+def thank_you():
 
 
 #-- Input/Output --#
 
-def Main():
+
+def main():
     """Coordinates I/O and actions"""
     try:
-        # When the program starts load data
-        # in a text file called Donor.txt into a dictionary.
         donor_db = initialize_donordb()
 
         # Display all tasks to user
@@ -97,23 +87,24 @@ def Main():
 
         # Display a menu of choices to the user
         # and Process user I/0
-        while(True):
+        while True:
             menu_options()
-            str_choice = str(input("Which option would you like to perform? [1 to 5]")) #  Need to add if/elif for adding donor/donation
-            if (str_choice == '1'):    # 1) Add a new item.
+            str_choice = str(input("Which option would you like to perform? [1 to 5]"))
+            # Need to add if/elif for adding donor/donation
+            if str_choice == '1':    # 1) Add a new item.
                 new_donor = str(input("What is the donor's name?"))
                 contribution = int(input("What is the amount?"))
                 add_donation(donor_db, new_donor, contribution)
                 # donor_report(gTodoTasks)
                 continue
 
-            elif(str_choice == '2'):
+            elif str_choice == '2':
                 print(sorted(set(donor_db.keys())))
 
-            elif(str_choice == '3'):    # Print Report
+            elif str_choice == '3':    # Print Report
                 donor_report(donor_db)
                 continue
-            else:
+            else:  # Not working needs to go into a try block
                 print("Please select a number from [1 to 5]")  # Message in case user enters the incorrect number
                 # donor_report(gTodoTasks)
                 continue
@@ -124,5 +115,5 @@ def Main():
 
 
 # start the program
-Main() # Call the Main function at the start of the script
+main()  # Call the Main function at the start of the script
 
