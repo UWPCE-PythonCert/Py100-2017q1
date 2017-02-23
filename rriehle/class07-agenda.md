@@ -34,6 +34,10 @@ https://uwpce-pythoncert.github.io/Py100/build/html/modules/SubclassingAndInheri
 
 ##  Homework
 
+Roman/Arabic Numberal Converter
+
+https://uwpce-pythoncert.github.io/Py100/build/html/exercises/roman.html
+
 Object Oriented Mailroom
 
 https://uwpce-pythoncert.github.io/Py100/build/html/exercises/mailroom-oo.html
