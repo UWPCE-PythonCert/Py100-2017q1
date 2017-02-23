@@ -71,10 +71,19 @@ def donor_report(db):  # totally stole this from Rick
             average_gift,  # Handle formatting in the format string
         ))
 
-def thank_you():
+
+def thank_you(db):
+    for names, values in db.items():
+        donation_total = sum(values)
+        print('Dear ' + names + ', \n')
+        print('Thank you for you generous donation of $' + str(donation_total) + '.\n')
+        print('Your continued support of my fundraising efforts for the Big Climb keeps me motivated. \n')
+        print('Together we WILL find a cure for Blood related cancers! \n')
+        print('Thank you, \n')
+        print('Matt')
 
 
-#-- Input/Output --#
+# -- Input/Output -- #
 
 
 def main():
@@ -103,6 +112,9 @@ def main():
 
             elif str_choice == '3':    # Print Report
                 donor_report(donor_db)
+                continue
+            elif str_choice == '4':
+                thank_you(donor_db)
                 continue
             else:  # Not working needs to go into a try block
                 print("Please select a number from [1 to 5]")  # Message in case user enters the incorrect number
