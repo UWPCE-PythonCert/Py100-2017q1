@@ -14,7 +14,7 @@ db = {
 new_donor_number = 1
 
 
-class mailroom(object):
+class mailroom():
 
         def get_donor_name(self, input_name, unit_test = False):
             str(input_name)
@@ -38,8 +38,8 @@ class mailroom(object):
                     #if unit_test == True:
                     #    return True
                     #else:
-                        donation = input("How much has this donor contributed? > ")
-                        self.get_donation(donation,input_name)
+                        self.donation = input("How much has this donor contributed? > ")
+                        self.get_donation(self.donation,input_name)
                 # ^ Check if string was entered for donor name
 
         def get_donation(self,donation,input_name, unit_test = False):
@@ -77,10 +77,12 @@ class mailroom(object):
             input_name = str(input_name)
             donation = int(donation)
             for donor_number, donors in db.items():
-                if str(input_name.title()) == str(donors['name']):
+                if input_name.title() == str(donors['name'].title()):
                     donors['donations'].append(donation)
-                    break
-                elif input_name.title() != donors['name']:
+                    self.generate_email(donation, input_name)
+                    return
+            for donor_number, donors in db.items():
+                if input_name.title() != donors['name']:
                     global new_donor_number
                     new_donor = 'new_donor{}'.format(new_donor_number)
                     db[new_donor] = {}
@@ -89,7 +91,7 @@ class mailroom(object):
                     db[new_donor]['donations'].append(donation)
                     new_donor_number = new_donor_number + 1
                     break
-            self.generate_email(donation, input_name)
+                self.generate_email(donation, input_name)
 
         def create_report(self):
             print("Name                 Total Donations   No. of Donations   Avg Donation")
@@ -108,8 +110,8 @@ class mailroom(object):
             response = input("\nWelcome to Mailroom. \n\nYou have three options: \n(1.) Send a Thank You \n(2.) Create a Report \n(3.) Quit \n\nWhat would you like to do? > ")
             try:
                 if int(response) == 1:
-                    input_name = input("Type 'list' to see existing donors, or type the full name of a donor. Or, press ENTER to return to the main menu. > ")
-                    self.get_donor_name(input_name)
+                    self.input_name = input("Type 'list' to see existing donors, or type the full name of a donor. Or, press ENTER to return to the main menu. > ")
+                    self.get_donor_name(self.input_name)
                 elif int(response) == 2:
                     self.create_report()
                 elif int(response) == 3:

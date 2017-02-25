@@ -1,7 +1,5 @@
 from mailroom import mailroom
-import sys
-import mock
-
+import pytest
 
 
 #def test_menu_input1():
