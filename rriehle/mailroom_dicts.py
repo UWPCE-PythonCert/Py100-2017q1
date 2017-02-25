@@ -16,11 +16,11 @@ def load_donordb():
             donor_db = pickle.load(db_handle)
     except IOError:
         donor_db = {
-            "Aristotle": [384, 322],
-            "Kant": [1724, 1804, 1785],
-            "Locke": [1632],
-            "Russell": [1872, 1970, 1950],
-            "Dennett": [1942],
+            "Aristotle": [384.0, 322.0],
+            "Kant": [1724.0, 1804.0, 1785.0],
+            "Locke": [1632.0],
+            "Russell": [1872.0, 1970.0, 1950.0],
+            "Dennett": [1942.0],
         }
     return donor_db
 
@@ -35,16 +35,16 @@ def save_donordb(db):
 
 def add_donation(db, donor, contribution):
     if donor in db.keys():
-        db[donor].append(int(contribution))
+        db[donor].append(float(contribution))
     else:
-        db[donor] = [int(contribution)]
+        db[donor] = [float(contribution)]
 
 
 def tally_report(values):
     donation_total = sum(values)
     num_gifts = len(values)
     average_gift = donation_total / num_gifts
-    return str(donation_total), str(num_gifts), average_gift
+    return donation_total, num_gifts, average_gift
 
 
 def print_report(db):
@@ -55,11 +55,11 @@ def print_report(db):
     for names, values in db.items():
         donation_total, num_gifts, average_gift = tally_report(values)
 
-        print("{} | {} | {} | ${:11,.2f}".format(
-            names.ljust(25),  # Left justify the names
-            donation_total.rjust(11),
-            num_gifts.rjust(9),
-            average_gift,  # Handle formatting in the format string
+        print("{} | {:11,.2f} | {} | ${:11,.2f}".format(
+            names.ljust(25),
+            donation_total,
+            str(num_gifts).rjust(9),
+            average_gift,
         ))
 
 
@@ -112,6 +112,20 @@ if __name__ == '__main__':
 
         # We still need an amount
         contribution_amount = input("mailroom>>  How much is {} contributing? ".format(donor))
+
+        # Validate user input
+        try:
+            float(contribution_amount)
+        except Exception as my_except:
+            print("mailroom>>  Input validation error: {}".format(my_except))
+            continue
+
+        # Catch embezzlement
+        try:
+            assert float(contribution_amount) >= 0.0
+        except Exception as my_except:
+            print("mailroom>>  Donations must be greater than $0.00: {}".format(my_except))
+            continue
 
         # Add the donation to the db
         add_donation(donor_db, donor, contribution_amount)

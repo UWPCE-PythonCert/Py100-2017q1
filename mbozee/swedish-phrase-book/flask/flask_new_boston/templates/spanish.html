@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Spanish Phrase Book</title>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"-->
+        <!--integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="-->
+        <!--crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="../static/jquery-3.1.1.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+
+<!-- SPANISH PHRASE BOOK CONTENT -->
+<section id="content">
+
+    <!-- MASTHEAD -->
+    <section id="masthead" class="spanish">
+        <h1>Spanish Phrase Book</h1>
+    </section><!-- /MASTHEAD -->
+
+    <!-- STATS BAR -->
+    <div id="fixed-anchor"></div>
+    <section id="stats-bar">
+        <div id="stats-inner">
+
+            <!-- COUNTDOWN TIMER -->
+            <button id="timer-button" class="action" onclick="timer()">Start</button>
+            <!-- /COUNTDOWN TIMER -->
+
+            <!-- SCORE -->
+            <div id="score"><span>0</span> / {{ total }}</div>
+            <!-- /SCORE -->
+
+        </div>
+    </section><!-- /STATS BAR -->
+
+    <!-- VOCAB LIST -->
+    <section class="vocab-wrapper">
+        <ul class="header">
+            <li><h2 class="spanish">English</h2></li>
+            <li><h2 class="spanish">Spanish</h2></li>
+        </ul>
+        <section class="vocab-list">
+            {% for key, value in phrase_book.items() %}
+                <ul class="row spanish">
+                    <li>{{ key }}</li>
+                    <li><input type="text" value="" placeholder="{{ value }}" disabled /></li>
+                </ul>
+            {% endfor %}
+        </section>
+    </section><!-- /VOCAB LIST -->
+
+</section>
+<!-- /SPANISH PHRASE BOOK CONTENT -->
+
+<p style="font-size: 20px; color: black; display: none;">{{ phrase_book }}</p>
+
+<!-- SCRIPTS -->
+<script type="text/javascript" src="../static/script.js"></script>
+<!-- /SCRIPTS -->
+
+
+</body>
+</html>
