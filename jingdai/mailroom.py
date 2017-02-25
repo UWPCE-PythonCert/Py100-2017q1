@@ -97,7 +97,7 @@ if __name__ == "__main__":
         if user_prompt=="2":
             create_a_report(donation)
         if user_prompt=="1":
-            end_a_thankyou(donation)
+            send_a_thankyou(donation)
         if user_prompt=="3":
             send_a_letter(donation)
         if user_prompt=="4":
