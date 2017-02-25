@@ -1,104 +1,150 @@
 #!/usr/bin/env python3
 
-# Create a list to hold lists of donations
-donordata = []
+# ______________________________________________________________________________________________________________________
+# IMPORT DEPENDENT MODULES
+import pickle
+import sys
 
-# Start list with some sample donations
-donordata.append(["Bill Gates", 3000000])
-donordata.append(["Bill Gates", 1125000])
-donordata.append(["Bill Gates",100125])
-donordata.append(["Elon Musk", 1500000])
-donordata.append(["Paul Allen", 2000000])
-donordata.append(["Paul Allen", 134000])
-donordata.append(["Mark Zuckerberg", 125000])
-donordata.append(["Jeff Bezos", 1])
+# ______________________________________________________________________________________________________________________
+# DEFINE GLOBAL VARIABLES
+donor_data_file_name = '/home/vagrant/PycharmProjects/git/Py100-2017q1/ejviola/DonorData.pkl'
+# Open donor data, read donor data into a new list of dicts, close donor data file
+try:
+    donor_data_file = open(donor_data_file_name, 'rb')
+    donor_data = pickle.load(donor_data_file)
+    donor_data_file.close()
+    # Create new donor_list of unique donors based on donor_data
+    donor_list = []
+    for row in donor_data:
+        if row['Name'] not in donor_list:
+            donor_list.append(row['Name'])
+    cause_list = []
+    for row in donor_data:
+        if row['Cause'] not in cause_list:
+            cause_list.append(row['Cause'])
+    report = []
 
-# While loop to let user send thank you notes or view a report
-while True:
-    choice = float(input("Choose one of the following (Enter 1, 2, or 3): \n 1) Send a Thank You \n 2) Create a Report \n 3) Quit\n"))
+except (EOFError, FileNotFoundError) as e:
+    with open(donor_data_file_name, 'wb') as donor_data_file:
+        pickle.dump([{'Name': "Bill Gates", 'Amount': 115000000, 'Date': "August 1, 1991",
+                                    'Cause': 'combat homelessness.'}, {'Name': "Bill Gates", 'Amount': 9176200, 'Date': "January 3, 1999",
+                                    'Cause': "support global literacy."}, {'Name': "Bill Gates", 'Amount': 115000000, 'Date': "September 1, 1999",
+                                    'Cause': "engage in local outreach efforts to raise awareness about homelessness."}, {'Name': "Paul Allen", 'Amount': 3150000, 'Date': "November 12, 2000",
+                                    'Cause': "support global literacy."}, {'Name': "Bill Gates", 'Amount': 115000000, 'Date': "August 17, 2001",
+                                    'Cause': "combat homelessness."}], donor_data_file)
+    print(e)
+    print("Wrote 5 starter records to " + donor_data_file_name + " and successfully exited.")
+    sys.exit()
 
-    # Create a list of unique donors
-    donorlist = []
-    for i in donordata:
-        # row = str(donordata[i]).split(",").strip("[").strip("]")
-        row = i[0]
-        # If that donor is already in the list, do nothing
-        if row in donorlist:
-            counter = []
-        # Otherwise, add that donor
-        else:
-            donorlist.append(row)
-    if choice == 1:
-        print("You chose: send a thank you\n")
-        while True:
-            # Ask the user to enter a name or type 'list'
-            entername = str(input("Please enter the full name of the donor you would like to thank, \nenter 'list' to see a list of donors, \nor enter 'back' to go back to the main directory:\n"))
-            # Construct the list of donors
 
-            # If the user asks for a list of donors, print the list
-            if entername.lower() == "list":
-                print(donorlist)
-                print("\n")
-                break
-            elif entername.lower() == "back":
-                break
-            else:
-                if entername in donorlist:
-                    print("You selected "+entername+"\n")
-                    try:
-                        amount = float(input("How much did "+entername+" donate?\n"))
-                    except:
-                        print("Error: not a valid amount \n")
-                    donordata.append([entername, amount])
 
-                else:
-                    #add to list
-                    donorlist.append(entername)
-                    print(entername+" was not in the existing data. "+entername+" has been added to the list of donors.\n")
-                    try:
-                        amount = float(input("How much did "+entername+" donate?\n"))
-                    except:
-                        print("Error: not a valid amount \n")
-                    donordata.append([entername, amount])
-            # Print thank you
-            print("Dear "+entername+",\n    I would like to take this opportunity to thank you for your generous donation of $"+str(amount)+". \nYour thoughtful contribution to our philanthropic efforts will help go towards important social missions,\nallowing us to leverage our areas of expertise to create positive, equitable outcomes for all involved. \n \nThank you for your support,\n    Eric Viola\n\n")
+# ______________________________________________________________________________________________________________________
+# PROCESSING
+# Define function to write donor data to the file
+def write_donor_data():
+    with open(donor_data_file_name, 'wb') as donor_data_file :
+        pickle.dump(donor_data, donor_data_file)
 
-    elif choice == 2:
-        print("You chose: create a report\n")
-
-        # Count and sum donations
-        donationsum = []
-        donationcount = []
-        for i in donorlist:
-            localsum = 0
-            localcount = 0
-            for row in donordata:
-                if i == row[0]:
-                    localsum += row[1]
-                    localcount += 1
-            donationsum.append(localsum)
-            donationcount.append(localcount)
-
-        # Combine list of names, donation sums, and donation counts
-        counter = 0
-        report = []
-        for i in donorlist:
-            newrow = [donationsum[counter], donorlist[counter],donationsum[counter], donationcount[counter], donationsum[counter] / donationcount[counter]]
-            report.append(newrow)
-            counter += 1
-
-        # Write a report, sorted by donationsum
-        report = sorted(report, reverse=True)
-        print("Name:  \t\t\t\t\t\tTotal Donated: Donations:\tAverage Donations:\n")
-        for i in report:
-            name = i[1]+(27-len(i[1]))*" "
-            total = " $"+(13-len(str(i[2])))*" "+str(i[2])
-            count = (11-len(str(i[3])))*" "+str(i[3])
-            average = "   $"+(17-len(str(i[4])))*" "+str(i[4])
-            print(name+total+count+average)
-        print("\n")
-
-    elif choice == 3:
-        break
+# Define a function to send a thank you
+def send_thank_you():
+    user_thank_you_input = 0
+    user_thank_you_input = str(input("\nType a name to send a thank you,\nenter 'list' to see a list of unique donors,\nor enter 'back' to go back\n"))
+    if user_thank_you_input.lower() == 'list':
+        print(donor_list)
+    elif user_thank_you_input == 'back':
+        print("Returning to main menu")
     else:
-        print("Please enter 1, 2, or 3")
+        thank_you_path = str(
+            input("Are you thanking " + str(user_thank_you_input) + " for a new donation, or sending a followup thank-you for an old donation? Enter new or old:\n"))
+        if thank_you_path == str("new"):
+            # If it is a new donation, send a thank you based on the details of that donation
+            # While loop to make sure the amount donated is valid
+            while True:
+                try:
+                    amount_donated = input("Please enter the amount " + user_thank_you_input + " donated (e.g. '10000'):\n")
+                    amount_donated = float(amount_donated)
+                    break
+                except ValueError:
+                    print("You did not enter a valid amount.")
+                    pass
+            donation_date = str(input("Please enter the date the donation was made (e.g. 'January 1, 2017': \n"))
+            donation_cause = str(input(
+                "Please enter the cause that the donation will support (e.g. 'increase rural broadband access'\n"))
+            # If the cause isn't already in the cause list, add it
+            if donation_cause not in cause_list:
+                cause_list.append(donation_cause)
+            new_donation = {'Name': user_thank_you_input, 'Amount': amount_donated, 'Date': donation_date,
+                            'Cause': donation_cause}
+            donor_data.append(new_donation)
+            # Ask the user if they would like to save the data
+            write_choice = input("Would you like to save this donation? Enter y/n:\n")
+            if write_choice == str("y"):
+                write_donor_data()
+                # If it is a new donor, also add them to donor_list
+                if user_thank_you_input not in donor_list:
+                    donor_list.append(user_thank_you_input)
+            # Print Thank You
+            print("Dear " + user_thank_you_input + ",")
+            print("\tThank you for your generous donation of $" + str(amount_donated) + ". Your contribution well help us " + str(donation_cause) + ".")
+            print("We look forward to pursuing this important mission, and hope that you will continue to support our efforts as we pursue our other goals.")
+            print("\n\nThank you again,")
+            print("\tEric Viola")
+        elif thank_you_path == str("old"):
+            # If it is not a new donation, thank them based on a generic letter
+            print("Dear " + user_thank_you_input + ",")
+            print(
+                "\tThank you again for your generous donation. Philanthropists like you empower our organization to deliver tangible outcomes across the globe. \nYour contribution will help our organization as we pursue our strategic missions, such as: ")
+            counter = 0
+            # The generic letter lists all the causes that have been funded so far (not ranked at all)
+            for cause in cause_list:
+                counter +=1
+                print("\t\t"+str(counter)+") "+cause.title())
+            print("\n\nThank you again for supporting our efforts,")
+            print("\t Eric Viola")
+        # Throw an error if no valid input was given and return to main menu (progress is not saved)
+        else:
+            print("You did not enter a valid command, returning to main menu")
+
+
+# Define a function to generate a report
+def generate_report():
+    report = []
+    for donor in donor_list:
+        donation_sum = 0
+        donation_count = 0
+        for row in donor_data:
+            if donor == row['Name']:
+                donation_sum += row['Amount']
+                donation_count += 1
+        new_row = [donation_sum, donor, donation_count, donation_sum, round(donation_sum/donation_count, 0)]
+        report.append(new_row)
+    report.sort(reverse=True)
+    print("Donor", 25*" ", " Donations", "   Total Donated", "   Average Donation")
+    for report_row in report:
+        print(report_row[1], (30-len(report_row[1]))*" ", (9-len(str(report_row[2])))*" ", report_row[2], "  $", (11-len(str(report_row[3])))*" ", report_row[3], "   $", (13-len(str(report_row[4])))*" ", report_row[4])
+    print("\nEnd of Report")
+
+# Define a function to give the user options between the existing functions
+def user_interface():
+    user_input = 0
+    # While loop to match user input with relevant function
+    while user_input != 3:
+        try:
+            user_input = int(input("\nUser Options:\n1) Send a Thank You\n2) View Donor Report\n3) Quit \nEnter a number:\n"))
+            if int(user_input) in [1, 2, 3]:
+                #user_input = int(user_input)
+                if user_input == 1:
+                    print('\nYou chose to send a thank you\n')
+                    send_thank_you()
+                elif user_input == 2:
+                    print('\nYou chose to view a report\n')
+                    generate_report()
+            else:
+                print("\nPlease enter 1, 2, or 3\n")
+        except:
+            print("\nPlease enter 1, 2, or 3\n")
+    print("\nSuccessfully Exited\n")
+
+# ______________________________________________________________________________________________________________________
+# INPUT AND OUTPUT
+user_interface()

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mike Bozee">
+    <title>Mailroom</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/main.css">
+</head>
+<body>
+
+
+
+<!-- HEADER -->
+<section id="header">
+    <h1>Mailroom</h1>
+</section>
+<!-- /HEADER -->
+
+
+
+<!-- MENU -->
+<ul id="menu">
+    <li id="n" tabindex="0">(name)</li>
+    <li id="l" tabindex="0">l: list</li>
+    <li id="r" tabindex="0">r: report</li>
+    <li id="t" tabindex="0">t: thanks</li>
+    <li id="h" tabindex="0">h: help</li>
+    <li id="q" tabindex="0">q: quit</li>
+</ul>
+<!-- MENU -->
+
+
+
+<!-- DISPLAYED CONTENT -->
+<section id="display">
+
+
+
+<!-- N: NAME -->
+<ul id="n-content">
+    <li><input value="" placeholder="Name..."></li>
+    <li><input value="" placeholder="Amount..."></li>
+</ul>
+<!-- /N: NAME -->
+
+
+
+<!-- L: LIST -->
+<table id="l-content" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th scope="col">Donor Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for donor in donors_sorted %}
+            <tr>
+                <td>{{ donor[0] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- L: LIST -->
+
+
+
+<!-- R: REPORT -->
+<table id="r-content" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th scope="col">Donor Name</th>
+            <th scope="col">Total Given</th>
+            <th scope="col">Num Gifts</th>
+            <th scope="col">Avg Gift</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for donor in donors_sorted %}
+            <tr>
+                <th scope="row">{{ donor[0] }}</th>
+                <td>{{ total_given }}</td>
+                <td>{{ num_gifts }}</td>
+                <td>{{ avg_gift }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- /R: REPORT -->
+
+
+
+<!-- T: THANKS -->
+<ul id="t-content">
+    {% for donor in donors_sorted %}
+        <li>
+            Dear <span>{{ donor[0] }}</span>,
+            <br /><br />Thank you for your generous donation of <span>${{ donor[1][0] }}</span>
+            .Your gift makes a major impact on aspiring musicians in the Seattle area.
+            <br /><br />Sincerely,<br />Seattle Music Fund
+        </li>
+    {% endfor %}
+</ul>
+<!-- /T: THANKS -->
+
+<!-- H: HELP -->
+<p id="h-content">Use the keyboard-enabled menu above to use the mailroom.</p>
+<!-- /H: HELP -->
+
+<section id="q-content">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/voZIY75dsf0?rel=0" frameborder="0" allowfullscreen></iframe>
+</section>
+
+
+
+</section>
+<!-- DISPLAYED CONTENT -->
+
+<p style="margin: 0; color: white; font-weight: 900; font-size: 14px; text-align: center; position: absolute; bottom: 10px; left: 0; width: 100%; display: block;">This app is for educational use only. Names are used as examples.</p>
+
+
+
+
+<!-- SCRIPTS -->
+<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="../static/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../static/main.js"></script>
+<!-- /SCRIPTS -->
+
+
+
+</body>
+</html>
