@@ -8,11 +8,11 @@ print("Opened database successfully")
 
 #  conn.execute("drop table if exists donors")
 
+
 conn.execute('''CREATE TABLE DONORS
-       (ID INT PRIMARY KEY     NOT NULL,
+       (DONOR_ID INT     NOT NULL,
        DONOR_NAME           TEXT    NOT NULL,
-       DONATION_AMOUNT         REAL
-       UPDATE_DATE_TIME DATETIME DEFAULT CURRENT_TIMESTAMP);''')
+       DONATION_AMOUNT         REAL);''')
 print("Table created successfully")
 
 conn.close()
