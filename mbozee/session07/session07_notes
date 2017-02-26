@@ -1,0 +1,76 @@
+2/22 Py100 session 7 notes
+
+office hours this wk end = sat @ 10 @ sound & fog - ride from j
+
+
+-------------------
+-- TEST_MAILROOM --
+-------------------
+rick used pytset. nose ok, unittest ok
+
+fixture (decorator way) --- see rick's test_mailroom decorator @ line 16 ----- fixture vs setup
+>--setup_module is other option
+>--but decorator fixture is stronger/better
+
+--> factor out mailroom into functions --> test suite will reflect mailroom's complexity/messiness
+--> pickle routine test --> test whether timestamp is updated/file saved
+
+--> doctests are not as powerful (typically only uses ==/!= asserts --> limited)
+
+--> see rick's test_add_donation routine
+
+--> django - management command
+
+--> main why loop --> don't test as-is
+
+--> dictionary as switch --> see p100 notes site --> use for while loop
+
+--> continuous integration -- jenkins module
+
+--> test pyramid (unit tests, integration tests, functional tests) --> maybe not best way to do it --> should depend on your program/prior test stats
+
+
+
+----------------------
+-- TKinter for GUIs --
+----------------------
+--> TKinter can do GUI stuff
+
+
+
+
+--> xlsxwriter module --> writes to excel
+
+
+
+
+
+
+
+
+
+----------------------
+--   MAIN LESSON    --
+----------------------
+
+--> PARADIGMS
+--> fucntional
+--> python can do procedural
+--> scoping, name spaces (object oriented) -- classes/instances
+--> design patterns (the factory, the singleton, etc)
+--> encapsulation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
