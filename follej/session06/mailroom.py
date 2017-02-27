@@ -130,7 +130,8 @@ def send_a_thank_you():
         print_a_report([donor_index])
         write_thank_you_email(donor_index)
     elif response != "":
-        if not is_valid_new_donor_name(response): send_a_thank_you()
+        if not is_valid_new_donor_name(response):
+            send_a_thank_you()
         add_a_donor(response)
         donor_names = get_donor_names_list()
         print(donor_names)
@@ -140,6 +141,12 @@ def send_a_thank_you():
         write_thank_you_email(donor_index)
     else:
         init_menu()
+
+
+def add_a_donor(new_donor):
+    donor_name = new_donor.split()
+    # Requires a first and a last - for now. Add some kind of exception?
+    donors.append(dict(zip(keys, [donor_name[0], donor_name[1], []])))
 
 
 def add_donation(donor_index):
@@ -156,10 +163,6 @@ def add_donation(donor_index):
             break
 
 
-def add_a_donor(new_donor):
-    donor_name = new_donor.split()
-    # Requires a first and a last - for now. Add some kind of exception?
-    donors.append(dict(zip(keys, [donor_name[0], donor_name[1], []])))
 
 
 if __name__ == '__main__':

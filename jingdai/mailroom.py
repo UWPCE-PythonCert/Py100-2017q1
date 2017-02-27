@@ -17,6 +17,10 @@ def send_a_thankyou(donation):
 
     if user_prompt1 in names:
         user_prompt2=input("Amount > ")
+        try:
+            user_prompt2<0
+        except:
+            print('Please enter a positive number')
         new_pair=(user_prompt1,float(user_prompt2))
         donation.append(new_pair)
     else:
@@ -46,14 +50,14 @@ def create_a_report(donation):
                 count=1+count
         sum_list=(i,sum,count,float(sum/count))
         sum_lists.append(sum_list)
-
+    print(sum_lists)
 
     header_line='{:>12}  |{:>12}  |{:>12}  |{:>12}  '.format("Donor Name","Total Given","Num Gifts","Average Gift")
     print(header_line)
     for sum_list in sum_lists:
         line_new = '{:>12}  ${:>12}  {:>12}  ${:+.2f}  '.format(*sum_list)
         print(line_new)
-    return
+    return sum_lists
 
 def send_a_letter(donation):
     names=[] #create a list which has all the donor's name
@@ -85,8 +89,10 @@ def send_a_letter(donation):
 
 if __name__ == "__main__":
     donation=[("Andy","Thomas", 300),("Sally", "Bui", 400),("Andy","Tom", 100),("Tom","Colin", 700),("Lisa","Dodo",90),("Abby","Lust",1000),("Abby","Lust",200)]
-    while True:
+    while True: #while loop if input value not in the defined value, it just go back to the first input.
         user_prompt=input("1.Send a Thank You; 2.Create a Report; 3.Send a Letter; 4.quit > ")
+        if user_prompt not in '1234':
+            print("Please select a number that is in the range of 1 to 4.")
 
         if user_prompt=="2":
             create_a_report(donation)
@@ -97,6 +103,7 @@ if __name__ == "__main__":
         if user_prompt=="4":
             print("goodbye")
             break
+
 
 
 
