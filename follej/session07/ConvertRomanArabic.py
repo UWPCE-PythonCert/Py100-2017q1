@@ -20,11 +20,11 @@ class ConvertRomanArabic:
         roman_str = str(roman_numeral)
         total = 0
         for i, roman_number in enumerate(roman_str):
-            value = self.roman_dict[roman_number]
-            if i + 1 < len(roman_str) and self.roman_dict[roman_str[i + 1]] > value:
-                total -= value
+            arabic_number = self.roman_dict[roman_number]
+            if i + 1 < len(roman_str) and self.roman_dict[roman_str[i + 1]] > arabic_number:
+                total -= arabic_number
             else:
-                total += value
+                total += arabic_number
         return total
 
 
