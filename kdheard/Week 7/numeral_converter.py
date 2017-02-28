@@ -101,16 +101,14 @@ class converter():
     def roman_to_arabic(self, numeral):
         print("\nIt appears you have entered an Roman numeral. Converting to Arabic numeral...")
         arabic_numerals = []
-        for key, value in roman_library_ones:
-            if numeral == key:
-                numeral.strip(key)
-                arabic_numerals.append(value)
-                break
-            #if numeral in key:
-             #   numeral.strip(key)
-              #  arabic_numerals.append(value)
-               # break
 
+        for letter in numeral:
+            if letter in ['I', 'V', 'X']:
+                for key, value in roman_library_ones:
+                    if numeral == key:
+                        numeral.strip(key)
+                        arabic_numerals.append(value)
+                        break
 
 
 
