@@ -1,29 +1,30 @@
-numeral_library_ones = {
-    "0": " ",
-    "1": "I",
-    "2": "II",
-    "3": "III",
-    "4": "IV",
-    "5": "V",
-    "6": "VI",
-    "7": "VII",
-    "8": "VIII",
-    "9": "IX"
+import re
+numeral_library_ones = [
+    ('0', ''),
+    ('1', 'I'),
+    ('2', 'II'),
+    ('3', 'III'),
+    ('4', 'IV'),
+    ('5', 'V'),
+    ('6', 'VI'),
+    ('7', 'VII'),
+    ('8', 'VIII'),
+    ('9', 'IX'),
+    ('10', 'X'),
 
-}
-numeral_library_tens = {
-    "1": "X",
-    "2": "XX",
-    "3": "XXX",
-    "4": "XL",
-    "5": "L",
-    "6": "LX",
-    "7": "LXX",
-    "8": "LXXX",
-    "9": "XC",
-    "10": "C"
-
-}
+]
+numeral_library_tens = [
+    ('1', 'X'),
+    ('2', 'XX'),
+    ('3', 'XXX'),
+    ('4', 'XL'),
+    ('5', 'L'),
+    ('6', 'LX'),
+    ('7', 'LXX'),
+    ('8', 'LXXX'),
+    ('9', 'XC'),
+    ('10', 'C'),
+]
 
 
 class converter():
@@ -57,7 +58,7 @@ class converter():
         elif type(numeral) == str:
             # Additional validation for Roman numerals only.
             for letter in numeral:
-                if any in ['I', 'V', 'X', 'L', 'C']:
+                if letter in ['I', 'V', 'X', 'L', 'C']:
                     continue
                 else:
                     print("You've entered in an invalid Roman numeral or Arabic numeral. Restarting...")
@@ -66,25 +67,35 @@ class converter():
 
     def arabic_to_roman(self, numeral):
         print("\nIt appears you have entered an Arabic numeral. Converting to Roman numeral...")
-        if len(numeral) >= 1:
-            for key, value in numeral_library_ones.items():
+
+        if len(numeral) == 1:
+            for key, value in numeral_library_ones:
+                if numeral[-1] == key:
+                    numeral = numeral.replace(numeral[-1], value)
+                    continue
+        else:
+
+            for key, value in numeral_library_tens:
+                if numeral[-2] == key:
+                    numeral = numeral.replace(numeral[-2], value)
+
+            for key, value in numeral_library_ones:
                 if numeral[-1] == key:
                     numeral = numeral.replace(numeral[-1], value)
                     continue
 
-        if len(numeral) >= 2:
-            for key, value in numeral_library_tens.items():
-                if numeral[0] == key:
-                    numeral = numeral.replace(numeral[0], value)
+
         print("Your Roman numeral is: {}".format(''.join([str(item) for item in numeral])))
 
     def roman_to_arabic(self, numeral):
         print("\nIt appears you have entered an Roman numeral. Converting to Arabic numeral...")
-        for key, value in numeral_library_ones.items():
-            if value in numeral:
-                numeral.replace(value, key)
 
-        print("Your Arabic numeral is: {}".format(''.join([str(item) for item in numeral])))
+        arabic_numerals = []
+        for key in reversed(numeral_library_ones):
+            if numeral == key[1]:
+                arabic_numerals.append(key[0])
+
+        print("Your Arabic numeral is: {}".format(''.join([str(item) for item in arabic_numerals])))
 
     def main(self):
         numeral = input("\nWelcome to the Roman/Arabic Numeral Converter. \n\nPlease enter the value to be converted: ")
