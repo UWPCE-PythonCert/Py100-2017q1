@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mailroom</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+
+    <!-- CONTENT -->
+    <section id="content">
+
+
+
+        <!-- MENU PANEL -->
+        <section id="menu-panel">
+
+            <!-- LOGO -->
+            <div id="logo">Mailroom</div>
+            <!-- /LOGO -->
+
+            <!-- MENU -->
+            <ul id="menu">
+                <li id="n" tabindex="0">(New Entry)</li>
+                <li id="l" tabindex="0">List</li>
+                <li id="r" tabindex="0">Report</li>
+                <li id="t" tabindex="0">Thanks</li>
+                <li id="h" tabindex="0">Help</li>
+            </ul>
+            <!-- /MENU -->
+
+        </section>
+        <!-- /MENU PANEL -->
+
+
+
+        <!-- MAIN PANEL -->
+        <section id="main-panel">
+
+
+
+            <!-- NEW ENTRY -->
+            <section id="n-content">
+                <form id="entry-input" action="">
+
+                    <!-- name -->
+                    <input type="text" id="entry-name" placeholder="Full Name" required />
+
+                    <!-- amount -->
+                    <input type="number"  id="entry-amount" min="0" step="any" placeholder="Amount" required />
+
+                    <!-- date -->
+                    <input type="text" id="entry-date" placeholder="Date" required />
+
+                    <!-- submit -->
+                    <input type="submit" id="entry-submit" value="ADD" />
+
+                </form>
+            </section>
+            <!-- /NEW ENTRY -->
+
+
+
+            <!-- LIST -->
+            <section id="l-content" style="display: none; padding: 0 15px;">
+                <p>List content placed here.</p>
+            </section>
+            <!-- /LIST -->
+
+
+
+            <!-- REPORT -->
+            <section id="r-content">
+
+                <!-- REPORT DATA -->
+                <table id="report-data" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr id="report-head">
+                            <th scope="col">
+                                <input type="checkbox" />
+                                Donor
+                            </th>
+                            <th scope="col">Total Given</th>
+                            <th scope="col">Num Gifts</th>
+                            <th scope="col">Avg Gift</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>
+                                <input type="checkbox" />
+                                Donovan Leitch
+                            </th>
+                            <td>$24,601.00</td>
+                            <td>5</td>
+                            <td>$4,920.20</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="checkbox" />
+                                Stevie Nicks
+                            </th>
+                            <td>$5,098.00</td>
+                            <td>3</td>
+                            <td>$1,699.33</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="checkbox" />
+                                Suzanne Vega
+                            </th>
+                            <td>$769.00</td>
+                            <td>1</td>
+                            <td>$769.00</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="checkbox" />
+                                Mavis Staples
+                            </th>
+                            <td>$10,892.00</td>
+                            <td>7</td>
+                            <td>$1,556.00</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="checkbox" />
+                                Ian Anderson
+                            </th>
+                            <td>$3,087.00</td>
+                            <td>4</td>
+                            <td>$771.75</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="checkbox" />
+                                Eric Burdon
+                            </th>
+                            <td>$4,968.00</td>
+                            <td>2</td>
+                            <td>$2,484.00</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="checkbox" />
+                                Jackson Browne
+                            </th>
+                            <td>$12,503.00</td>
+                            <td>6</td>
+                            <td>$2,083.83</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- /REPORT DATA -->
+
+                <!-- REPORT PAGINATION -->
+                <ul id="pagination">
+                    <li><</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>></li>
+                </ul>
+                <!-- /REPORT PAGINATION -->
+
+            </section>
+            <!-- /REPORT -->
+
+
+
+            <!-- THANKS -->
+            <section id="t-content" style="display: none; padding: 0 15px;">
+                <p>Thank you letters content placed here.</p>
+            </section>
+            <!-- /THANKS -->
+
+
+
+            <!-- HELP -->
+            <section id="h-content" style="display: none; padding: 0 15px;">
+                <p>Help content placed here.</p>
+            </section>
+            <!-- /HELP -->
+
+
+
+        </section>
+        <!-- /MAIN PANEL -->
+
+    </section>
+    <!-- /CONTENT -->
+
+
+
+<!-- SCRIPTS -->
+<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<script>
+    $(function() {
+        $('#entry-date').datepicker();
+    });
+</script>
+<!-- /SCRIPTS -->
+
+
+
+</body>
+</html>
