@@ -1,6 +1,4 @@
 from mailroom import mailroom
-import pytest
-
 
 #def test_menu_input1():
     #assert "That isn't a valid input" in mailroom.main(response="4")

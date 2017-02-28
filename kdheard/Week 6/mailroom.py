@@ -116,6 +116,7 @@ class mailroom():
                     self.create_report()
                 elif int(response) == 3:
                     print("\nThank you for using Mailroom. Exiting program.")
+                    exit()
                 else:
                     print(Exception("That isn't a valid input. Try again."))
                     return
