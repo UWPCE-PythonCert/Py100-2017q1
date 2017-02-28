@@ -1,4 +1,3 @@
-import re
 numeral_library_ones = [
     ('0', ''),
     ('1', 'I'),
@@ -46,10 +45,7 @@ class converter():
                 return
         # Checking for nonzero integer.
         if numeral == "0":
-            print("You must enter a number greater than 0. In ancient Rome, there was no number to represent 0, "
-                  "which was interesting because the number 0 had been around in the Babylonian, Mayan, "
-                  "and Sumerian numerical systems prior to use of Roman numerals."
-                  "\nOh no! You have died from BORING HISTORY LECTURE. Restarting...\n")
+            print("You must enter a number greater than 0. Restarting...\n")
             return
         # Checking whether starting numeral is Arabic or Roman.
         # If the numeral is Arabic (isdigit()), we've already validated, so we can just pass it to the converter.
@@ -74,23 +70,24 @@ class converter():
                     numeral = numeral.replace(numeral[-1], value)
                     continue
         else:
-
             for key, value in numeral_library_tens:
                 if numeral[-2] == key:
                     numeral = numeral.replace(numeral[-2], value)
-
+                    continue
             for key, value in numeral_library_ones:
                 if numeral[-1] == key:
                     numeral = numeral.replace(numeral[-1], value)
                     continue
-
-
         print("Your Roman numeral is: {}".format(''.join([str(item) for item in numeral])))
 
     def roman_to_arabic(self, numeral):
         print("\nIt appears you have entered an Roman numeral. Converting to Arabic numeral...")
 
+        translation_counter = 0
         arabic_numerals = []
+        for key in reversed(numeral_library_tens):
+            if numeral == key[1]:
+                arabic_numerals.append(key[0])
         for key in reversed(numeral_library_ones):
             if numeral == key[1]:
                 arabic_numerals.append(key[0])
