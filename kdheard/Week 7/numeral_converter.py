@@ -36,8 +36,19 @@ roman_library_ones = [
     ('VII', '7'),
     ('VIII', '8'),
     ('IX', '9'),
-    ('X', '10'),
 
+]
+
+roman_library_tens = [
+    ('X', '1'),
+    ('XX', '2'),
+    ('XXX', '3'),
+    ('XL', '4'),
+    ('L', '5'),
+    ('LX', '6'),
+    ('LXX', '7'),
+    ('LXXX', '8'),
+    ('IC', '9')
 ]
 
 
@@ -101,14 +112,20 @@ class converter():
     def roman_to_arabic(self, numeral):
         print("\nIt appears you have entered an Roman numeral. Converting to Arabic numeral...")
         arabic_numerals = []
+        translation_counter = 0
+        for key, value in reversed(roman_library_tens):
+            if numeral[0] == key or numeral[0:1] == key or numeral[0:2] == key:
+                numeral = numeral.replace(key, "")
+                arabic_numerals.append(value)
+        for key, value in roman_library_ones:
+            if numeral == key:
+                numeral.strip(key)
+                arabic_numerals.append(value)
+                translation_counter += 1
+                break
 
-        for letter in numeral:
-            if letter in ['I', 'V', 'X']:
-                for key, value in roman_library_ones:
-                    if numeral == key:
-                        numeral.strip(key)
-                        arabic_numerals.append(value)
-                        break
+        if translation_counter == 0:
+            arabic_numerals.append('0')
 
 
 
