@@ -43,7 +43,7 @@
 
             <!-- NEW ENTRY -->
             <section id="n-content">
-                <form id="entry-input" action="">
+                <form id="entry-input" action="/">
 
                     <!-- name -->
                     <input type="text" id="entry-name" placeholder="Full Name" required />
@@ -65,13 +65,13 @@
 
             <!-- LIST -->
             <section id="l-content" style="display: none; padding: 0 15px;">
-                {% for donor in donors_sorted %}
-                <p>{{ donor[0] }}</p>
-                <p>
-                    {% for amount in donor[1] %}
-                    {{ amount }} _____
-                    {% endfor %}
-                </p>
+                {% for donor in donors %}
+                <p>{{ donor }}</p>
+                <!--<p>-->
+                    <!--{% for amount in donor[1] %}-->
+                    <!--{{ amount }} _____-->
+                    <!--{% endfor %}-->
+                <!--</p>-->
                 {% endfor %}
             </section>
             <!-- /LIST -->
@@ -95,69 +95,80 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for donor in donors %}
                         <tr>
                             <th>
                                 <input type="checkbox" />
-                                Donovan Leitch
+                                {{ donor }}
                             </th>
                             <td>$24,601.00</td>
                             <td>5</td>
                             <td>$4,920.20</td>
                         </tr>
-                        <tr>
-                            <th>
-                                <input type="checkbox" />
-                                Stevie Nicks
-                            </th>
-                            <td>$5,098.00</td>
-                            <td>3</td>
-                            <td>$1,699.33</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <input type="checkbox" />
-                                Suzanne Vega
-                            </th>
-                            <td>$769.00</td>
-                            <td>1</td>
-                            <td>$769.00</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <input type="checkbox" />
-                                Mavis Staples
-                            </th>
-                            <td>$10,892.00</td>
-                            <td>7</td>
-                            <td>$1,556.00</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <input type="checkbox" />
-                                Ian Anderson
-                            </th>
-                            <td>$3,087.00</td>
-                            <td>4</td>
-                            <td>$771.75</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <input type="checkbox" />
-                                Eric Burdon
-                            </th>
-                            <td>$4,968.00</td>
-                            <td>2</td>
-                            <td>$2,484.00</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <input type="checkbox" />
-                                Jackson Browne
-                            </th>
-                            <td>$12,503.00</td>
-                            <td>6</td>
-                            <td>$2,083.83</td>
-                        </tr>
+                        {% endfor %}
+                        <!--<tr>-->
+                            <!--<th>-->
+                                <!--<input type="checkbox" />-->
+                                <!--Donovan Leitch-->
+                            <!--</th>-->
+                            <!--<td>$24,601.00</td>-->
+                            <!--<td>5</td>-->
+                            <!--<td>$4,920.20</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>-->
+                                <!--<input type="checkbox" />-->
+                                <!--Stevie Nicks-->
+                            <!--</th>-->
+                            <!--<td>$5,098.00</td>-->
+                            <!--<td>3</td>-->
+                            <!--<td>$1,699.33</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>-->
+                                <!--<input type="checkbox" />-->
+                                <!--Suzanne Vega-->
+                            <!--</th>-->
+                            <!--<td>$769.00</td>-->
+                            <!--<td>1</td>-->
+                            <!--<td>$769.00</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>-->
+                                <!--<input type="checkbox" />-->
+                                <!--Mavis Staples-->
+                            <!--</th>-->
+                            <!--<td>$10,892.00</td>-->
+                            <!--<td>7</td>-->
+                            <!--<td>$1,556.00</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>-->
+                                <!--<input type="checkbox" />-->
+                                <!--Ian Anderson-->
+                            <!--</th>-->
+                            <!--<td>$3,087.00</td>-->
+                            <!--<td>4</td>-->
+                            <!--<td>$771.75</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>-->
+                                <!--<input type="checkbox" />-->
+                                <!--Eric Burdon-->
+                            <!--</th>-->
+                            <!--<td>$4,968.00</td>-->
+                            <!--<td>2</td>-->
+                            <!--<td>$2,484.00</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>-->
+                                <!--<input type="checkbox" />-->
+                                <!--Jackson Browne-->
+                            <!--</th>-->
+                            <!--<td>$12,503.00</td>-->
+                            <!--<td>6</td>-->
+                            <!--<td>$2,083.83</td>-->
+                        <!--</tr>-->
                     </tbody>
                 </table>
                 <!-- /REPORT DATA -->
