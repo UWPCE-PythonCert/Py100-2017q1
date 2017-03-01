@@ -13,9 +13,9 @@ arabic_library_ones = [
 ]
 arabic_library_tens = [
     ('1', 'X'),
-    ('11', 'XI'),
+   # ('11', 'XI'),
     ('2', 'XX'),
-    ('22', 'XII'),
+   # ('22', 'XII'),
     ('3', 'XXX'),
     ('4', 'XL'),
     ('5', 'L'),
@@ -93,7 +93,7 @@ class converter():
         if len(numeral) == 1:
             for key, value in arabic_library_ones:
                 if numeral[-1] == key:
-                    numeral = numeral.replace(numeral[-1], value)
+                    roman_numerals.append(value)
                     continue
         else:
             for key, value in arabic_library_tens:
@@ -119,7 +119,7 @@ class converter():
                 arabic_numerals.append(value)
         for key, value in roman_library_ones:
             if numeral == key:
-                numeral.strip(key)
+                numeral.replace(key, "")
                 arabic_numerals.append(value)
                 translation_counter += 1
                 break
