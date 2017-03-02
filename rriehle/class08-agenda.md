@@ -38,6 +38,10 @@ Emulating Standard Types
 
 https://uwpce-pythoncert.github.io/Py100/build/html/modules/SpecialMethodsAndProtocols.html#emulating-standard-types
 
-
 ##  Homework
 
+We didn't get to all of class 08's material durring class, so in addition to the material below please review the material above before class next week.
+
+https://uwpce-pythoncert.github.io/Py100/build/html/modules/MultipleInheritance.html
+
+https://uwpce-pythoncert.github.io/Py100/build/html/modules/Composition.html
