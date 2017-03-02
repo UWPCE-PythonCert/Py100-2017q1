@@ -27,8 +27,8 @@ def donor_report():
     print(x)
 
 
-print(donor_report())
+donor_report()
 
-# print("Operation done successfully")
+print("Operation done successfully")
 
 conn.close()
