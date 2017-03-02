@@ -1,7 +1,18 @@
-from flask import Flask, render_template, flash, request, url_for
+from flask import Flask
+from flask import render_template
+from flask import request
 
 app = Flask(__name__)
 
+donors = {
+        'Donovan Leitch': [100.00, 20.00, 1000.00],
+        'Stevie Nicks': [200.00, 500.00],
+        'Suzanne Vega': [160.00, 300.00],
+        'Mavis Staples': [170.00, 40.00, 130.00],
+        'Ian Anderson': [190.00],
+        'Eric Burdon': [207.00, 830.00, 8.00],
+        'Jackson Browne': [10.00, 48.00, 1092.00, 82.00],
+    }
 
 class Donor:
     '''Donor stuff.'''
@@ -43,12 +54,27 @@ class Donor:
     #     return self.donors_sorted
 
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/")
 def index():
     '''Main view.'''
 
-    return render_template("index.html", donors=Donor.donors, donor_name=Donor.donor_name)
+    return render_template("index.html", donors=donors, donor_name=Donor.donor_name)
 
+
+@app.route("/", methods=['POST'])
+def index_post():
+
+    name = request.form['name']
+    amount = request.form['amount']
+    date = request.form['date']
+    ngo = request.form['ngo']
+    # donation = name + ' donated $' + amount + ' to ' + ngo + ' on ' + date + '.'
+
+    # donors_new = dict(name=amount)
+    donors[name] = [int(amount)]
+
+    # return str(donors)
+    return render_template("index.html", donors=donors, donor_name=Donor.donor_name)
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000, host='0.0.0.0')

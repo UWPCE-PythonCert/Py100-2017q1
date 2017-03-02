@@ -43,16 +43,19 @@
 
             <!-- NEW ENTRY -->
             <section id="n-content">
-                <form id="entry-input" action="/">
+                <form id="entry-input" action="/" method="post">
 
                     <!-- name -->
-                    <input type="text" id="entry-name" placeholder="Full Name" required />
+                    <input type="text" id="entry-name" name="name" placeholder="Full Name" required />
 
                     <!-- amount -->
-                    <input type="number"  id="entry-amount" min="0" step="any" placeholder="Amount" required />
+                    <input type="number"  id="entry-amount" name="amount" min="0" step="any" placeholder="Amount" required />
 
                     <!-- date -->
-                    <input type="text" id="entry-date" placeholder="Date" required />
+                    <input type="text" id="entry-date" name="date" placeholder="Date" required />
+
+                    <!-- ngo -->
+                    <input type="text" id="entry-ngo" name="ngo" placeholder="NGO" required />
 
                     <!-- submit -->
                     <input type="submit" id="entry-submit" value="ADD" />
