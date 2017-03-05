@@ -46,7 +46,7 @@ roman_library_tens = [
     ('LX', '6'),
     ('LXX', '7'),
     ('LXXX', '8'),
-    ('XC', '9')
+    ('XC', '9'),
 ]
 
 
@@ -84,7 +84,7 @@ class converter():
                 if letter in ['I', 'V', 'X', 'L', 'C']:
                     continue
                 else:
-                    print("You've entered in an invalid Roman numeral or Arabic numeral. Restarting...")
+                    print("You've entered an invalid Roman numeral or Arabic numeral. Restarting...")
                     return
             self.roman_to_arabic(numeral)
 
@@ -92,7 +92,7 @@ class converter():
         print("\nIt appears you have entered an Arabic numeral. Converting to Roman numeral...")
         roman_numerals = []
 
-        # Checks for length of numeral, so we know whether to check the tens list or the ones list first.
+        # Checks for length of numeral, so we know whether to compare against the tens list or the ones list first.
         # If part of the Arabic number matches something in the list, we add the Roman counterpart to a list to print.
         if len(numeral) == 1:
             for key, value in arabic_library_ones:
