@@ -37,23 +37,22 @@ class Circle(object):
         return 'Circle(%s)' % self.radius
 
     def __add__(self, other):
-        total_circle = self.radius + other.radius
-        return total_circle
+        return self.radius + other.radius
 
     def __sub__(self, other):
-        pass
+        return self.radius - other.radius
 
     def __mul__(self, other):
-        pass
+        return self.radius * other.radius
 
-    def __divmod__(self, other):
-        pass
+    def __floordiv__(self, other):
+        return self.radius // other.radius
 
 
 def main():
     c1 = Circle(2)
     c2 = Circle(4)
-    print(c1 + c2)
+    print(c2//c1)
 
 """Unit tests"""
 
@@ -91,10 +90,13 @@ def test_repr():
     assert repr(c) == 'Circle(4)'
 
 
-def test_custom_add():
+def test_math():
     c1 = Circle(2)
     c2 = Circle(4)
     assert c1+c2 == 6
+    assert (c2 - c1) == 2
+    assert(c2 * c1) == 8
+    assert c2//c1 == 2
 
 
 if __name__ == "__main__":
@@ -105,7 +107,7 @@ if __name__ == "__main__":
     test_area_is_private()
     test_diameter_is_settable()
     test_repr()
-    test_custom_add()
+    test_math()
     print("tests passed, all done")
 
 
