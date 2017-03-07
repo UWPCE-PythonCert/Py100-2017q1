@@ -48,11 +48,29 @@ class Circle(object):
     def __floordiv__(self, other):
         return self.radius // other.radius
 
+    def __lt__(self, other):
+        return self.radius < other.radius
+
+    def __le__(self, other):
+        return self.radius <= other.radius
+
+    def __eq__(self, other):
+        return self.radius == other.radius
+
+    def __ne__(self, other):
+        return self.radius != other.radius
+
+    def __gt__(self, other):
+        return self.radius > other.radius
+
+    def __ge__(self, other):
+        return self.radius >= other.radius
+
 
 def main():
     c1 = Circle(2)
     c2 = Circle(4)
-    print(c2//c1)
+    print(c2 > c1)
 
 """Unit tests"""
 
@@ -99,6 +117,19 @@ def test_math():
     assert c2//c1 == 2
 
 
+def test_comparisons():
+    c1 = Circle(2)
+    c2 = Circle(4)
+    c2 > c1 is True
+    c2 >= c1 is True
+    c1 >= c2 is False
+    c1 != c2 is True
+    c1 == c2 is False
+    c1 < c2 is True
+    c1 <= c2 is True
+    c1 <= c2 is False
+
+
 if __name__ == "__main__":
     main()
     test_radius()
@@ -108,6 +139,7 @@ if __name__ == "__main__":
     test_diameter_is_settable()
     test_repr()
     test_math()
+    test_comparisons()
     print("tests passed, all done")
 
 
