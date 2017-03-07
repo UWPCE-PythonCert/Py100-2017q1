@@ -68,9 +68,7 @@ class Circle(object):
 
 
 def main():
-    c1 = Circle(2)
-    c2 = Circle(4)
-    print(c2 > c1)
+    print(Circle(4))
 
 """Unit tests"""
 
@@ -130,6 +128,22 @@ def test_comparisons():
     c1 <= c2 is False
 
 
+def test_circle_sort():
+    circles = [
+        Circle(11),
+        Circle(13),
+        Circle(7),
+        Circle(1),
+        Circle(3),
+        Circle(5),
+        Circle(9)
+    ]
+
+    assert circles == [Circle(11), Circle(13), Circle(7), Circle(1), Circle(3), Circle(5), Circle(9)]
+    circles.sort()
+    assert circles == [Circle(1), Circle(3), Circle(5), Circle(7), Circle(9), Circle(11), Circle(13)]
+
+
 if __name__ == "__main__":
     main()
     test_radius()
@@ -140,6 +154,7 @@ if __name__ == "__main__":
     test_repr()
     test_math()
     test_comparisons()
-    print("tests passed, all done")
+    test_circle_sort()
+    print("Tests passed, all done!")
 
 
