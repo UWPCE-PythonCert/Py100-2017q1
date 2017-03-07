@@ -73,18 +73,10 @@ def main():
 """Unit tests"""
 
 
-def test_radius():
+def test_calculations():
     c = Circle(4)
     assert c.the_radius == 4
-
-
-def test_diameter():
-    c = Circle(4)
-    assert c.the_diameter == c.the_radius*2
-
-
-def test_area():
-    c = Circle(4)
+    assert c.the_diameter == 8
     assert c.the_area == 50.26548245743669
 
 
@@ -146,9 +138,7 @@ def test_circle_sort():
 
 if __name__ == "__main__":
     main()
-    test_radius()
-    test_diameter()
-    test_area()
+    test_calculations()
     test_area_is_private()
     test_diameter_is_settable()
     test_repr()
