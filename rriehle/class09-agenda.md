@@ -40,8 +40,11 @@ https://uwpce-pythoncert.github.io/Py100/build/html/modules/Composition.html
 
 ##  Homework
 
+Catch up on the Circle exercise and any previous outstanding work.
 
+Read, read, read.
 
+https://uwpce-pythoncert.github.io/Py100/build/html/homework/session09.html
 
 ##  Lightning talks
 
