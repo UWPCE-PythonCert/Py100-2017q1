@@ -18,9 +18,9 @@ donors.append(dict(zip(keys, ["Paul", "Allen", [65000, 68888.40]])))
 donors.append(dict(zip(keys, ["Jesse", "Follet", [0.65, 1.50]])))
 
 
-def safe_input(param):
+def safe_input(prompt):
     try:
-        return input(param)
+        return input(prompt)
     except (EOFError, KeyboardInterrupt):
         return None
 
@@ -45,10 +45,11 @@ def print_a_report(donor_index):
 
 
 def sort_donors():
-    # replace with some list and tuple comprehensions
+    """
+    Sort the donors list by total overall donation from most to least.
+    Returns an array index
+    """
     amounts = [(sum(donor['Donation_Amounts']), i) for i, donor in enumerate(donors)]
-    # amounts = [(sum(donors[i]['Donation_Amounts']), i) for i in range(len(donors))]
-    # sort_amounts = sorted(amounts, reverse=True)
     sort_indices = [value[1] for value in sorted(amounts, reverse=True)]
     return sort_indices
 
@@ -63,7 +64,6 @@ def init_menu():
                   "Write letter to donors": write_letter_to_donor}
     while True:
         print("Enter string from items below:")
-        # replaced with comprehensions here
         [print("{}".format(item)) for item in sorted(menu_items)]
         response = safe_input("> ")
         if response is None:
@@ -79,13 +79,9 @@ def init_menu():
 def write_letter_to_donor():
     for i in range(len(donors)):
         f = open('./Thank_you_to_{First_Name}_{Last_Name}.txt'.format(**donors[i]), 'w')
-        lines = []
-        lines.append("To {First_Name} {Last_Name}:\n".format(**donors[i]))
-        lines.append("\n")
-        lines.append("Thank you for you generous donation of $%.2f\n" % sum(donors[i]['Donation_Amounts']))
-        lines.append("\n")
-        lines.append("Sincerely,\n")
-        lines.append("Gnrc Foundation\n")
+        lines = ["To {First_Name} {Last_Name}:\n".format(**donors[i]), "\n",
+                 "Thank you for you generous donation of $%.2f\n" % sum(donors[i]['Donation_Amounts']), "\n",
+                 "Sincerely,\n", "Gnrc Foundation\n"]
         f.writelines(lines)
         f.close()
         print(f.name + " saved")
@@ -120,8 +116,7 @@ def send_a_thank_you():
     if response is None:
         quit_app()
     if response == "list":
-        for name in donor_names:
-            print(name)
+        print("\n".join(donor_names))
         print()
         send_a_thank_you()
     elif response in donor_names:
@@ -161,8 +156,6 @@ def add_donation(donor_index):
         else:
             donors[donor_index]['Donation_Amounts'].append(float(response))
             break
-
-
 
 
 if __name__ == '__main__':

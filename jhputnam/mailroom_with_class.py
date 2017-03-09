@@ -4,8 +4,8 @@
 """Mailroom script to send thank you emails to donors"""
 
 import sys
-from operator import itemgetter
 import pickle
+from mailroom_helper import *
 
 DBFILE = "donordb.dat"
 
@@ -14,13 +14,13 @@ def print_help():
     """Function to print script usage."""
 
     print("Mailroom Usage:  <name>:add a donor and donation  h:help  l:list"
-          "donors  r:print report  t:thank donors  q:quit")
+          "donors  r:print report q:quit")
 
 
 def initdb(fname):
     """
     This function initializes the donor db using pickle.
-    
+
     Args:
         fname: A file name for the pickle file.
 
@@ -77,31 +77,6 @@ def updatedb(donors, fname):
         raise "Error writing to the donors file. Please check permissions."
 
 
-def add_donation(donors, donorname, donation):
-    """
-    Function to handle adding donations to the donor dict.
-
-    Args:
-        donors: Donor dictionary containing list of donors and the amounts.
-        donorname: Full name of the donor.
-        donation: Donation amount.
-
-    Returns:
-        A dictionary object containing donors.
-    """
-
-    if donorname not in donors:
-        print("The name \'{}\' is not in the donor database. Adding name"
-              " as a new donor.\n".format(donorname))
-        donors[donorname] = [donation]
-    else:
-        print("The name \'{}\' was found in the donor database. Adding new"
-              " donation.\n".format(donorname))
-        donors[donorname].append(donation)
-
-    return donors
-
-
 def thank_donor(filename, donorname, donation):
     """
     Function generates a thank you text file if desired by the user.
@@ -127,42 +102,6 @@ def thank_donor(filename, donorname, donation):
                " permissions.")
 
 
-def sum_report(values):
-    """
-    Function to tally donations for report generation.
-
-    Args:
-        values: List containing donation amounts for each donor.
-    """
-
-    donation_total = sum(values)
-    num_gifts = len(values)
-    average_gift = donation_total / num_gifts
-
-    return donation_total, num_gifts, average_gift
-
-
-def generate_report(donors):
-    """
-    Function to genereate a report sorted by donation amount.
-
-    Args:
-        donors: A dict object containing the donors and the amounts donated.
-    """
-
-    print()
-    print("     NAME            TOTAL          NUMBER       AVERAGE ")
-    print("----------------------------------------------------------")
-
-    for name, value in sorted(donors.items(), key=itemgetter(1),
-                              reverse=True):
-
-        donation_total, donations, average_donations = sum_report(value)
-        print("{:<20} ${:<15.2f} {:<8} ${:<0.2f}".format(name, donation_total,
-                                                         donations,
-                                                         average_donations))
-
-
 def main():
     """
     Main entry point for the program.
@@ -175,6 +114,10 @@ def main():
 
     # Init donor dict from pickle file.
     donors = initdb(DBFILE)
+
+    # Create an instance of the MailRoom class.
+    mailroom = MailRoom(donors)
+
     # Print usage when the program starts.
     print_help()
 
@@ -208,7 +151,7 @@ def main():
 
         # Generate donor report if requested.
         if user_input == 'report' or user_input == 'r':
-            generate_report(donors)
+            mailroom.generate_report()
             continue
 
         # Safe to assume the input was a name?
@@ -221,9 +164,10 @@ def main():
                 continue
         except ValueError:
             print("Bad value! Please enter numbers only.")
+            continue
 
-        # Add donation to the dict.
-        add_donation(donors, donorname, donation)
+        # Add donation via the class and get back the updated dict.
+        donors = mailroom.add_donation(donorname, donation)
 
         while True:
             send_ty = input("Would you like to generate a thank you email?"
