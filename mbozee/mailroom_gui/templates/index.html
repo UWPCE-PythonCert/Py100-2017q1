@@ -23,7 +23,7 @@
 
             <!-- MENU -->
             <ul id="menu">
-                <li id="n" tabindex="0">(New Entry)</li>
+                <li id="n" tabindex="0">New Entry</li>
                 <li id="l" tabindex="0">List</li>
                 <li id="r" tabindex="0">Report</li>
                 <li id="t" tabindex="0">Thanks</li>
@@ -72,7 +72,7 @@
                 <p>{{ donor }}</p>
                 <!--<p>-->
                     <!--{% for amount in donor[1] %}-->
-                    <!--{{ amount }} _____-->
+                    <!--{{ amount }}-->
                     <!--{% endfor %}-->
                 <!--</p>-->
                 {% endfor %}
@@ -104,74 +104,11 @@
                                 <input type="checkbox" />
                                 {{ donor }}
                             </th>
-                            <td>$24,601.00</td>
+                            <td>$1,000.00</td>
                             <td>5</td>
                             <td>$4,920.20</td>
                         </tr>
                         {% endfor %}
-                        <!--<tr>-->
-                            <!--<th>-->
-                                <!--<input type="checkbox" />-->
-                                <!--Donovan Leitch-->
-                            <!--</th>-->
-                            <!--<td>$24,601.00</td>-->
-                            <!--<td>5</td>-->
-                            <!--<td>$4,920.20</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<th>-->
-                                <!--<input type="checkbox" />-->
-                                <!--Stevie Nicks-->
-                            <!--</th>-->
-                            <!--<td>$5,098.00</td>-->
-                            <!--<td>3</td>-->
-                            <!--<td>$1,699.33</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<th>-->
-                                <!--<input type="checkbox" />-->
-                                <!--Suzanne Vega-->
-                            <!--</th>-->
-                            <!--<td>$769.00</td>-->
-                            <!--<td>1</td>-->
-                            <!--<td>$769.00</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<th>-->
-                                <!--<input type="checkbox" />-->
-                                <!--Mavis Staples-->
-                            <!--</th>-->
-                            <!--<td>$10,892.00</td>-->
-                            <!--<td>7</td>-->
-                            <!--<td>$1,556.00</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<th>-->
-                                <!--<input type="checkbox" />-->
-                                <!--Ian Anderson-->
-                            <!--</th>-->
-                            <!--<td>$3,087.00</td>-->
-                            <!--<td>4</td>-->
-                            <!--<td>$771.75</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<th>-->
-                                <!--<input type="checkbox" />-->
-                                <!--Eric Burdon-->
-                            <!--</th>-->
-                            <!--<td>$4,968.00</td>-->
-                            <!--<td>2</td>-->
-                            <!--<td>$2,484.00</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<th>-->
-                                <!--<input type="checkbox" />-->
-                                <!--Jackson Browne-->
-                            <!--</th>-->
-                            <!--<td>$12,503.00</td>-->
-                            <!--<td>6</td>-->
-                            <!--<td>$2,083.83</td>-->
-                        <!--</tr>-->
                     </tbody>
                 </table>
                 <!-- /REPORT DATA -->
@@ -195,7 +132,16 @@
 
             <!-- THANKS -->
             <section id="t-content" style="display: none; padding: 0 15px;">
-                <p>Thank you letters content placed here.</p>
+                {% for key, value in donors.items() %}
+                <p class="letter">Dear {{ key }},
+                    <br /><br />
+                    Thank you for your generous donation of ${{ value[0] }}0.<br />
+                    Your gift makes a major impact on aspiring musicians in the Seattle area.
+                    <br /><br />
+                    Sincerely,<br />
+                    Seattle Music Fund
+                </p>
+                {% endfor %}
             </section>
             <!-- /THANKS -->
 
