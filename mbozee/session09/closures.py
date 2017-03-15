@@ -1,7 +1,7 @@
 
 shapes = ['dot', 'line', 'square', 'cube', 'tesseract']
 
-tv_sayings = ['yabba dabba doo', 'do\'h', 'zoinks', 'to the moon', 'turtle flu']
+tv_sayings = ['yabba dabba doo', 'do\'h', 'zoinks', 'to the moon', 'treat yo self']
 
 
 def list_iter(a_list):
