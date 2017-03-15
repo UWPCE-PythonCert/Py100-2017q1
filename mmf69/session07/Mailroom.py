@@ -15,6 +15,11 @@ conn = sqlite3.connect('donor.db')
 # print("Opened database successfully")
 
 
+def add_donation():
+    conn.execute("INSERT INTO DONORS (DONOR_ID,DONOR_NAME,DONATION_AMOUNT) \
+          VALUES (3, 'Tim', 100.00)")
+
+
 def donor_list():
     print("********DONORS***********")
     cursor = conn.execute("SELECT DISTINCT DONOR_ID as 'Donor ID',"
@@ -61,7 +66,7 @@ def thank_you():
                     'Thank you for you generous donation of ' +
                     locale.currency(row[1], 'True') + '.\n'
                     'Your continued support of my fundraising efforts for the Big Climb keeps me motivated. \n'
-                    'Together we WILL find a cure for Blood Related Cancers! \n'
+                    'Together we WILL find a cure for Blood related cancers! \n'
                     'Thank you, \n'
                     'Matt')
 
@@ -94,7 +99,7 @@ def main():
             if str_choice == '1':  # 1) Add a new item.
                 new_donor = str(input("What is the donor's name?"))
                 contribution = int(input("What is the amount?"))
-                add_donation(donor_db, new_donor, contribution)
+                add_donation()
                 # donor_report(gTodoTasks)
                 continue
 
