@@ -15,12 +15,13 @@ for row in cursor:
 cursor = conn.execute("SELECT DONOR_ID,DONOR_NAME,total(DONATION_AMOUNT),"
                       "count(distinct DONATION_AMOUNT),total(DONATION_AMOUNT)/count(distinct DONATION_AMOUNT)"
                       " from donors group by DONOR_ID,DONOR_NAME")
-for row in cursor:
+'''for row in cursor:
     print("DONOR_ID = ", row[0])
     print("DONOR_NAME = ", row[1])
     print("TOTAL_DONATIONS = ", row[3])
     print("DONATION_AMOUNT = ", row[2])
     print("AVERAGE_DONATION = ", row[4], "\n")
+    '''
 
 
 print("*********************************DONOR REPORT***************************************")
