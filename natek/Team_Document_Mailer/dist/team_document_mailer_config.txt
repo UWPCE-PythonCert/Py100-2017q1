@@ -1,0 +1,6 @@
+[General]
+documents = C:\Users\nathankeech\PycharmProjects\Team_Document_Mailer\dist\team_document_mailer\test 1.txt, C:\Users\nathankeech\PycharmProjects\Team_Document_Mailer\dist\team_document_mailer\test 2.txt
+# address = US.CSE.Intel.D1D; US.FSE.INTEL.D1D
+address = nathan.keech@hermes-microvision.com
+subject = remote test team document mailer
+body = remote test team document mailer
