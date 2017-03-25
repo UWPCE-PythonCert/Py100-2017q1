@@ -1,5 +1,7 @@
+from MenuActions import MenuActions
 
-class DonationsMenuActions:
+
+class DonationsMenuActions(MenuActions):
 
     from Database import Database
     from sys import stdout
@@ -7,6 +9,7 @@ class DonationsMenuActions:
     from Donor import Donor
 
     # TODO: complete/update
+    # TODO: Add get donations from a donor
 
     @staticmethod
     def get_list_of_donors(donations_db: Database, ostream=stdout) -> None:
@@ -18,5 +21,5 @@ class DonationsMenuActions:
 
     @staticmethod
     def back_to_home_menu():
-        from Signal import Signal
-        return Signal().get_back_to_home_menu()
+        #TODO: implement
+        pass

@@ -142,17 +142,17 @@
 <p id="t21" class="stm run hide_run">    <span class="key">def</span> <span class="nam">test_write</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t22" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t23" class="stm run hide_run">        <span class="key">from</span> <span class="nam">test_ReportDonationsDBGenerator</span> <span class="key">import</span> <span class="nam">TestReportDonationsDBGenerator</span><span class="strut">&nbsp;</span></p>
-<p id="t24" class="stm run hide_run">        <span class="key">from</span> <span class="nam">TextGenerator</span> <span class="key">import</span> <span class="nam">EmailDonationsGenerator</span><span class="strut">&nbsp;</span></p>
-<p id="t25" class="stm run hide_run">        <span class="key">from</span> <span class="nam">DonorId</span> <span class="key">import</span> <span class="nam">DonorId</span><span class="strut">&nbsp;</span></p>
+<p id="t24" class="stm run hide_run">        <span class="key">from</span> <span class="nam">EmailGenerator</span> <span class="key">import</span> <span class="nam">EmailDonationsGenerator</span><span class="strut">&nbsp;</span></p>
+<p id="t25" class="stm run hide_run">        <span class="key">from</span> <span class="nam">PersonId</span> <span class="key">import</span> <span class="nam">PersonId</span><span class="strut">&nbsp;</span></p>
 <p id="t26" class="stm run hide_run">        <span class="key">from</span> <span class="nam">Donation</span> <span class="key">import</span> <span class="nam">Donation</span><span class="strut">&nbsp;</span></p>
-<p id="t27" class="stm run hide_run">        <span class="key">from</span> <span class="nam">Name</span> <span class="key">import</span> <span class="nam">Name</span><span class="strut">&nbsp;</span></p>
+<p id="t27" class="stm run hide_run">        <span class="key">from</span> <span class="nam">Name</span> <span class="key">import</span> <span class="nam">PersonName</span><span class="strut">&nbsp;</span></p>
 <p id="t28" class="stm run hide_run">        <span class="key">from</span> <span class="nam">datetime</span> <span class="key">import</span> <span class="nam">date</span><span class="strut">&nbsp;</span></p>
 <p id="t29" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t30" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">maxDiff</span> <span class="op">=</span> <span class="key">None</span><span class="strut">&nbsp;</span></p>
 <p id="t31" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t32" class="stm run hide_run">        <span class="nam">db</span> <span class="op">=</span> <span class="nam">TestReportDonationsDBGenerator</span><span class="op">.</span><span class="nam">_init_db</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t33" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t34" class="stm run hide_run">        <span class="nam">donor_id</span> <span class="op">=</span> <span class="nam">DonorId</span><span class="op">(</span><span class="nam">Name</span><span class="op">(</span><span class="str">"M"</span><span class="op">,</span> <span class="str">"Miles"</span><span class="op">,</span> <span class="str">"Davis"</span><span class="op">)</span><span class="op">,</span> <span class="nam">date</span><span class="op">(</span><span class="num">1926</span><span class="op">,</span> <span class="num">5</span><span class="op">,</span> <span class="num">26</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t34" class="stm run hide_run">        <span class="nam">donor_id</span> <span class="op">=</span> <span class="nam">PersonId</span><span class="op">(</span><span class="nam">PersonName</span><span class="op">(</span><span class="str">"M"</span><span class="op">,</span> <span class="str">"Miles"</span><span class="op">,</span> <span class="str">"Davis"</span><span class="op">)</span><span class="op">,</span> <span class="nam">date</span><span class="op">(</span><span class="num">1926</span><span class="op">,</span> <span class="num">5</span><span class="op">,</span> <span class="num">26</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t35" class="stm run hide_run">        <span class="nam">donation</span> <span class="op">=</span> <span class="nam">Donation</span><span class="op">(</span><span class="nam">donor_id</span><span class="op">,</span> <span class="nam">date</span><span class="op">(</span><span class="num">2008</span><span class="op">,</span> <span class="num">1</span><span class="op">,</span> <span class="num">23</span><span class="op">)</span><span class="op">,</span> <span class="num">5678.56</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t36" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t37" class="stm run hide_run">        <span class="key">try</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
@@ -176,7 +176,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.2</a>,
-            created at 2017-03-16 09:20
+            created at 2017-03-25 02:45
         </p>
     </div>
 </div>

@@ -5,8 +5,8 @@ class TestDonationsDBBenchData(TestCase):
 
     def test_instantiate(self):
         from BenchData import DonationsDBBenchData
-        from DonorId import DonorId
-        from Name import Name
+        from PersonId import PersonId
+        from Name import PersonName
         from datetime import date
         from Donation import Donation
 
@@ -14,7 +14,7 @@ class TestDonationsDBBenchData(TestCase):
         self.assertEqual(6, len(donations_db))
 
         # ---- Charles Ives ----
-        donor_id = DonorId(Name("M", "Charles", "Ives"), date(1874, 10, 20))
+        donor_id = PersonId(PersonName("M", "Charles", "Ives"), date(1874, 10, 20))
         donations = donations_db[donor_id.value]
         self.assertEqual(2, len(donations))
         self.assert_(date(2012, 4, 12) in tuple(donations.keys()))
@@ -32,7 +32,7 @@ class TestDonationsDBBenchData(TestCase):
         self.assertEqual(Donation(donor_id, date(2014, 2, 8), 7654), donations_date_2[0])
 
         # ---- Jean S Bach ----
-        donor_id = DonorId(Name("M", "Jean S", "Bach"), date(1685, 3, 31))
+        donor_id = PersonId(PersonName("M", "Jean S", "Bach"), date(1685, 3, 31))
         donations = donations_db[donor_id.value]
         self.assertEqual(3, len(donations))
 
@@ -45,7 +45,7 @@ class TestDonationsDBBenchData(TestCase):
             self.assertEqual(Donation(donor_id, don_date, don_amount), donations[don_date][0])
 
         # ---- Lee Morgan ----
-        donor_id = DonorId(Name("M", "Lee", "Morgan"), date(1938, 7, 10))
+        donor_id = PersonId(PersonName("M", "Lee", "Morgan"), date(1938, 7, 10))
         donations = donations_db[donor_id.value]
         self.assertEqual(2, len(donations))
 
@@ -58,7 +58,7 @@ class TestDonationsDBBenchData(TestCase):
             self.assertEqual(Donation(donor_id, don_date, don_amount), donations[don_date][0])
 
         # ---- Miles Davis ----
-        donor_id = DonorId(Name("M", "Miles", "Davis"), date(1926, 5, 26))
+        donor_id = PersonId(PersonName("M", "Miles", "Davis"), date(1926, 5, 26))
         donations = donations_db[donor_id.value]
         self.assertEqual(1, len(donations))
 
@@ -73,7 +73,7 @@ class TestDonationsDBBenchData(TestCase):
             index += 1
 
         # ---- Wynton Kelly ----
-        donor_id = DonorId(Name("M", "Wynton", "Kelly"), date(1931, 12, 2))
+        donor_id = PersonId(PersonName("M", "Wynton", "Kelly"), date(1931, 12, 2))
         donations = donations_db[donor_id.value]
         self.assertEqual(3, len(donations))
 
@@ -86,7 +86,7 @@ class TestDonationsDBBenchData(TestCase):
             self.assertEqual(Donation(donor_id, don_date, don_amount), donations[don_date][0])
 
         # ---- Eliane Radigue ----
-        donor_id = DonorId(Name("Ms", "Eliane", "Radigue"), date(1932, 1, 24))
+        donor_id = PersonId(PersonName("Ms", "Eliane", "Radigue"), date(1932, 1, 24))
         donations = donations_db[donor_id.value]
         self.assertEqual(1, len(donations))
 

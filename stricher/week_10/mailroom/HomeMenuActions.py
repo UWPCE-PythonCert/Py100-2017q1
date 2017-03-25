@@ -1,32 +1,24 @@
 
 #TODO: complete/update
 
-
 from MenuActions import MenuActions
 
 
 class HomeMenuActions(MenuActions):
 
-    from sys import stdout
+    from io import IOBase
+    from Database import Database
+    from Donation import Donation
 
-    @staticmethod
-    def thank_you(ostream=stdout):
+    def __init__(self, donations_db: Database, ostream: IOBase):
+        super(HomeMenuActions, self).__init__(donations_db, ostream)
 
+    def create_report(self):
         from BenchData import TestThat
         test_that = TestThat()
         if test_that.do():
-            ostream.write(test_that.get_trace("thank_you"))
+            self._ostream.write(test_that.get_trace("create_report"))
         else:
-            pass
-
-    @staticmethod
-    def create_report(ostream=stdout):
-
-        from BenchData import TestThat
-        test_that = TestThat()
-        if test_that.do():
-            ostream.write(test_that.get_trace("create_report"))
-        else:
-            from TextGenerator import ReportGenerator
-            #TODO: improve, refactor ...
-            ReportGenerator.print_report(ostream)
+            from ReportGenerator import ReportDonationsDBGenerator
+            report_gen = ReportDonationsDBGenerator(self.donations_db)
+            report_gen.write(self._ostream)

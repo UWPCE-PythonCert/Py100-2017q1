@@ -1,4 +1,8 @@
-class DonationsTable:
+
+from Table import Table
+
+
+class DonationsTable(Table):
 
     def __init__(self, table=None):
         if table is not None:
@@ -26,11 +30,11 @@ class DonationsTable:
 
     from datetime import date
 
-    def _get_per_donor_per_date(self, donor_id: str, date: date) -> list:
+    def get_per_donor_per_date(self, donor_id: str, date: date) -> list:
         if date in self._get_dates_per_donor(donor_id):
             return self.get_per_donor(donor_id)[date]
         raise ValueError("ValueError - "
-                         "_get_per_donor_per_date(donor_id, date): "
+                         "get_per_donor_per_date(donor_id, date): "
                          "invalid argument. date not in database")
 
     from Donation import Donation
@@ -43,7 +47,7 @@ class DonationsTable:
                self._get_dates_per_donor(donation.donor_id.value)
 
     def _add_donation_existing_date(self, donation: Donation) -> None:
-        self._get_per_donor_per_date(donation.donor_id.value, donation.date) \
+        self.get_per_donor_per_date(donation.donor_id.value, donation.date) \
             .append(donation)
 
     def _add_donation_new_date(self, donation: Donation) -> None:
@@ -75,7 +79,7 @@ class DonationsTable:
 
     def _sum_donations_per_donor_per_date(self, donor_id: str, date: date) -> float:
         sum_donations = 0
-        for donation in self._get_per_donor_per_date(donor_id, date):
+        for donation in self.get_per_donor_per_date(donor_id, date):
             sum_donations += donation.amount
         return sum_donations
 
@@ -93,7 +97,7 @@ class DonationsTable:
         return tot_don_amounts
 
     def _get_num_gifts_per_donor_per_date(self, donor_id: str, date: str) -> int:
-        return len(self._get_per_donor_per_date(donor_id, date))
+        return len(self.get_per_donor_per_date(donor_id, date))
 
     def get_num_gifts_per_donor(self, donor_id: str) -> int:
         num_gifts = 0

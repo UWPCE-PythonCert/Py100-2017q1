@@ -1,9 +1,14 @@
 
+
 class Name:
+    pass
+
+
+class PersonName(Name):
 
     def __init__(self, prefix: str, first: str, last: str):
         if prefix not in ("M", "Ms"):
-            raise ValueError("ValueError: Name(prefix, first, last)"
+            raise ValueError("ValueError: PersonName(prefix, first, last)"
                              " - prefix must be either M or Ms")
         self.__prefix = prefix
         self.__first = first
@@ -11,7 +16,7 @@ class Name:
         self.__full_name = self.__name_builder()
 
     def __repr__(self):
-        return 'Name("{}","{}","{}")'.format(self.prefix, self.first, self.last)
+        return 'PersonName("{}","{}","{}")'.format(self.prefix, self.first, self.last)
 
     def __str__(self):
         return "{} {} {}".format(self.prefix, self.first, self.last)
@@ -42,3 +47,34 @@ class Name:
     @property
     def full_name(self) -> str:
         return self.__full_name
+
+
+class OrganisationName(Name):
+
+    def __init__(self, name: str):
+        self.__name = name
+
+    def __repr__(self):
+        return 'OrganisationName("{}")'.format(self.name)
+
+    def __str__(self):
+        return "{}".format(self.name)
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __lt__(self, other):
+        return self.name < other.name
+
+    def __le__(self, other):
+        return self.__eq__(other) or self.__lt__(other)
+
+    def __gt__(self, other):
+        return not self.__le__(other)
+
+    def __ge__(self, other):
+        return self.__gt__(other) or self.__eq__(other)
+
+    @property
+    def name(self):
+        return self.__name

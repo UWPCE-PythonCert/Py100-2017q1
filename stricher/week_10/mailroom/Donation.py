@@ -1,10 +1,12 @@
 
 class Donation:
 
-    from DonorId import DonorId
+    from PersonId import PersonId
     from datetime import date
 
-    def __init__(self, donor_id: DonorId, donation_date: date, amount: float):
+    #TODO: replace PersonId by Donor (store a reference to Donor) and record donation to the Database automatically from Donation's constructor
+
+    def __init__(self, donor_id: PersonId, donation_date: date, amount: float):
         self.__donor_id = donor_id
         self.__date = donation_date
         self.__amount = amount
@@ -18,7 +20,7 @@ class Donation:
         return "{}: {} - {}".format(self.donor_id.value, self.date, self.amount)
 
     @property
-    def donor_id(self) -> DonorId:
+    def donor_id(self) -> PersonId:
         return self.__donor_id
 
     @property

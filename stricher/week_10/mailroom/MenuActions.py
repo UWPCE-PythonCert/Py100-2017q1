@@ -1,17 +1,13 @@
 
 class MenuActions:
 
-    from sys import stdout
+    from Database import Database
+    from io import IOBase
 
-    @staticmethod
-    def quit_program(ostream=stdout):
+    def __init__(self, donations_db: Database, ostream: IOBase):
+        self.__donations_db = donations_db
+        self._ostream = ostream
 
-        from BenchData import TestThat
-        test_that = TestThat()
-        if test_that.do():
-            ostream.write(test_that.get_trace("quit_program"))
-        else:
-            ostream.write("The program quits. Goodbye !")
-            from Signal import Signal
-            sig = Signal()
-            return sig.get_quit_program()
+    @property
+    def donations_db(self):
+        return self.__donations_db

@@ -138,7 +138,7 @@
 <p id="t8" class="stm run hide_run">        <span class="key">return</span> <span class="xx">\</span><span class="strut">&nbsp;</span></p>
 <p id="t9" class="pln">            <span class="str">'\nList of donors:\n\n'</span> <span class="xx">\</span><span class="strut">&nbsp;</span></p>
 <p id="t10" class="pln">            <span class="str">'***************************************************************************************************\n'</span> <span class="xx">\</span><span class="strut">&nbsp;</span></p>
-<p id="t11" class="pln">            <span class="str">'        Name        |         Total amount         |   Number of donations   |  Average donation  |\n'</span> <span class="xx">\</span><span class="strut">&nbsp;</span></p>
+<p id="t11" class="pln">            <span class="str">'        PersonName        |         Total amount         |   Number of donations   |  Average donation  |\n'</span> <span class="xx">\</span><span class="strut">&nbsp;</span></p>
 <p id="t12" class="pln">            <span class="str">'***************************************************************************************************\n'</span> <span class="xx">\</span><span class="strut">&nbsp;</span></p>
 <p id="t13" class="pln">            <span class="str">'Ms Eliane Radigue   |                       8000.00|                        1|             8000.00|\n'</span> <span class="xx">\</span><span class="strut">&nbsp;</span></p>
 <p id="t14" class="pln">            <span class="str">'M Jean S Bach       |                       8340.00|                        3|             2780.00|\n'</span> <span class="xx">\</span><span class="strut">&nbsp;</span></p>
@@ -168,7 +168,7 @@
 <p id="t38" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t39" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">maxDiff</span> <span class="op">=</span> <span class="key">None</span><span class="strut">&nbsp;</span></p>
 <p id="t40" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t41" class="stm run hide_run">        <span class="key">from</span> <span class="nam">TextGenerator</span> <span class="key">import</span> <span class="nam">ReportDonationsDBGenerator</span><span class="strut">&nbsp;</span></p>
+<p id="t41" class="stm run hide_run">        <span class="key">from</span> <span class="nam">ReportGenerator</span> <span class="key">import</span> <span class="nam">ReportDonationsDBGenerator</span><span class="strut">&nbsp;</span></p>
 <p id="t42" class="stm run hide_run">        <span class="key">from</span> <span class="nam">io</span> <span class="key">import</span> <span class="nam">StringIO</span><span class="strut">&nbsp;</span></p>
 <p id="t43" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t44" class="stm run hide_run">        <span class="nam">db</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_init_db</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
@@ -180,7 +180,7 @@
 <p id="t50" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">TestData</span><span class="op">.</span><span class="nam">bench_str</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="nam">ostream</span><span class="op">.</span><span class="nam">getvalue</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t51" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t52" class="stm run hide_run">    <span class="key">def</span> <span class="nam">test___str___</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t53" class="stm run hide_run">        <span class="key">from</span> <span class="nam">TextGenerator</span> <span class="key">import</span> <span class="nam">ReportDonationsDBGenerator</span><span class="strut">&nbsp;</span></p>
+<p id="t53" class="stm run hide_run">        <span class="key">from</span> <span class="nam">ReportGenerator</span> <span class="key">import</span> <span class="nam">ReportDonationsDBGenerator</span><span class="strut">&nbsp;</span></p>
 <p id="t54" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t55" class="stm run hide_run">        <span class="nam">db</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_init_db</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t56" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">TestData</span><span class="op">.</span><span class="nam">bench_str</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="nam">str</span><span class="op">(</span><span class="nam">ReportDonationsDBGenerator</span><span class="op">(</span><span class="nam">db</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
@@ -194,7 +194,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.2</a>,
-            created at 2017-03-16 09:20
+            created at 2017-03-25 02:45
         </p>
     </div>
 </div>

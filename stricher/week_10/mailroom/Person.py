@@ -1,15 +1,18 @@
 
 class Person:
 
-    from Name import Name
+    from Name import PersonName
     from Address import Address
     from datetime import date
+    from PersonId import PersonId
 
-    def __init__(self, name: Name, address: Address,
+    def __init__(self, name: PersonName, address: Address,
                  birth_date: date):
+        from PersonId import PersonId
         self.__name = name
         self.__address = address
         self.__birth_date = birth_date
+        self.__id = PersonId(self.name, self.birth_date)
 
     def __repr__(self):
         return 'Person({},{},{})'.format(self.name.__repr__(),
@@ -19,13 +22,11 @@ class Person:
     def __str__(self):
         return "{}\n{}".format(self.name, self.address)
 
-    def __eq__(self, other):
-        return self.name == other.name \
-               and self.address == other.address\
-               and self.birth_date == other.birth_date
+    def __eq__(self, other) -> bool:
+        return self.id == other.id
 
     @property
-    def name(self) -> Name:
+    def name(self) -> PersonName:
         return self.__name
 
     @property
@@ -35,3 +36,7 @@ class Person:
     @property
     def birth_date(self) -> date:
         return self.__birth_date
+
+    @property
+    def id(self) -> PersonId:
+        return self.__id

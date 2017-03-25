@@ -4,22 +4,22 @@ from unittest import TestCase
 class BenchDataName:
 
     def __init__(self):
-        from Name import Name
+        from Name import PersonName
         self.prefix = "M"
         self.first = "Bud"
         self.last = "Powell"
-        self.name = Name(self.prefix, self.first, self.last)
+        self.name = PersonName(self.prefix, self.first, self.last)
 
 
 class TestName(TestCase):
 
     def test_prefix(self):
-        from Name import Name
+        from Name import PersonName
         try:
-            name = Name("Msss", "Billie", "Holiday")
+            name = PersonName("Msss", "Billie", "Holiday")
             self.fail("Should raise ValueError")
         except ValueError as ve:
-            bench_str = "ValueError: Name(prefix, first, last) - prefix must be either M or Ms"
+            bench_str = "ValueError: PersonName(prefix, first, last) - prefix must be either M or Ms"
             self.assertEqual(bench_str, str(ve))
 
     def test___repr__(self):
@@ -27,7 +27,7 @@ class TestName(TestCase):
         from io import StringIO
         ostream = StringIO()
         ostream.write(bench.name.__repr__())
-        bench_str = 'Name("{}","{}","{}")'.format(bench.prefix, bench.first, bench.last)
+        bench_str = 'PersonName("{}","{}","{}")'.format(bench.prefix, bench.first, bench.last)
         self.assertEqual(bench_str, ostream.getvalue())
 
     def test___str__(self):
@@ -39,12 +39,12 @@ class TestName(TestCase):
         return self.assertEqual(BenchDataName().name, BenchDataName().name)
 
     def test___lt__(self):
-        from Name import Name
-        powell = Name("M", "Bud", "Powell")
-        radigue = Name("Ms", "Eliane", "Radigue")
+        from Name import PersonName
+        powell = PersonName("M", "Bud", "Powell")
+        radigue = PersonName("Ms", "Eliane", "Radigue")
         self.assertEqual(True, powell < radigue)
 
-        bach = Name("M", "Jean S", "Bach")
+        bach = PersonName("M", "Jean S", "Bach")
 
         names = [radigue, bach, powell]
         names.sort()

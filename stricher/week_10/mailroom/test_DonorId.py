@@ -4,10 +4,10 @@ from unittest import TestCase
 class TestDonorId(TestCase):
 
     def test_equality(self):
-        from DonorId import DonorId
+        from PersonId import PersonId
         from datetime import date
-        from Name import Name
+        from Name import PersonName
 
-        donor1 = DonorId(Name("M", "Miles", "Davis"), date(1926, 5, 26))
-        donor2 = DonorId(Name("M", "Miles", "Davis"), date(1926, 5, 26))
+        donor1 = PersonId(PersonName("M", "Miles", "Davis"), date(1926, 5, 26))
+        donor2 = PersonId(PersonName("M", "Miles", "Davis"), date(1926, 5, 26))
         self.assertEqual(donor1, donor2)

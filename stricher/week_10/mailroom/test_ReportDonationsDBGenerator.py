@@ -8,7 +8,7 @@ class TestData:
         return \
             '\nList of donors:\n\n' \
             '***************************************************************************************************\n' \
-            '        Name        |         Total amount         |   Number of donations   |  Average donation  |\n' \
+            '        PersonName        |         Total amount         |   Number of donations   |  Average donation  |\n' \
             '***************************************************************************************************\n' \
             'Ms Eliane Radigue   |                       8000.00|                        1|             8000.00|\n' \
             'M Jean S Bach       |                       8340.00|                        3|             2780.00|\n' \
@@ -38,7 +38,7 @@ class TestReportDonationsDBGenerator(TestCase):
 
         self.maxDiff = None
 
-        from TextGenerator import ReportDonationsDBGenerator
+        from ReportGenerator import ReportDonationsDBGenerator
         from io import StringIO
 
         db = self._init_db()
@@ -50,7 +50,7 @@ class TestReportDonationsDBGenerator(TestCase):
         self.assertEqual(TestData.bench_str(), ostream.getvalue())
 
     def test___str___(self):
-        from TextGenerator import ReportDonationsDBGenerator
+        from ReportGenerator import ReportDonationsDBGenerator
 
         db = self._init_db()
         self.assertEqual(TestData.bench_str(), str(ReportDonationsDBGenerator(db)))

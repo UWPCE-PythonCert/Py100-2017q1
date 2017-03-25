@@ -7,8 +7,8 @@ class TestDatabase(TestCase):
         from DonorsTable import DonorsTable
         from DonationsTable import DonationsTable
         from BenchData import DonorsDBBenchData, DonationsDBBenchData
-        from DonorId import DonorId
-        from Name import Name
+        from PersonId import PersonId
+        from Name import PersonName
         from datetime import date
         from Donation import Donation
 
@@ -19,7 +19,7 @@ class TestDatabase(TestCase):
         self.assertEqual(db.donors_table._get_donors_id(),
                          tuple(donors_bench_data.keys()))
 
-        donor_id = DonorId(Name("Ms", "Eliane", "Radigue"), date(1932, 1, 24))
+        donor_id = PersonId(PersonName("Ms", "Eliane", "Radigue"), date(1932, 1, 24))
         donation = Donation(donor_id, date(2016, 1, 7), 8000)
         donations_radigue = db.donations_table.get_per_donor(donor_id.value)
         self.assertEqual(dict, type(donations_radigue))
@@ -31,21 +31,38 @@ class TestDatabase(TestCase):
         from BenchData import DonorsDBBenchData, DonationsDBBenchData
         from DonationsTable import DonationsTable
         from DonorsTable import DonorsTable
-        from BenchData import DonationsDBBenchData
-        from DonorId import DonorId
-        from Name import Name
+        from PersonId import PersonId
+        from Name import PersonName
         from datetime import date
         from Donation import Donation
 
         db = Database(DonorsTable(DonorsDBBenchData().data),
                       DonationsTable(DonationsDBBenchData().data))
 
-        donor_id = DonorId(Name("M", "Charles", "Ives"), date(1874, 10, 20))
+        donor_id = PersonId(PersonName("M", "Charles", "Ives"), date(1874, 10, 20))
         donation = Donation(donor_id, date(2012, 4, 12), 567585)
         db.donations_table._add_donation_existing_date(donation)
-        donations = db.donations_table._get_per_donor_per_date(donor_id.value, date(2012, 4, 12))
+        donations = db.donations_table.get_per_donor_per_date(donor_id.value, date(2012, 4, 12))
         self.assertEqual(3, len(donations))
         self.assertIn(donation, donations)
+
+    def test_get_donation(self):
+        from Database import Database
+        from BenchData import DonorsDBBenchData, DonationsDBBenchData
+        from DonationsTable import DonationsTable
+        from DonorsTable import DonorsTable
+        from PersonId import PersonId
+        from Name import PersonName
+        from datetime import date
+
+        db = Database(DonorsTable(DonorsDBBenchData().data),
+                      DonationsTable(DonationsDBBenchData().data))
+
+        donations_ives = db.get_donation(donor_id=PersonId(PersonName("M", "Charles", "Ives"), date(1874, 10, 20)),
+                                         donation_date=date(2012, 4, 12))
+        self.assertEqual(list, type(donations_ives))
+        self.assertEqual(567, donations_ives[0].amount)
+        self.assertEqual(1000, donations_ives[1].amount)
 
     def test_get_total_donations_amounts(self):
         from Database import Database
@@ -53,14 +70,14 @@ class TestDatabase(TestCase):
         from DonationsTable import DonationsTable
         from DonorsTable import DonorsTable
         from BenchData import DonationsDBBenchData
-        from DonorId import DonorId
-        from Name import Name
+        from PersonId import PersonId
+        from Name import PersonName
         from datetime import date
 
         db = Database(DonorsTable(DonorsDBBenchData().data),
                       DonationsTable(DonationsDBBenchData().data))
         tot_don_amounts = db.donations_table.get_total_donations_amounts()
-        donor_id = DonorId(Name("M", "Lee", "Morgan"), date(1938, 7, 10))
+        donor_id = PersonId(PersonName("M", "Lee", "Morgan"), date(1938, 7, 10))
         self.assertEqual(3567 + 7167, tot_don_amounts[donor_id.value])
 
     def test_get_average_gift_per_donor(self):
@@ -69,8 +86,8 @@ class TestDatabase(TestCase):
         from DonationsTable import DonationsTable
         from DonorsTable import DonorsTable
         from BenchData import DonationsDBBenchData
-        from DonorId import DonorId
-        from Name import Name
+        from PersonId import PersonId
+        from Name import PersonName
         from datetime import date
 
         db = Database(DonorsTable(DonorsDBBenchData().data),
@@ -78,9 +95,9 @@ class TestDatabase(TestCase):
 
         avge_gift_donor = db.donations_table.get_average_gift()
 
-        donor_id_charles = DonorId(Name("M", "Charles", "Ives"), date(1874, 10, 20))
-        donor_id_jsb = DonorId(Name("M", "Jean S", "Bach"), date(1685, 3, 31))
-        donor_id_miles = DonorId(Name("M", "Miles", "Davis"), date(1926, 5, 26))
+        donor_id_charles = PersonId(PersonName("M", "Charles", "Ives"), date(1874, 10, 20))
+        donor_id_jsb = PersonId(PersonName("M", "Jean S", "Bach"), date(1685, 3, 31))
+        donor_id_miles = PersonId(PersonName("M", "Miles", "Davis"), date(1926, 5, 26))
 
         self.assertEqual((567 + 1000 + 7654) / 3, avge_gift_donor[donor_id_charles.value])
         self.assertEqual((2897 + 4567 + 876) / 3, avge_gift_donor[donor_id_jsb.value])

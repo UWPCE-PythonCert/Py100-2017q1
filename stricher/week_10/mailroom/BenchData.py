@@ -1,15 +1,12 @@
-
-
 class DonorsDBBenchData:
-
     def _init_helper(self, donors: tuple) -> None:
 
-        from Name import Name
+        from Name import PersonName
         from Address import Address
         from Donor import Donor
 
         for don in donors:
-            name = Name(prefix=don["prefix"], first=don["first_name"], last=don["last_name"])
+            name = PersonName(prefix=don["prefix"], first=don["first_name"], last=don["last_name"])
             address = Address(street=don["street"], zipcode=don["zipcode"],
                               city=don["city"], country=don["country"],
                               phone=don["phone"], mail=don["email"])
@@ -28,24 +25,24 @@ class DonorsDBBenchData:
                      country="France", phone="+33 1 45 67 83 45",
                      email="charles.ives@centralparkinthedark.com", birth_date=date(1874, 10, 20)),
                 dict(prefix="M", first_name="Jean S", last_name="Bach",
-                    street="4, rue de la paix", zipcode="75008", city="Paris",
-                    country="France", phone="+33 1 42 67 78 34",
+                     street="4, rue de la paix", zipcode="75008", city="Paris",
+                     country="France", phone="+33 1 42 67 78 34",
                      email="js.bach@google.com", birth_date=date(1685, 3, 31)),
                 dict(prefix="M", first_name="Lee", last_name="Morgan",
-                    street="153, boulevard Saint-Germain", zipcode="75006", city="Paris",
-                    country="France", phone="+33 1 46 78 09 45",
+                     street="153, boulevard Saint-Germain", zipcode="75006", city="Paris",
+                     country="France", phone="+33 1 46 78 09 45",
                      email="lee.morgan@jazzmessengers.com", birth_date=date(1938, 7, 10)),
                 dict(prefix="M", first_name="Miles", last_name="Davis",
-                    street="154, boulevard Saint-Germain", zipcode="75006", city="Paris",
-                    country="France", phone="+33 1 45 67 33 12",
+                     street="154, boulevard Saint-Germain", zipcode="75006", city="Paris",
+                     country="France", phone="+33 1 45 67 33 12",
                      email="miles.davis@myself.com", birth_date=date(1926, 5, 26)),
                 dict(prefix="M", first_name="Wynton", last_name="Kelly",
-                    street="3, place du Tertre", zipcode="75018", city="Paris",
-                    country="France", phone="+33 1 45 87 34 25",
+                     street="3, place du Tertre", zipcode="75018", city="Paris",
+                     country="France", phone="+33 1 45 87 34 25",
                      email="wynton.kelly@quintet.com", birth_date=date(1931, 12, 2)),
                 dict(prefix="Ms", first_name="Eliane", last_name="Radigue",
                      street="23, rue de Seine", zipcode="75006", city="Paris",
-                    country="France", phone="+33 1 46 78 94 67",
+                     country="France", phone="+33 1 46 78 94 67",
                      email="eliane.radigue@ircam.com", birth_date=date(1932, 1, 24))
             )
         self._init_helper(donors)
@@ -65,11 +62,10 @@ class DonorsDBBenchData:
 
 
 class DonationsDBBenchData:
-
-    from DonorId import DonorId
+    from PersonId import PersonId
     from datetime import date
 
-    def __init_helper(self, donor_id: DonorId, donation_date: date, amount: float) -> None:
+    def __init_helper(self, donor_id: PersonId, donation_date: date, amount: float) -> None:
 
         from Donation import Donation
 
@@ -85,50 +81,84 @@ class DonationsDBBenchData:
 
     def __init__(self):
 
-        self.__data = __data = {}
+        self.__data = {}
 
-        from DonorId import DonorId
+        from PersonId import PersonId
         from datetime import date
-        from Name import Name
+        from Name import PersonName
 
-        donor_id = DonorId(Name("M", "Charles", "Ives"), date(1874, 10, 20))
+        donor_id = PersonId(PersonName("M", "Charles", "Ives"), date(1874, 10, 20))
         donation_dates = [date(2012, 4, 12), date(2014, 2, 8)]
         amounts = [[567, 1000], 7654]
         self.__init_helper(donor_id, donation_dates[0], amounts[0][0])
         self.__init_helper(donor_id, donation_dates[0], amounts[0][1])
         self.__init_helper(donor_id, donation_dates[1], amounts[1])
 
-        donor_id = DonorId(Name("M", "Jean S", "Bach"), date(1685, 3, 31))
+        donor_id = PersonId(PersonName("M", "Jean S", "Bach"), date(1685, 3, 31))
         donation_dates = [date(2014, 8, 6), date(2011, 12, 25), date(2016, 4, 1)]
         amounts = [2897, 4567, 876]
         self.__init_helper(donor_id, donation_dates[0], amounts[0])
         self.__init_helper(donor_id, donation_dates[1], amounts[1])
         self.__init_helper(donor_id, donation_dates[2], amounts[2])
 
-        donor_id = DonorId(Name("M", "Lee", "Morgan"), date(1938, 7, 10))
+        donor_id = PersonId(PersonName("M", "Lee", "Morgan"), date(1938, 7, 10))
         donation_dates = [date(2015, 10, 23), date(2016, 10, 14)]
         amounts = [3567, 7167]
         self.__init_helper(donor_id, donation_dates[0], amounts[0])
         self.__init_helper(donor_id, donation_dates[1], amounts[1])
 
-        donor_id = DonorId(Name("M", "Miles", "Davis"), date(1926, 5, 26))
+        donor_id = PersonId(PersonName("M", "Miles", "Davis"), date(1926, 5, 26))
         donation_dates = [date(2011, 5, 19)]
         amounts = [67000, 15000]
         self.__init_helper(donor_id, donation_dates[0], amounts[0])
         self.__init_helper(donor_id, donation_dates[0], amounts[1])
 
-        donor_id = DonorId(Name("M", "Wynton", "Kelly"), date(1931, 12, 2))
+        donor_id = PersonId(PersonName("M", "Wynton", "Kelly"), date(1931, 12, 2))
         donation_dates = [date(2009, 2, 24), date(2007, 6, 18), date(2013, 4, 5)]
         amounts = [7894, 6666, 657]
         self.__init_helper(donor_id, donation_dates[0], amounts[0])
         self.__init_helper(donor_id, donation_dates[1], amounts[1])
         self.__init_helper(donor_id, donation_dates[2], amounts[2])
 
-        donor_id = DonorId(Name("Ms", "Eliane", "Radigue"), date(1932, 1, 24))
+        donor_id = PersonId(PersonName("Ms", "Eliane", "Radigue"), date(1932, 1, 24))
         donation_dates = [date(2016, 1, 7)]
         amounts = [8000]
         self.__init_helper(donor_id, donation_dates[0], amounts[0])
 
+    @property
+    def data(self):
+        return self.__data
+
+
+class OrganisationBenchData:
+
+    def __init__(self):
+            self.__data = OrganisationBenchData.__init_helper()
+
+    @staticmethod
+    def __init_helper():
+        from Organisation import OrganisationMember
+        from Name import OrganisationName, PersonName
+        from Organisation import Organisation
+        from Address import Address
+        from datetime import date
+
+        name = OrganisationName("MusicFactory")
+        address = Address("14, rue Beaune", "75007",
+                          "Paris", "France",
+                          "+33 1 43 56 78 23",
+                          "music.factory@drummachine.net")
+        music_factory = Organisation(name=name, address=address)
+
+        cat_anderson = OrganisationMember(name=PersonName("M", "Cat", "Anderson"),
+                                          address=address, birth_date=date(1916, 9, 12),
+                                          organisation=music_factory)
+
+        clifford_brown = OrganisationMember(name=PersonName("M", "Clifford", "Brown"),
+                                            address=address, birth_date=date(1930, 10, 30),
+                                            organisation=music_factory)
+
+        return music_factory
 
     @property
     def data(self):
@@ -149,7 +179,7 @@ class HomeMenuBenchData(MenuBenchData):
 
     @staticmethod
     def get_menu() -> str:
-        return "(1) Send a Thank you\n(2) Create a report\n(3) quit\n\n"
+        return "(1) Send a thank you email\n(2) Create a report\n(3) quit\n\n"
 
     @staticmethod
     def get_input_str() -> str:
@@ -161,9 +191,8 @@ class HomeMenuBenchData(MenuBenchData):
 
 
 class TestThat:
-
     __doTest = False
-    __registered = dict(thank_you="in thank_you()\n",
+    __registered = dict(thank_you="in send_a_thank_you_email()\n",
                         create_report="in create_report()\n",
                         quit_program="in quit_program()\n")
 
@@ -175,5 +204,3 @@ class TestThat:
 
     def do(self) -> bool:
         return self.__doTest
-
-

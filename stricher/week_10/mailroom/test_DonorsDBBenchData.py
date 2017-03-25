@@ -6,12 +6,12 @@ class TestDonorsDBBenchData(TestCase):
     def test_instantiate(self):
 
         from BenchData import DonorsDBBenchData
-        from DonorId import DonorId
-        from Name import Name
+        from PersonId import PersonId
+        from Name import PersonName
         from datetime import date
 
         donors_db = DonorsDBBenchData().data
-        donor_id = DonorId(Name("M", "Charles", "Ives"), date(1874, 10, 20))
+        donor_id = PersonId(PersonName("M", "Charles", "Ives"), date(1874, 10, 20))
         donor = donors_db[donor_id.value]
         self.assertEqual("M", donor.name.prefix)
         self.assertEqual("Charles", donor.name.first)

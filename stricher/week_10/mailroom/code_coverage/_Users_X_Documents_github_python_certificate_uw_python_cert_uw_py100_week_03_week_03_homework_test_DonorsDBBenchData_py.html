@@ -106,12 +106,12 @@
 <p id="t6" class="stm run hide_run">    <span class="key">def</span> <span class="nam">test_instantiate</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t7" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t8" class="stm run hide_run">        <span class="key">from</span> <span class="nam">BenchData</span> <span class="key">import</span> <span class="nam">DonorsDBBenchData</span><span class="strut">&nbsp;</span></p>
-<p id="t9" class="stm run hide_run">        <span class="key">from</span> <span class="nam">DonorId</span> <span class="key">import</span> <span class="nam">DonorId</span><span class="strut">&nbsp;</span></p>
-<p id="t10" class="stm run hide_run">        <span class="key">from</span> <span class="nam">Name</span> <span class="key">import</span> <span class="nam">Name</span><span class="strut">&nbsp;</span></p>
+<p id="t9" class="stm run hide_run">        <span class="key">from</span> <span class="nam">PersonId</span> <span class="key">import</span> <span class="nam">PersonId</span><span class="strut">&nbsp;</span></p>
+<p id="t10" class="stm run hide_run">        <span class="key">from</span> <span class="nam">Name</span> <span class="key">import</span> <span class="nam">PersonName</span><span class="strut">&nbsp;</span></p>
 <p id="t11" class="stm run hide_run">        <span class="key">from</span> <span class="nam">datetime</span> <span class="key">import</span> <span class="nam">date</span><span class="strut">&nbsp;</span></p>
 <p id="t12" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t13" class="stm run hide_run">        <span class="nam">donors_db</span> <span class="op">=</span> <span class="nam">DonorsDBBenchData</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">data</span><span class="strut">&nbsp;</span></p>
-<p id="t14" class="stm run hide_run">        <span class="nam">donor_id</span> <span class="op">=</span> <span class="nam">DonorId</span><span class="op">(</span><span class="nam">Name</span><span class="op">(</span><span class="str">"M"</span><span class="op">,</span> <span class="str">"Charles"</span><span class="op">,</span> <span class="str">"Ives"</span><span class="op">)</span><span class="op">,</span> <span class="nam">date</span><span class="op">(</span><span class="num">1874</span><span class="op">,</span> <span class="num">10</span><span class="op">,</span> <span class="num">20</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t14" class="stm run hide_run">        <span class="nam">donor_id</span> <span class="op">=</span> <span class="nam">PersonId</span><span class="op">(</span><span class="nam">PersonName</span><span class="op">(</span><span class="str">"M"</span><span class="op">,</span> <span class="str">"Charles"</span><span class="op">,</span> <span class="str">"Ives"</span><span class="op">)</span><span class="op">,</span> <span class="nam">date</span><span class="op">(</span><span class="num">1874</span><span class="op">,</span> <span class="num">10</span><span class="op">,</span> <span class="num">20</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t15" class="stm run hide_run">        <span class="nam">donor</span> <span class="op">=</span> <span class="nam">donors_db</span><span class="op">[</span><span class="nam">donor_id</span><span class="op">.</span><span class="nam">value</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
 <p id="t16" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="str">"M"</span><span class="op">,</span> <span class="nam">donor</span><span class="op">.</span><span class="nam">name</span><span class="op">.</span><span class="nam">prefix</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t17" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="str">"Charles"</span><span class="op">,</span> <span class="nam">donor</span><span class="op">.</span><span class="nam">name</span><span class="op">.</span><span class="nam">first</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
@@ -134,7 +134,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.2</a>,
-            created at 2017-03-16 09:20
+            created at 2017-03-25 02:45
         </p>
     </div>
 </div>

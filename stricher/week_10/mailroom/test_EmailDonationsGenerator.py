@@ -21,17 +21,17 @@ class TestEmailDonationsGenerator(TestCase):
     def test_write(self):
 
         from test_ReportDonationsDBGenerator import TestReportDonationsDBGenerator
-        from TextGenerator import EmailDonationsGenerator
-        from DonorId import DonorId
+        from EmailGenerator import EmailDonationsGenerator
+        from PersonId import PersonId
         from Donation import Donation
-        from Name import Name
+        from Name import PersonName
         from datetime import date
 
         self.maxDiff = None
 
         db = TestReportDonationsDBGenerator._init_db()
 
-        donor_id = DonorId(Name("M", "Miles", "Davis"), date(1926, 5, 26))
+        donor_id = PersonId(PersonName("M", "Miles", "Davis"), date(1926, 5, 26))
         donation = Donation(donor_id, date(2008, 1, 23), 5678.56)
 
         try:

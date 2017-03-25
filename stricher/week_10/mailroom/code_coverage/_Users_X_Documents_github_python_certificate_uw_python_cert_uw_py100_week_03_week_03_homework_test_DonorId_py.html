@@ -91,12 +91,12 @@
 <p id="t4" class="stm run hide_run"><span class="key">class</span> <span class="nam">TestDonorId</span><span class="op">(</span><span class="nam">TestCase</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t5" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t6" class="stm run hide_run">    <span class="key">def</span> <span class="nam">test_equality</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t7" class="stm run hide_run">        <span class="key">from</span> <span class="nam">DonorId</span> <span class="key">import</span> <span class="nam">DonorId</span><span class="strut">&nbsp;</span></p>
+<p id="t7" class="stm run hide_run">        <span class="key">from</span> <span class="nam">PersonId</span> <span class="key">import</span> <span class="nam">PersonId</span><span class="strut">&nbsp;</span></p>
 <p id="t8" class="stm run hide_run">        <span class="key">from</span> <span class="nam">datetime</span> <span class="key">import</span> <span class="nam">date</span><span class="strut">&nbsp;</span></p>
-<p id="t9" class="stm run hide_run">        <span class="key">from</span> <span class="nam">Name</span> <span class="key">import</span> <span class="nam">Name</span><span class="strut">&nbsp;</span></p>
+<p id="t9" class="stm run hide_run">        <span class="key">from</span> <span class="nam">Name</span> <span class="key">import</span> <span class="nam">PersonName</span><span class="strut">&nbsp;</span></p>
 <p id="t10" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t11" class="stm run hide_run">        <span class="nam">donor1</span> <span class="op">=</span> <span class="nam">DonorId</span><span class="op">(</span><span class="nam">Name</span><span class="op">(</span><span class="str">"M"</span><span class="op">,</span> <span class="str">"Miles"</span><span class="op">,</span> <span class="str">"Davis"</span><span class="op">)</span><span class="op">,</span> <span class="nam">date</span><span class="op">(</span><span class="num">1926</span><span class="op">,</span> <span class="num">5</span><span class="op">,</span> <span class="num">26</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t12" class="stm run hide_run">        <span class="nam">donor2</span> <span class="op">=</span> <span class="nam">DonorId</span><span class="op">(</span><span class="nam">Name</span><span class="op">(</span><span class="str">"M"</span><span class="op">,</span> <span class="str">"Miles"</span><span class="op">,</span> <span class="str">"Davis"</span><span class="op">)</span><span class="op">,</span> <span class="nam">date</span><span class="op">(</span><span class="num">1926</span><span class="op">,</span> <span class="num">5</span><span class="op">,</span> <span class="num">26</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t11" class="stm run hide_run">        <span class="nam">donor1</span> <span class="op">=</span> <span class="nam">PersonId</span><span class="op">(</span><span class="nam">PersonName</span><span class="op">(</span><span class="str">"M"</span><span class="op">,</span> <span class="str">"Miles"</span><span class="op">,</span> <span class="str">"Davis"</span><span class="op">)</span><span class="op">,</span> <span class="nam">date</span><span class="op">(</span><span class="num">1926</span><span class="op">,</span> <span class="num">5</span><span class="op">,</span> <span class="num">26</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t12" class="stm run hide_run">        <span class="nam">donor2</span> <span class="op">=</span> <span class="nam">PersonId</span><span class="op">(</span><span class="nam">PersonName</span><span class="op">(</span><span class="str">"M"</span><span class="op">,</span> <span class="str">"Miles"</span><span class="op">,</span> <span class="str">"Davis"</span><span class="op">)</span><span class="op">,</span> <span class="nam">date</span><span class="op">(</span><span class="num">1926</span><span class="op">,</span> <span class="num">5</span><span class="op">,</span> <span class="num">26</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t13" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">donor1</span><span class="op">,</span> <span class="nam">donor2</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 
             </td>
@@ -108,7 +108,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.2</a>,
-            created at 2017-03-16 09:20
+            created at 2017-03-25 02:45
         </p>
     </div>
 </div>

@@ -5,15 +5,15 @@ class DonationBenchData:
 
     def __init__(self):
         from datetime import date
-        from Name import Name
-        from DonorId import DonorId
+        from Name import PersonName
+        from PersonId import PersonId
         self.__data = \
             (
-                dict(id=DonorId(Name("M", "Charles", "Ives"), date(1874, 10, 20)),
+                dict(id=PersonId(PersonName("M", "Charles", "Ives"), date(1874, 10, 20)),
                      date=date(1950, 3, 28), amount=345.78),
-                dict(id=DonorId(Name("M", "John", "Coltrane"), date(1930, 3, 22)),
+                dict(id=PersonId(PersonName("M", "John", "Coltrane"), date(1930, 3, 22)),
                      date=date(1962, 5, 13), amount=4567.45),
-                dict(id=DonorId(Name("M", "Duke", "Ellington"), date(1910, 4, 23)),
+                dict(id=PersonId(PersonName("M", "Duke", "Ellington"), date(1910, 4, 23)),
                      date=date(1965, 4, 24), amount=456.67)
             )
 

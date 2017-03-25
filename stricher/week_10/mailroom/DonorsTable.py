@@ -1,8 +1,11 @@
 
-class DonorsTable:
+from Table import Table
+
+
+class DonorsTable(Table):
 
     from Donor import Donor
-    from Name import Name
+    from Name import PersonName
 
     def __init__(self, table=None):
         if table is not None:
@@ -26,7 +29,7 @@ class DonorsTable:
         raise ValueError("ValueError: get_donor(donor_id): - "
                          "donor does not exist in the database")
 
-    def get_donor_name(self, donor_id: str) -> Name:
+    def get_donor_name(self, donor_id: str) -> PersonName:
         return self.get_donor(donor_id).name
 
     def get_donors_names(self) -> list:
