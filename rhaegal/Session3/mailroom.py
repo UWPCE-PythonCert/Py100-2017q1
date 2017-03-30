@@ -1,11 +1,20 @@
+def safe_input(str):
+    while 1:
+        try:
+            user_input=input(str)
+            break
+        except (EOFError, KeyboardInterrupt):
+            print("That's not a valid input")
+    return user_input
+
 def sendThankYou():
-    response2=input("Full Name?")
+    response2=safe_input("Full Name?")
     while response2=="list":
         print(donorList.keys())
         response2=input("Full Name?")
     if not response2 in donorList:
         donorList[response2]=[]
-    response3=input("Donation Amount?")
+    response3=safe_input("Donation Amount?")
     while not response3.isdigit():
         response3=input("I'm sorry, that is not a valid number. Please try again:")
     donorList[response2].append(response3)
@@ -63,7 +72,7 @@ for value in donorList:
         donorList[value].append(random.randrange(1,1000))
 
 while 1:
-    response=input("Would you like to \"Create a report\" or \"Send a thank you\"?")
+    response=safe_input("Would you like to \"Create a report\" or \"Send a thank you\"?")
     if (response.lower()=="create a report" or response.lower()=="report"):
         createReport()
     elif (response.lower()=="send a thank you" or response.lower()=="thank you"):
