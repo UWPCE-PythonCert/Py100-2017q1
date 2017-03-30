@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mailroom</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="../static/main.css" />
+</head>
+<body>
+
+    <!-- CONTENT -->
+    <section id="content">
+
+
+
+        <!-- MENU PANEL -->
+        <section id="menu-panel">
+
+            <!-- LOGO -->
+            <div id="logo">Mailroom</div>
+            <!-- /LOGO -->
+
+            <!-- MENU -->
+            <ul id="menu">
+                <li id="n" tabindex="0">New Entry</li>
+                <li id="l" tabindex="0">List</li>
+                <li id="r" tabindex="0">Report</li>
+                <li id="t" tabindex="0">Thanks</li>
+                <li id="h" tabindex="0">Help</li>
+            </ul>
+            <!-- /MENU -->
+
+        </section>
+        <!-- /MENU PANEL -->
+
+
+
+        <!-- MAIN PANEL -->
+        <section id="main-panel">
+
+
+
+            <!-- NEW ENTRY -->
+            <section id="n-content">
+                <form id="entry-input" action="/" method="post">
+
+                    <!-- name -->
+                    <input type="text" id="entry-name" name="name" placeholder="Full Name" required />
+
+                    <!-- amount -->
+                    <input type="number"  id="entry-amount" name="amount" min="0" step="any" placeholder="Amount" required />
+
+                    <!-- date -->
+                    <input type="text" id="entry-date" name="date" placeholder="Date" required />
+
+                    <!-- ngo -->
+                    <input type="text" id="entry-ngo" name="ngo" placeholder="NGO" required />
+
+                    <!-- submit -->
+                    <input type="submit" id="entry-submit" value="ADD" />
+
+                </form>
+            </section>
+            <!-- /NEW ENTRY -->
+
+
+
+            <!-- LIST -->
+            <section id="l-content" style="display: none; padding: 0 15px;">
+                {% for donor in donors %}
+                <p>{{ donor }}</p>
+                <!--<p>-->
+                    <!--{% for amount in donor[1] %}-->
+                    <!--{{ amount }}-->
+                    <!--{% endfor %}-->
+                <!--</p>-->
+                {% endfor %}
+            </section>
+            <!-- /LIST -->
+
+
+
+            <!-- REPORT -->
+            <section id="r-content">
+
+                <!-- REPORT DATA -->
+                <table id="report-data" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr id="report-head">
+                            <th scope="col">
+                                <input type="checkbox" />
+                                Donor
+                            </th>
+                            <th scope="col">Total Given</th>
+                            <th scope="col">Num Gifts</th>
+                            <th scope="col">Avg Gift</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for donor in donors %}
+                        <tr>
+                            <th>
+                                <input type="checkbox" />
+                                {{ donor }}
+                            </th>
+                            <td>$1,000.00</td>
+                            <td>5</td>
+                            <td>$4,920.20</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- /REPORT DATA -->
+
+                <!-- REPORT PAGINATION -->
+                <ul id="pagination">
+                    <li><</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>></li>
+                </ul>
+                <!-- /REPORT PAGINATION -->
+
+            </section>
+            <!-- /REPORT -->
+
+
+
+            <!-- THANKS -->
+            <section id="t-content" style="display: none; padding: 0 15px;">
+                {% for key, value in donors.items() %}
+                <p class="letter">Dear {{ key }},
+                    <br /><br />
+                    Thank you for your generous donation of ${{ value[0] }}0.<br />
+                    Your gift makes a major impact on aspiring musicians in the Seattle area.
+                    <br /><br />
+                    Sincerely,<br />
+                    Seattle Music Fund
+                </p>
+                {% endfor %}
+            </section>
+            <!-- /THANKS -->
+
+
+
+            <!-- HELP -->
+            <section id="h-content" style="display: none; padding: 0 15px;">
+                <p>Help content placed here.</p>
+            </section>
+            <!-- /HELP -->
+
+
+
+        </section>
+        <!-- /MAIN PANEL -->
+
+    </section>
+    <!-- /CONTENT -->
+
+
+
+<!-- SCRIPTS -->
+<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="../static/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../static/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../static/main.js"></script>
+
+<script>
+    $(function() {
+        $('#entry-date').datepicker();
+    });
+</script>
+<!-- /SCRIPTS -->
+
+
+
+</body>
+</html>

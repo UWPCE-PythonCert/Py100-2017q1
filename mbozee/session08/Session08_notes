@@ -1,0 +1,45 @@
+monkey patching
+
+capsys
+
+yield statement --> similar to decorators
+
+mock
+
+haskell auto-testing --> crazy, wacky scenarios
+
+lambda funcitons
+
+create own class for exceptiokns to import and use throughout code
+
+***underscore idiom --> "for _ in yabba"
+--> placeholder value, don't care what it is
+
+can pack/unpack using "*"
+
+multiple inheritance and composition
+
+Fluent Python book -- gregor recommends
+
+closures
+
+properties  --> these handle getters and setters  --> properties protect attributes
+
+enums (to import)--> to old values
+
+py100 class 10 == functional python
+
+kata13 -- > see radualb's code
+
+
+____________________________
+
+
+setting recursive limit:
+
+import sys
+
+sys.setrecursionlimit(1000) # "1000" is and example
+
+
+

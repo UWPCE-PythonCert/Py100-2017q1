@@ -1,0 +1,340 @@
+
+/* PAGE LAYOUT
+=========================*/
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F5F8FA;
+    line-height: 1.5;
+    font-family: 'Roboto', Arial, Verdana, sans-serif;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+section#content {
+    display: block;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: row;
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+
+/* MENU PANEL
+=========================*/
+section#menu-panel {
+    display: inline-block;
+    vertical-align: top;
+    flex-grow: 0;
+    align-self: stretch;
+    width: 300px;
+    min-height: 100vh;
+    background-color: #fff;
+    border-right: 1px solid #E1E8ED;
+}
+
+#logo {
+    display: block;
+    width: 100%;
+    padding: 30px 15px;
+    background-color: #039BE5;
+    font-size: 30px;
+    color: #fff;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    font-style: italic;
+}
+
+/* MENU */
+ul#menu {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul#menu li {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    color: #455A64;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out,
+                color 0.3s ease-out;
+    border-top: 1px solid #E1E8ED;
+    outline: none;
+}
+
+ul#menu li:last-child {
+    border-bottom: 1px solid #E1E8ED;
+}
+
+ul#menu li:hover,
+ul#menu li:focus,
+ul#menu li.active {
+    background-color: #f5f8fa;
+}
+
+ul#menu li::before {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    margin-right: 15px;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease-out;
+}
+
+ul#menu li#n::before {
+    content: 'n';
+    background-color: #D81B60;
+}
+
+ul#menu li#l::before {
+    content: 'l';
+    background-color: #8E24AA;
+}
+
+ul#menu li#r::before {
+    content: 'r';
+    background-color: #00897B;
+}
+
+ul#menu li#t::before {
+    content: 't';
+    background-color: #C0CA33;
+}
+
+ul#menu li#h::before {
+    content: 'h';
+    background-color: #FB8C00;
+}
+
+ul#menu li.kb-disabled::before {
+    opacity: 0.3;
+}
+
+
+
+/* MAIN PANEL
+=========================*/
+section#main-panel {
+    display: inline-block;
+    vertical-align: top;
+    margin: 20px 20px 0 20px;
+    flex-grow: 1;
+    align-self: stretch;
+    max-width: -webkit-calc(100% - 340px);
+    max-width: -moz-calc(100% - 340px);
+    max-width: -ms-calc(100% - 340px);
+    max-width: -o-calc(100% - 340px);
+    max-width: calc(100% - 340px);
+    background-color: #fff;
+    border: 1px solid #E1E8ED;
+    border-radius: 4px 4px 0 0;
+}
+
+
+
+/* NEW USER ENTRY
+=========================*/
+section#n-content {
+    display: none;
+    width: 100%;
+}
+
+form#entry-input {
+    display: inline-block;
+    padding: 20px;
+    background-color: #f5f5f5;
+    margin: 20px;
+}
+
+form#entry-input input[type="text"],
+form#entry-input input[type="number"] {
+    display: block;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #455A64;
+    font-weight: 700;
+}
+
+form#entry-input input[type="submit"] {
+    display: block;
+    padding: 10px 20px;
+    background: #D81B60;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    font-weight: 700;
+    transition: background 0.3s ease-out;
+    cursor: pointer;
+}
+
+form#entry-input input[type="submit"]:hover,
+form#entry-input input[type="submit"]:active {
+    background: #C2185B;
+}
+
+/*hides type number spinner*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*hides Chrome default datepicker arrow*/
+input::-webkit-calendar-picker-indicator { /* type date not used */
+    display: none;
+}
+
+/*hides Chrome default datepicker prompt*/
+input[type="date"]::-webkit-input-placeholder { /* type date not used */
+    visibility: hidden !important;
+}
+
+
+
+/* REPORT
+=========================*/
+section#r-content {
+    display: none;
+    width: 100%;
+}
+
+table#report-data {
+    width: 100%;
+    table-layout: fixed;
+    line-height: 1;
+}
+
+table#report-data tr {
+    cursor: pointer;
+    transition: background-color 0.3s ease-out,
+                color 0.3s ease-out;
+}
+
+table#report-data tr:hover,
+table#report-data tr.active {
+    background-color: #f5f8fa;
+}
+
+table#report-data thead th {
+    color: #78909C;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: left;
+    padding: 15px;
+}
+
+table#report-data tbody th,
+table#report-data td {
+    color: #455A64;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: left;
+    padding: 15px 15px;
+    border-top: 1px solid #E1E8ED;
+}
+
+table#report-data tbody tr:last-child th,
+table#report-data tbody tr:last-child td {
+    border-bottom: 1px solid #E1E8ED;
+}
+
+table#report-data input[type='checkbox'] {
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    display: inline-block;
+    margin: 0 15px 0 0;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #455A64;
+    vertical-align: middle;
+    transition: background-color 0.3s ease-out;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+table#report-data input[type='checkbox']:checked {
+    background-color: #00897B;
+}
+
+/* REPORT PAGINATION */
+ul#pagination {
+    display: block;
+    width: 100%;
+    margin: 30px auto 0 auto;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+ul#pagination li {
+    display: inline-block;
+    font-size: 16px;
+    color: #455A64;
+    font-weight: 400;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out,
+                color 0.3s ease-out;
+}
+
+ul#pagination li:not(:last-child) {
+    margin-right: 5px;
+}
+
+ul#pagination li:hover,
+ul#pagination li:active,
+ul#pagination li:nth-child(2) {
+    background-color: #00897B;
+    color: #fff;
+}
+
+
+
+/* THANK YOU LETTERS
+=========================*/
+
+p.letter {
+    margin: 20px 0;
+    padding: 20px;
+    font-size: 16px;
+    color: #222;
+    background-color: #f5f5f5;
+}
+
+
+
+
+
+
+
+
+
