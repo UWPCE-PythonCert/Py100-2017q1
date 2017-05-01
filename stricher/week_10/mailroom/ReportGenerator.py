@@ -33,7 +33,7 @@ class ReportDonationsDBGenerator(ReportGenerator):
         ii = 0
         for don_id in donors_id:
             string += "" if ii == 0 else "\n"
-            name = str(self.__db.donors_table.get_donor_name(don_id))
+            name = str(self.__db.donors_table.get_person_name(don_id))
             string += '{:20}'.format(name) + '|'
             string += '{:>30.2f}'.format(total_donation_per_donor[don_id]) + '|'
             string += '{:>25}'.format(num_donations_per_donor[don_id]) + '|'

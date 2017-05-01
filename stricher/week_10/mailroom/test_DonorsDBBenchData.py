@@ -8,10 +8,10 @@ class TestDonorsDBBenchData(TestCase):
         from BenchData import DonorsDBBenchData
         from PersonId import PersonId
         from Name import PersonName
-        from datetime import date
+        from MyDate import MyDate
 
         donors_db = DonorsDBBenchData().data
-        donor_id = PersonId(PersonName("M", "Charles", "Ives"), date(1874, 10, 20))
+        donor_id = PersonId()
         donor = donors_db[donor_id.value]
         self.assertEqual("M", donor.name.prefix)
         self.assertEqual("Charles", donor.name.first)
@@ -23,4 +23,4 @@ class TestDonorsDBBenchData(TestCase):
         self.assertEqual("+33 1 45 67 83 45", donor.address.phone)
         self.assertEqual("charles.ives@centralparkinthedark.com",
                          donor.address.mail)
-        self.assertEqual(date(1874, 10, 20), donor.birth_date)
+        self.assertEqual(MyDate(1874, 10, 20), donor.birth_date)

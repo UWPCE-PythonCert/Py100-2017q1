@@ -5,16 +5,16 @@ from unittest import TestCase
 class TestBackToMenu(TestCase):
     def test_raise_BackToMenu(self):
         def __test_helper():
-            from BackToMenu import BackToMenu
+            from GoBackToHomeMenu import GoBackToHomeMenu
             try:
-                raise BackToMenu("BackToMenu")
+                raise GoBackToHomeMenu("GoBackToHomeMenu")
                 self.fail('test_raise_BackToMenu()')
-            except BackToMenu as btm:
-                self.assertEqual('BackToMenu', str(btm))
+            except GoBackToHomeMenu as btm:
+                self.assertEqual('GoBackToHomeMenu', str(btm))
                 raise
                 self.fail('test_raise_BackToMenu()')
         try:
             __test_helper()
             self.fail('test_raise_BackToMenu()')
         except Exception as exc:
-            self.assertEqual('BackToMenu', str(exc))
+            self.assertEqual('GoBackToHomeMenu', str(exc))

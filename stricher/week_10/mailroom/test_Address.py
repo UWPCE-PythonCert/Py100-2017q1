@@ -4,12 +4,13 @@ from unittest import TestCase
 class BenchDataAddress:
     def __init__(self):
         from Address import Address
+        from EmailAddress import EmailAddress
         self.street = "15, rue de Lille"
         self.zipcode = "75007"
         self.city = "Paris"
         self.country = "France"
         self.phone = "+33 1 42 45 56 67"
-        self.mail = "nobody@nowhere.com"
+        self.mail = EmailAddress("nobody@nowhere.com")
         self.address = Address(self.street, self.zipcode, self.city, self.country, self.phone, self.mail)
 
 
@@ -24,7 +25,7 @@ class TestAddress(TestCase):
                                                                     bench.city,
                                                                     bench.country,
                                                                     bench.phone,
-                                                                    bench.mail)
+                                                                    bench.mail.get)
         self.assertEqual(bench_str, ostream.getvalue())
 
     def test___str__(self):
@@ -34,7 +35,7 @@ class TestAddress(TestCase):
                                                        bench.city,
                                                        bench.country,
                                                        bench.phone,
-                                                       bench.mail)
+                                                       str(bench.mail))
         self.assertEqual(bench_str, str(bench.address))
 
     def test___eq__(self):

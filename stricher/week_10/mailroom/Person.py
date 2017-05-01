@@ -3,16 +3,17 @@ class Person:
 
     from Name import PersonName
     from Address import Address
-    from datetime import date
+    from EmailAddress import EmailAddress
+    from MyDate import MyDate
     from PersonId import PersonId
 
     def __init__(self, name: PersonName, address: Address,
-                 birth_date: date):
+                 birth_date: MyDate):
         from PersonId import PersonId
         self.__name = name
         self.__address = address
         self.__birth_date = birth_date
-        self.__id = PersonId(self.name, self.birth_date)
+        self.__id = PersonId(address.mail)
 
     def __repr__(self):
         return 'Person({},{},{})'.format(self.name.__repr__(),
@@ -34,7 +35,11 @@ class Person:
         return self.__address
 
     @property
-    def birth_date(self) -> date:
+    def mail(self) -> EmailAddress:
+        return self.address.mail
+
+    @property
+    def birth_date(self) -> MyDate:
         return self.__birth_date
 
     @property

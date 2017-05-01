@@ -2,7 +2,6 @@ from MenuActions import MenuActions
 
 
 class QuitMenuActions(MenuActions):
-
     from Database import Database, DBWriterType
     from io import IOBase
 
@@ -11,7 +10,7 @@ class QuitMenuActions(MenuActions):
 
     def _save_database(self, writer_type: DBWriterType) -> None:
         self._ostream.write("Writing the database to a"
-                             " {} database".format(writer_type.name))
+                            " {} database\n".format(writer_type.name))
         self.donations_db.write(writer_type)
         self.quit_program()
 

@@ -4,7 +4,8 @@ class Utilities:
     @staticmethod
     def get_unique_items(container: tuple) -> tuple:
         if type(container) != tuple:
-            raise TypeError("get_unique_items(container: tuple) - container must be of tuple type")
+            raise TypeError("get_unique_items(container: tuple)"
+                            " - container must be of tuple type")
         if len(container) == 1:
             return tuple(container)
         ans = []

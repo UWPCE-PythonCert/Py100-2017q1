@@ -13,6 +13,7 @@ class MultipleChoicesMenu(Menu):
                                                   max_trials=max_trials,
                                                   istream=istream,
                                                   ostream=ostream)
+        self._user_choice = ""
 
     def get_menu_choices_actions(self) -> dict:
         pass
@@ -33,14 +34,15 @@ class MultipleChoicesMenu(Menu):
         if not self._is_valid_choice(ans):
             from InvalidUserChoice import InvalidUserChoice
             raise InvalidUserChoice(self.messages["error"])
+        self._user_choice = ans
         return ans
 
-    def _make_request_string(self) -> str:
+    def _make_request_string(self, add_message="") -> str:
         request = "\nPlease choose one of the following actions ("
         for index in range(self._get_num_choices_actions()):
             sep = "" if index == 0 else "-"
             request += sep + str(index + 1)
-        return request + "):" + 2 * "\n"
+        return request + "){}:".format(add_message) + 2 * "\n"
 
     def _make_menu_string(self) -> str:
         menu = ""
@@ -51,11 +53,18 @@ class MultipleChoicesMenu(Menu):
         return menu + "\n"
 
     def _make_error_string(self) -> str:
-        return 2 * "\n" + "Invalid input. Please enter a number between {} and {}!\n" \
+        return "\n" + "Invalid input. Please enter a number between {} and {}!\n" \
             .format(1, self._get_num_choices_actions())
 
     def _get_action(self, ans):
         return self.get_menu_choices_actions()[self._validate_user_choice(ans)]["fun"]
+
+    def _get_quit_menu(self):
+        from QuitMenu import QuitMenu
+        quit_menu = QuitMenu(self.donations_db, max_trials=self._max_trials,
+                             max_menu_calls=self.max_menu_calls,
+                             istream=self.istream, ostream=self.ostream)
+        quit_menu.get_action_from_user_and_perform()
 
     def _get_action_from_user(self):
         from io import StringIO
@@ -65,34 +74,34 @@ class MultipleChoicesMenu(Menu):
             self.ostream.seek(0)
 
         def __recurs(counter):
-            ans = self._print_request_and_menu()
             from InvalidUserChoice import InvalidUserChoice
+            from GoToQuitMenu import GoToQuitMenu
+            except_str = "From MultipleChoicesMenu"
+            ans = self._print_request_and_menu()
             try:
                 ans = self._validate_user_choice(ans)
                 return self._get_action(ans)
-            except InvalidUserChoice:
+            except InvalidUserChoice as inv_uc:
                 if type(self.ostream) == StringIO:
                     __reset_ostream()
-                if counter == self.max_trials:
-                    from QuitMenu import QuitMenu
-                    quit_menu = QuitMenu(self.donations_db, max_trials=self._max_trials)
-                    quit_menu.get_action_from_user_and_perform()
-                return __recurs(counter + 1)
+                self.ostream.write(str(inv_uc))
+            if counter == self.max_trials:
+                raise GoToQuitMenu(except_str)
+            return __recurs(counter + 1)
 
         return __recurs(counter=1)
 
     @staticmethod
-    def _perform_action_from_user(fun):
+    def perform_action_from_user(fun):
         fun()
 
     def get_action_from_user_and_perform(self):
+
         def __recurs(counter):
             if counter == self._max_menu_calls:
-                from QuitMenu import QuitMenu
-                quit_menu = QuitMenu(self.donations_db, max_trials=self._max_menu_calls)
-                quit_menu.get_action_from_user_and_perform()
+                self._get_quit_menu()
             action = self._get_action_from_user()
-            self._perform_action_from_user(action)
+            MultipleChoicesMenu.perform_action_from_user(action)
             return __recurs(counter + 1)
 
         return __recurs(counter=0)

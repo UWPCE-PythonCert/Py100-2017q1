@@ -8,7 +8,7 @@ class TestData:
         return \
             '\nList of donors:\n\n' \
             '***************************************************************************************************\n' \
-            '        PersonName        |         Total amount         |   Number of donations   |  Average donation  |\n' \
+            '     PersonName     |         Total amount         |   Number of donations   |  Average donation  |\n' \
             '***************************************************************************************************\n' \
             'Ms Eliane Radigue   |                       8000.00|                        1|             8000.00|\n' \
             'M Jean S Bach       |                       8340.00|                        3|             2780.00|\n' \

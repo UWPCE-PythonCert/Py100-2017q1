@@ -4,8 +4,8 @@ from enum import Enum
 
 
 class WhichLimit(Enum):
-        trials = "max_trials"
-        menu_calls = "max_menu_calls"
+    trials = "max_trials"
+    menu_calls = "max_menu_calls"
 
 
 class Menu:
@@ -50,7 +50,7 @@ class Menu:
 
     @staticmethod
     def _make_input_string() -> str:
-        return "\n\nEnter: "
+        return "Enter: "
 
     def _make_error_string(self) -> str:
         return "\n\nInvalid input\n"
@@ -61,9 +61,9 @@ class Menu:
 
     def _make_quit_string_limit_exceeded(self, which_limit: str) -> str:
         store_limits = {"trials": self.max_trials, "menu calls": self.max_menu_calls}
-        return "\n\nInvalid entry. Maximum number of allowed " \
-               "{} reached ({}).\n{}".format(which_limit, store_limits[which_limit],
-                                             self._make_quit_string_from_user())
+        return "Maximum number of allowed {} reached ({})." \
+               " The program is about to quit.\n"\
+            .format(which_limit, store_limits[which_limit])
 
     def _print_request_and_menu(self) -> str:
         from Utilities import Utilities

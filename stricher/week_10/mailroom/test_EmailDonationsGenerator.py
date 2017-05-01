@@ -24,24 +24,23 @@ class TestEmailDonationsGenerator(TestCase):
         from EmailGenerator import EmailDonationsGenerator
         from PersonId import PersonId
         from Donation import Donation
-        from Name import PersonName
-        from datetime import date
+        from MyDate import MyDate
 
         self.maxDiff = None
 
         db = TestReportDonationsDBGenerator._init_db()
 
-        donor_id = PersonId(PersonName("M", "Miles", "Davis"), date(1926, 5, 26))
-        donation = Donation(donor_id, date(2008, 1, 23), 5678.56)
+        donor_id = PersonId()
+        donation = Donation(donor_id, MyDate(2008, 1, 23), 5678.56)
 
         try:
             email_gen = EmailDonationsGenerator(db, donation, "James Moody")
             self.fail("Should generate an ValueError exception")
         except ValueError as ve:
             self.assertEqual("ValueError - "
-                             "EmailDonationsGenerator(donations_db,"
+                             "EmailDonationsGenerator(db,"
                              " donor_id, donation_date):"
                              " donation not in database", str(ve))
 
-            donation = Donation(donor_id, date(2011, 5, 19), 67000)
+            donation = Donation(donor_id, MyDate(2011, 5, 19), 67000)
             email_gen = EmailDonationsGenerator(db, donation, "James Moody")

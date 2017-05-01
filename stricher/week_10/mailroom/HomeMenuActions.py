@@ -8,7 +8,6 @@ class HomeMenuActions(MenuActions):
 
     from io import IOBase
     from Database import Database
-    from Donation import Donation
 
     def __init__(self, donations_db: Database, ostream: IOBase):
         super(HomeMenuActions, self).__init__(donations_db, ostream)

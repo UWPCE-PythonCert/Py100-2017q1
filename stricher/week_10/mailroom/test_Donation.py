@@ -1,68 +1,47 @@
 from unittest import TestCase
 
 
-class DonationBenchData:
-
-    def __init__(self):
-        from datetime import date
-        from Name import PersonName
-        from PersonId import PersonId
-        self.__data = \
-            (
-                dict(id=PersonId(PersonName("M", "Charles", "Ives"), date(1874, 10, 20)),
-                     date=date(1950, 3, 28), amount=345.78),
-                dict(id=PersonId(PersonName("M", "John", "Coltrane"), date(1930, 3, 22)),
-                     date=date(1962, 5, 13), amount=4567.45),
-                dict(id=PersonId(PersonName("M", "Duke", "Ellington"), date(1910, 4, 23)),
-                     date=date(1965, 4, 24), amount=456.67)
-            )
-
-    @property
-    def data(self):
-        return self.__data
-
-
 class TestDonation(TestCase):
 
     def test_Donation(self):
 
         from Donation import Donation
+        from BenchData import DonorsDBBenchData
+        from PersonId import PersonId
+        from EmailAddress import EmailAddress
+        from MyDate import MyDate
 
-        bench = DonationBenchData()
-        bench_data = bench.data
+        donors = DonorsDBBenchData().data
 
-        for data in bench_data:
-
-            donor_id = data["id"]
-            donation_date = data["date"]
-            donation_amount = data["amount"]
-
-            donation = Donation(donor_id, donation_date, donation_amount)
-
-            self.assertEqual(donation.donor_id, donor_id)
-
-            id_str = donor_id.value
-            self.assertEqual(id_str, donation.donor_id.value)
-
-            self.assertEqual(donation_date, donation.date)
-            self.assertEqual(donation_amount, donation.amount)
+        donor1 = donors[PersonId(EmailAddress(
+            "charles.ives@centralparkinthedark.com"
+        )).value]
+        donor_str = 'M Charles Ives\n' \
+                    '14, Avenue Foch\n75016 - Paris\n' \
+                    'France\n' \
+                    '+33 1 45 67 83 45\n' \
+                    'charles.ives@centralparkinthedark.com\n'
+        self.assertEqual(donor_str, str(donor1))
+        donation = Donation(donor1, MyDate(2012, 4, 12), 567)
+        donation_str = "\nDonor:\n------\nM Charles Ives\n14, Avenue Foch\n" \
+                       "75016 - Paris\nFrance\n+33 1 45 67 83 45\n" \
+                       "charles.ives@centralparkinthedark.com\n\n" \
+                       "Donation:\n---------\n2012-04-12: 567"
+        self.assertEqual(donation_str, str(donation))
+        self.assertEqual(PersonId(EmailAddress(donation.donor.mail.get)), donation.donor.id)
+        self.assertEqual(PersonId(EmailAddress(donation.donor.mail.get)).value, donation.donor.id.value)
 
     def test_equality(self):
 
-        from Donation import Donation
-        from Donor import Donor
+        from BenchData import DonorsDBBenchData
+        from PersonId import PersonId
+        from EmailAddress import EmailAddress
 
-        bench = DonationBenchData()
-        bench_data = bench.data
-
-        for data in bench_data:
-            donor_id = data["id"]
-            donation_date = data["date"]
-            donation_amount = data["amount"]
-
-            donation1 = Donation(donor_id, donation_date, donation_amount)
-            donation2 = Donation(donor_id, donation_date, donation_amount)
-            donation3 = Donation(donor_id, donation_date, donation_amount + 0.005)
-
-            self.assertEqual(donation1, donation2)
-            self.assertNotEqual(donation1, donation3)
+        donors = DonorsDBBenchData().data
+        donor1 = donors[PersonId(EmailAddress(
+            "charles.ives@centralparkinthedark.com"
+        )).value]
+        donor2 = donors[PersonId(EmailAddress("lee.morgan@jazzmessengers.com")).value]
+        self.assertEqual(donor1, donor1)
+        self.assertNotEqual(donor1, donor2)
+        self.assertEqual(donor2, donor2)

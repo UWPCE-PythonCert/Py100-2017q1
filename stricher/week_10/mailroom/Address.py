@@ -1,7 +1,11 @@
 
+from EmailAddress import EmailAddress
+
+
 class Address:
 
-    def __init__(self, street: str, zipcode: str, city: str, country: str, phone: str, mail: str):
+    def __init__(self, street: str, zipcode: str, city: str,
+                 country: str, phone: str, mail: EmailAddress):
         self.__street = street
         self.__zipcode = zipcode
         self.__city = city
@@ -11,7 +15,9 @@ class Address:
 
     def __repr__(self):
         return 'Address("{}","{}","{}","{}","{}","{}")'.\
-            format(self.street, self.zipcode, self.city, self.country, self.phone, self.mail)
+            format(self.street, self.zipcode,
+                   self.city, self.country,
+                   self.phone, self.mail)
 
     def __str__(self):
         return self.street + "\n" \
@@ -19,7 +25,7 @@ class Address:
                + self.city + "\n" \
                + self.country + "\n" \
                + self.phone + "\n" \
-               + self.mail + "\n"
+               + str(self.mail) + "\n"
 
     def __eq__(self, other):
         return self.street == other.street \
@@ -49,6 +55,8 @@ class Address:
     def phone(self) -> str:
         return self.__phone
 
+    from EmailAddress import EmailAddress
+
     @property
-    def mail(self) -> str:
+    def mail(self) -> EmailAddress:
         return self.__mail

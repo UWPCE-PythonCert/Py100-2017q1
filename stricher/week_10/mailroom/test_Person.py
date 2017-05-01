@@ -5,12 +5,12 @@ class BenchDataPerson:
     def __init__(self):
         from test_Name import BenchDataName
         from test_Address import BenchDataAddress
-        from datetime import date
+        from MyDate import MyDate
         from Person import Person
 
         self.name = BenchDataName().name
         self.address = BenchDataAddress().address
-        self.birth_date = date(1952, 5, 23)
+        self.birth_date = MyDate(1952, 5, 23)
         self.person = Person(self.name,
                              self.address,
                              self.birth_date)
@@ -35,3 +35,8 @@ class TestPerson(TestCase):
 
     def test__eq__(self):
         self.assertEqual(BenchDataPerson().person, BenchDataPerson().person)
+
+    def test_mail(self):
+        person = BenchDataPerson().person
+        email = BenchDataPerson().address.mail
+        self.assertEqual(person.mail(), email)

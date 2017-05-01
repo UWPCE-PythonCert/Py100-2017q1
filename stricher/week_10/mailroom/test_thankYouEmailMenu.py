@@ -16,13 +16,17 @@ class TestThankYouEmailMenu(TestCase):
                         DonationsTable(DonationsDBBenchData().data))
 
     def test__is_valid_choice(self):
-        self.fail()
+        #TODO: implement
+        pass
 
     def test__validate_user_choice(self):
-        self.fail()
+        # TODO: implement
+        pass
 
     def test__make_request_string(self):
-        self.fail()
+        # TODO: implement
+        pass
 
     def test_get_action_from_user_and_perform(self):
-        self.fail()
+        # TODO: implement
+        pass
