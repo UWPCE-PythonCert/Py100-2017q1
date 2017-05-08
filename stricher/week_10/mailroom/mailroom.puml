@@ -1,0 +1,452 @@
+@startuml
+
+namespace EntityN{
+Interface Name{
++ pure virtual name(): str
+- __str__(): str
+- __eq__(): bool
+- __lt__(): bool
+- __le__(): bool
+- __gt__(): bool
+- __ge__(): bool
+}
+
+class PersonName{
+- str prefix
+- str first
+- str last
++ __init__(prefix: str, first: str, last: str)
+- __repr__(): str
+- __lt__() override: bool
+- __le__() override: bool
++ prefix(): str
++ first(): str
++ last(): str
++ full_name(): str
++ name() override: str
+}
+
+Name <|-- PersonName
+
+class Address{
+- str street
+- str zipcode
+- str city
+- str country
+- str phone
+- str mail
++ __eq__(other: Address): bool
++ street(): str
++ zipcode(): str
++ city(): str
++ country(): str
++ phone(): str
++ mail(): str
+}
+
+class Organisation{
+- name: OrganisationName
+- address: Address
+- members: dict<PersonId, OrganisationMember>
++ __repr()__: str
++ name(): OrganisationName
++ address(): Address
++ members(): dict<str, OrganisationMember>
++ add_member(member: OrganisationMember): None
++ get_member(member_id: PersonId): OrganisationMember
+}
+
+class OrganisationName{
+- name: str
++ __init__(name: str)
+- __repr__(): str
++ name() override: str
+}
+Name <|-- OrganisationName
+
+Organisation *--> OrganisationName
+
+Organisation o--> Address
+Organisation o--> PersonName
+
+class PersonId{
+- value: str
++ __init__(name: PersonName, birth_date: MyDate)
++ __eq__(other: PersonId) -> bool
++ value(): str
+}
+
+PersonId --> UtilitiesN.MyDate
+PersonId --> PersonName
+
+class Person{
+- PersonName name
+- Address address
+- MyDate birth_date
+- PersonId id
++ __eq__(other: Person): bool
++ name(): PersonName
++ address(): Address
++ birth_date(): MyDate
++ id(): PersonId
+}
+
+Person *--> PersonName
+Person o--> Address
+Person *--> UtilitiesN.MyDate
+
+class OrganisationMember{
+- organisation: Organisation
++ __init__(self, name: PersonName, address: Address,
+           birth_date: MyDate, organisation: Organisation)
++ __eq__(other: OrganisationMember): bool
+}
+
+Person <|-- OrganisationMember
+OrganisationMember <--> Organisation
+
+class Donor{
++ __init__(self, name: PersonName, address: Address,
+           birth_date: MyDate)
++ __eq__(other: PersonId): bool
+}
+
+class Id{
++ get_hash(string: str):str
+}
+
+Id <|-- PersonId
+
+Person *--> PersonId
+
+Person <|-- Donor
+}
+
+namespace DonationN{
+class Donation{
+- str donor_id
+- MyDate donation_date
+- float amount
++ donor_id(): PersonId
++ date(): MyDate
++ amount(): float
+}
+
+Donation o--> UtilitiesN.MyDate
+}
+
+namespace DatabaseN{
+
+class DonorsTable{
+- dict<str, Donor> table
++ table(): dict<str, Donor>:
++ person_exists_in_database(donor_id: str): bool
++ get_person(donor_id: str): Donor
++ get_person_name(donor_id: str): PersonName
++ get_persons_names(self): list<str>
++ add_person(self, donor: Donor): None
+}
+
+class DonationsTable{
+- dict<str, dict<Date, list<Donation>> table
++ table():dict<str, dict<Date, list<Donation>>
++ get_per_donor(donor_id: str):dict<str, dict<Date, list<Donation>>
++ add_donation(donation: Donation):None
++ get_total_donation_amount_per_donor(donor_id: str):float
++ get_total_donations_amounts():dict<str, float>
++ get_num_gifts_per_donor(donor_id: str):int
++ get_num_gifts():dict<str, int>
++ get_average_gift_per_donor(donor_id: str):float
++ get_average_gift():dict<str, float>
++ get_donors_id_sorted_per_total_hist_donation_amount():list<str>
+}
+
+class Database{
+- DonorsTable donors_table
+- DonationsTable donations_table
++ add_donation(donation: Donation, donor: Donor): None
++ get_donation(donor_id: PersonId, donation_date: MyDate): list<Donations>
++ get_donors_names_sorted_per_total_hist_donation_amount(): list<PersonName>
++ write(db_writer: DatabaseWriter): None
+}
+
+Database *--> DonationsTable
+Database *--> DonorsTable
+Database *--> DatabaseWriterFactory
+DonorsTable  *--> EntityN.Donor
+DonationsTable *--> DonationN.Donation
+
+enum DBWriterType{
+sql_lite = 0
+sql_server = 1
+}
+
+Interface DatabaseWriter{
+
+}
+abstract class DatabaseWriterToFile
+abstract class DatabaseWriterToRDBMS
+class DatabaseWriterToSQLite{
++ write(): None
+}
+
+class DatabaseWriterToSQLServer{
++ write(): None
+}
+
+class DatabaseWriterFactory{
+- dict<str, DatabaseWriter> writers
++ get_writer(writer_type
+}
+
+Database --> DBWriterType
+DatabaseWriterFactory *--> DatabaseWriter
+DatabaseWriter <|-- DatabaseWriterToRDBMS
+DatabaseWriter <|-- DatabaseWriterToFile
+DatabaseWriterToRDBMS <|-- DatabaseWriterToSQLite
+DatabaseWriterToRDBMS <|-- DatabaseWriterToSQLServer
+
+
+
+DatabaseWriter <--> DatabaseN.Database
+}
+
+namespace DocumentGeneratorN{
+Interface TextGenerator{
+}
+
+abstract class ReportGenerator{
+}
+
+TextGenerator <|-- ReportGenerator
+
+class ReportDonationsDBGenerator{
+}
+
+ReportGenerator <|-- ReportDonationsDBGenerator
+
+ReportDonationsDBGenerator o-- DatabaseN.Database
+
+class EmailGenerator{
+}
+
+TextGenerator <|-- EmailGenerator
+
+class EmailDonationsGenerator{
+}
+
+EmailGenerator <|-- EmailDonationsGenerator
+}
+
+namespace MenuN{
+
+class InvalidInput{
+}
+
+class InvalidUserChoice{
+}
+
+GlobalNamespace.ValueError <|-- InvalidInput
+GlobalNamespace.ValueError <|-- InvalidUserChoice
+
+enum WhichLimit{
+    + max_trials = "trials"
+    + max_menu_calls = "menu calls"
+}
+
+Abstract class Menu{
+- Database db
+- int max_menu_calls
+- int max_trials
+- IOStream istream
+- IOStream ostream
+- dict<str, str> messages
++ __init__(db: Database, max_menu_calls: int,
+ max_trials: int, istream=stdin, ostream=stdout)
++ db(): Database
++ max_menu_calls(): int
++ max_trials(): int
++ messages(): dict<str, fun>
+- pure virtual _make_request_string(): str
+- pure virtual _make_menu_string(): str
+- static _make_input_string(): str
+- virtual _make_error_string(): str
+- _make_quit_string_from_user(): str
+- _make_quit_string_limit_exceeded(which_limit: WhichLimit)
+- _print_request_and_menu(): str
+}
+
+Menu --> WhichLimit
+Menu o--> DatabaseN.Database
+Menu o--> UtilitiesN.Utilities
+
+abstract class MenuActions{
+- Database db
+- ostream: IOBase
++ db(): Database
+}
+
+MenuActions --> DatabaseN.Database
+
+abstract class MultipleChoicesMenu{
++ __init__(menu_choices_actions: dict, db: Database,
+ max_menu_calls: int, max_trials: int, istream=stdin, ostream=stdout)
++ virtual get_menu_choices_actions(): dict<str, fun>
+- _get_num_choices_actions(self): int
++ register_choice(self, message: str, fun): None
+- _is_valid_choice(self, ans: str): bool
+- _validate_user_choice(self, ans: str): str
+- _make_request_string(self): str
+- _make_menu_string(self): str
+- _make_error_string(self): str
+- _get_action(self, ans): fun
+- _get_action_from_user(self, istream: IOBase, ostream: IOBase) -> fun:
+- perform_action_from_user(self, fun, ostream)
++ get_action_from_user_and_perform(self, istream: IOBase, ostream: IOBase)
+}
+
+Menu <|-- MultipleChoicesMenu
+MultipleChoicesMenu *--> InvalidUserChoice
+
+abstract class UserInputMenu{
++ __init__(db: Database, max_menu_calls: int,
+ max_trials: int, istream=IOBase, ostream=IOBase)
+- virtual _make_menu_string(): str
+- virtual _is_valid_input(): bool
+- _validate_user_input(input: str)
+- virtual _do_continue()
+- virtual _record_input(input: str)
++ get_input_from_user()
+}
+
+Menu <|-- UserInputMenu
+UserInputMenu *--> InvalidInput
+
+class HomeMenu{
+- HomeMenuActions home_menu_act
+- QuitMenuActions quit_menu_act
+- menu_choices_actions: dict<str, fun>
++ __init__(db: Database, max_menu_calls=100,
+ max_trials=3, istream=stdin, ostream=stdout)
++ get_menu_choices_actions(): dict<str, fun>
+- _init_menu_choices_actions(): dict<str, fun>
+}
+
+MultipleChoicesMenu <|-- HomeMenu
+
+class HomeMenuActions{
++ __init__(db: Database, ostream: IOBase)
++ send_a_thank_you_email(donation: Donation): None
++ create_report(): None
+}
+
+MenuActions <|- HomeMenuActions
+HomeMenu *--> HomeMenuActions
+HomeMenuActions *--> DocumentGeneratorN.ReportDonationsDBGenerator
+
+class QuitMenu{
+- menu_choices_actions: dict<str, fun>
+- quit_menu_act: QuitMenuActions
+- menu: MultipleChoicesMenu
++ __init__(self, db: Database, max_menu_calls=100,
+ max_trials=3, istream=stdin, ostream=stdout)
++ menu(): MultipleChoicesMenu
++ quit_menu_act(): QuitMenuActions
+- _init_menu_choices_actions(): dict<str, fun>
+}
+
+MultipleChoicesMenu <|-- QuitMenu
+HomeMenu o--> QuitMenu
+
+class QuitMenuActions{
++ __init__(self, db: Database, ostream: IOBase)
+- _save_database(writer_type: DBWriterType): None
++ save_database_sql_lite(): None
++ save_database_sql_server(): None
++ quit_program(): None
+}
+
+MenuActions <|-- QuitMenuActions
+QuitMenu *--> QuitMenuActions
+QuitMenuActions --> DatabaseN.DBWriterType
+
+class DonationsMenu{
+}
+
+MultipleChoicesMenu <|-- DonationsMenu
+UserInputMenu <|-- DonationsMenu
+
+class DonationsMenuActions{
+}
+
+MenuActions <|-- DonationsMenuActions
+DonationsMenu *--> DonationsMenuActions
+
+class ThankYouEmailMenu{
+- QuitMenu quit_menu
+- list[str] name_menu
+- list[fun] self._validate
+- int index
+- int num_calls
+- int max_calls
+- datetime now
+- str prefix
+- str first_name
+- str last_name
+- str year
+- str month
+- str day
+- list[str] input
++ __init__(db: Database, max_menu_calls=100,
+           max_trials=3, istream=stdin, ostream=stdout)
+}
+
+HomeMenuActions *--> ThankYouEmailMenu
+UserInputMenu <|-- ThankYouEmailMenu
+
+class ThankYouEmailMenuActions{
++ __init__(self, db: Database, ostream: IOBase,
+ donation: Donation, organisation_member: OrganisationMember)
++ send_a_thank_you_email(donation: Donation)
+}
+
+MenuActions <|-- ThankYouEmailMenuActions
+ThankYouEmailMenuActions *--> DocumentGeneratorN.EmailDonationsGenerator
+ThankYouEmailMenu *--> ThankYouEmailMenuActions
+}
+
+namespace UtilitiesN{
+
+class InvalidDateError{
+- __init__(message: str):
+}
+
+GlobalNamespace.ValueError <|-- InvalidDateError
+
+class MyDate{
+- bool future_date
+- __new__(cls, year: int, month: int, day: int, future_date=False)
+}
+
+MyDate --|> datetime.date
+MyDate *--> InvalidDateError
+
+class Utilities{
++ static get_unique_items(container: tuple): tuple
++ static request(ostream: IOBase, istream: IBase, message: str) -> str
+}
+}
+
+namespace GlobalNamespace{
+
+class ValueError
+
+}
+
+namespace datetime{
+class date{
+- __init__(year: int, month: int, day: int)
+}
+}
+
+@enduml
